@@ -1,4 +1,24 @@
 Rails.application.routes.draw do
+
+  root 'homes#index'
+
+  resources :theatres, controller: 'theatres' do
+    resources :screens, controller: 'screens' do
+      resource :seat, on: :member, as: :seat,controller: 'seats'
+    end
+  end
+
+  resources :movies, controller: 'movies' do
+    resources :shows, controller: 'shows'
+  end
+
+
+  resources :bookings, controller: 'bookings' do
+    resources :tickets, controller: 'tickets'
+  end
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
