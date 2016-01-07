@@ -25,8 +25,8 @@ show1 = Show.create(starttime: 'Thu Feb 11 1992 12:12:12 GMT+0530 (IST)', endtim
 user1 = User.create(first_name: 'Chinmay', last_name: 'Joshi', email: 'chinmayj93@gmail.com', password: 'password', mobile: '8600983898', gender: 'male', date_of_birth: 'Thu Feb 20 1990 12:00:00 GMT+0530 (IST)')
 user2 = User.create(first_name: 'Vikas', last_name: 'Kale', email: 'vikas@gmail.com', password: 'password', mobile: '1234567890', gender: 'male', date_of_birth: 'Thu Feb 20 1990 12:00:00 GMT+0530 (IST)')
 
-#booking fields(ticket_numbres, number_of_tickets, amount, payment_mode, card_type, card_number, user_id, movie_id)
-booking = Booking.create(ticket_numbres: '1, 2, 3, 4', number_of_tickets: 4, amount: 500, payment_mode: 'Online', card_type: 'Debit Card', card_number: 123456789, user_id: user1['_id'], movie_id: movie['_id'])
+#booking fields(ticket_numbers, number_of_tickets, amount, payment_mode, card_type, card_number, user_id, movie_id)
+booking = Booking.create(ticket_numbers: '1, 2, 3, 4', number_of_tickets: 4, amount: 500, payment_mode: 'Online', card_type: 'Debit Card', card_number: 123456789, user_id: user1['_id'], movie_id: movie['_id'])
 
 #ticket fields(number, type, price, booking_id, seat_id, movie_id)
 ticket1 = Ticket.create(number: 'Ticket A', type: "Silver", price: '100', booking_id: booking['_id'], seat_id: seat1['_id'], movie_id: movie['_id'])

@@ -14,4 +14,7 @@ class Seat
   validates :row, :seat_number, presence: true
   validates :row, length: { minimum: 1, maximum: 2 }
   validates :seat_number, numericality: { only_integer: true }
+
+  validates_with screen
+  #add validation on seats. don't allot seat if don't have capacity
 end

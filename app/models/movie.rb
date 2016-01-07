@@ -10,7 +10,7 @@ class Movie
   field :movie_format, type: String
   #field :poster, type: String #TODO Paperclip gem
   field :trailer_url, type: String
-  field :rating, type: Float
+  field :rating, type: Integer
   field :release_date, type: Date
 
   #associations
@@ -22,6 +22,6 @@ class Movie
   #validations
   validates :name, :language, :genre, :duration, :movie_format, :trailer_url, :rating, :release_date, presence: true
   validates :name, :language, :genre, :movie_format, length: { minimum: 1, maximum: 50 }
-  validates_numericality_of :rating
+  validates_numericality_of :rating, length { minimum: 0, maximum: 10 }
   validates :trailer_url, length: { maximum: 500 }
 end
