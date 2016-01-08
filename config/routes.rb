@@ -2,9 +2,11 @@ Rails.application.routes.draw do
 
   root 'homes#index'
 
+  devise_for :users, controllers: { registrations: "users/registrations" }
+
   resources :theatres, controller: 'theatres' do
     resources :screens, controller: 'screens' do
-      resource :seat, on: :member, as: :seat,controller: 'seats'
+      resource :seat, on: :member, as: :seat, controller: 'seats'
     end
   end
 
@@ -12,12 +14,9 @@ Rails.application.routes.draw do
     resources :shows, controller: 'shows'
   end
 
-
   resources :bookings, controller: 'bookings' do
     resources :tickets, controller: 'tickets'
   end
-
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

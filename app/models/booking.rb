@@ -4,7 +4,7 @@ class Booking
 
   #attributes
   #TODO add hash for payment details
-  field :ticket_numbres, type: String
+  field :ticket_numbers, type: String
   field :number_of_tickets, type: Integer
   field :amount, type: Float
   field :payment_mode, type: String
@@ -17,7 +17,7 @@ class Booking
   has_many :tickets
 
   #validations
-  validates :ticket_numbres, :number_of_tickets, :amount, :payment_mode, :card_type, :card_number ,presence: true
+  validates :ticket_numbers, :number_of_tickets, :amount, :payment_mode, :card_type, :card_number ,presence: true
   validates_numericality_of :number_of_tickets
   validates_inclusion_of :number_of_tickets, in: 1..10
   validates :card_number, numericality: { only_integer: true }, length: { minimum: 13, maximum: 19 }
