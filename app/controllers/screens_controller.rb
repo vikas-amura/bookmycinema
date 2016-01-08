@@ -6,7 +6,7 @@ class ScreensController < ApplicationController
   # GET /screens
   # GET /screens.json
   def index
-    @screens = @theatre.screen.all
+    @screens = @theatre.screens.all
   end
 
   # GET /screens/1
@@ -79,7 +79,3 @@ class ScreensController < ApplicationController
       end
     end
   end
-
-
-
-

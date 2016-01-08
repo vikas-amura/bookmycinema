@@ -1,1 +1,28 @@
 <h1>All Seats</h1>
+
+<h3><%= @screen.name %></h3>
+<table>
+  <thead>
+    <tr>
+      <th>Seat Row</th>
+      <th>Seat Number</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @seats.each do |seat| %>
+      <tr>
+        <td><%= seat.row %></td>
+        <td><%= seat.seat_number %></td>
+        <td><%= link_to 'Show', theatre_screen_seat_path(@theatre,@screen,seat) %></td>
+        <td><%= link_to 'Edit', edit_theatre_screen_seat_path(@theatre,@screen,seat) %></td>
+        <td><%= link_to 'Destroy',[@theatre,@screen,seat], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Seat', new_theatre_screen_seat_path(@theatre,@screen) %>

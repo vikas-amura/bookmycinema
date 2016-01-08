@@ -4,9 +4,9 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { registrations: "users/registrations" }
 
-  resources :theatres, controller: 'theatres' do
-    resources :screens, controller: 'screens' do
-      resource :seat, on: :member, as: :seat, controller: 'seats'
+  resources :theatres do
+    resources :screens do
+      resources :seats
     end
   end
 

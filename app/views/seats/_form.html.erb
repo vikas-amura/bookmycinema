@@ -1,0 +1,24 @@
+<%= form_for [@theatre, @screen,@seat] do |f| %>
+  <% if @seat.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@seat.errors.count, "error") %> prohibited this seat from being saved:</h2>
+
+      <ul>
+      <% @seat.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :row %><br>
+    <%= f.text_field :row %>
+  </div>
+  <div class="field">
+    <%= f.label :seat_number %><br>
+    <%= f.number_field :seat_number %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,1 +1,14 @@
-<h1>Show Seats</h1>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Row:</strong>
+  <%= @seat.row %>
+</p>
+
+<p>
+  <strong>Number</strong>
+  <%= @seat.seat_number %>
+</p>
+
+<%= link_to 'Edit', edit_theatre_screen_seat_path(@theatre,@screen,@seat) %> |
+<%= link_to 'Back', theatre_screen_seats_path(@theatre, @screen, @seat) %>
