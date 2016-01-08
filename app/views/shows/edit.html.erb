@@ -1,1 +1,6 @@
-<h1>Edit Show</h1>
+<h1>Editing Shows</h1>
+<h3>Movie Name:<%=@movie.name%></h3>
+<%= render 'form' %>
+
+<%= link_to 'Show', movie_show_path(@movie,@show) %> |
+<%= link_to 'Back', movie_shows_path(@movie) %>

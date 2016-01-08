@@ -1,1 +1,15 @@
-<h1>Show Single Show</h1>
+<p id="notice"><%= notice %></p>
+
+<h3>Movie Name:<%=@movie.name%></h3>
+<p>
+  <strong>Start Time:</strong>
+  <%= @show.starttime %>
+</p>
+
+<p>
+  <strong>End Time:</strong>
+  <%= @show.endtime %>
+</p>
+
+<%= link_to 'Edit', edit_movie_show_path(@movie,@show) %> |
+<%= link_to 'Back', movie_shows_path(@movie) %>

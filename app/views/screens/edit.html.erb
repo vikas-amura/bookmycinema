@@ -1,1 +1,6 @@
-<h1>Edit Screen</h1>
+<h1>Editing Screen</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', theatre_screen_path(@theatre,@screen) %> |
+<%= link_to 'Back', theatre_screens_path(@theatre) %>
