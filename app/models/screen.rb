@@ -16,4 +16,6 @@ class Screen
   validates :capacity, numericality: { only_integer: true }
   validates_inclusion_of :capacity, in: 20..200
   validates :name, length: { minimum: 1, maximum: 50 }
+
+  
 end

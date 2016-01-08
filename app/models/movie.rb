@@ -22,6 +22,6 @@ class Movie
   #validations
   validates :name, :language, :genre, :duration, :movie_format, :trailer_url, :rating, :release_date, presence: true
   validates :name, :language, :genre, :movie_format, length: { minimum: 1, maximum: 50 }
-  validates_numericality_of :rating, length { minimum: 0, maximum: 10 }
+  validates_numericality_of :rating, length: { minimum: 0, maximum: 10 }
   validates :trailer_url, length: { maximum: 500 }
 end
