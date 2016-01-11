@@ -7,6 +7,9 @@ class ShowsController < ApplicationController
 	end
 
 	def show
+		@bookings= Booking.new
+		@screen  = @show.screen
+		@seats   = @screen.seats
 	end
 
 	def new

@@ -1,15 +1,38 @@
-<p id="notice"><%= notice %></p>
+<%= form_for @bookings, html: {class: "nifty_form"} do |f| %>
+<p>
+  <strong>Screen Name:</strong>
+  <%= @screen.name%>
 
-<h3>Movie Name:<%=@movie.name%></h3>
+</p>
+<p>
+ <strong>Movie Name:</strong>
+ <%=@movie.name%>
+</p>
 <p>
   <strong>Start Time:</strong>
-  <%= @show.starttime %>
+  <%= @show.starttime.strftime("on %d/%m/%Y at %I:%M%p")%>
 </p>
 
 <p>
   <strong>End Time:</strong>
-  <%= @show.endtime %>
+  <%= @show.endtime.strftime("on %d/%m/%Y at %I:%M%p")%>
+</p>
+<p>
+	<strong>Total Seat:</strong>
+	<%=@seats.count%>
 </p>
 
-<%= link_to 'Edit', edit_movie_show_path(@movie,@show) %> |
-<%= link_to 'Back', movie_shows_path(@movie) %>
+<%@seats.each do |seat|%>
+    <%=check_box_tag(seat.id, value = "1", checked = false)%>
+ 	<%=seat.row%>
+	<%=seat.seat_number%>&nbsp;&nbsp;|&nbsp;
+	<%=seat.status%>
+	<br>
+<%end%>
+<%= submit_tag("Book") %>
+<% end %>
+
+<%if current_user.role=="admin"%>
+	<%= link_to 'Edit', edit_movie_show_path(@movie,@show) %> |
+	<%= link_to 'Back', movie_shows_path(@movie) %>
+<%end%>

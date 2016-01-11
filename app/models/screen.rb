@@ -8,8 +8,8 @@ class Screen
 
   #associations
   belongs_to :theatre
-  has_many :seats
-  has_many :show
+  has_many   :seats
+  has_many   :shows
 
   #validations
   validates :name, :capacity, presence: true

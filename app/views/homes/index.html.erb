@@ -1,6 +1,17 @@
+<style type="text/css">
+body{
+	background: url("images/home.JPG") !important;
+	background-repeat: no-repeat !important;
+	background-size: cover !important;
+}
+h1,p{
+	color: #fff;
+
+}
+</style>
 <center>
 	<h1>Welcome To BookMyCinema</h1>
 	<% if current_user.role == "admin" %>
-		<p>Book Movie Ticket Online & get Discount!!</p>
+	<p>Book Movie Ticket Online & get Discount!!</p>
 	<% end %>
 </center>
