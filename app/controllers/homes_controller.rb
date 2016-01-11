@@ -1,4 +1,6 @@
 class HomesController < ApplicationController
+    before_action :authenticate_user!
+
 	def index
 	end
 
@@ -8,4 +10,5 @@ class HomesController < ApplicationController
 
 		@shows = Show.all
 	end
+
 end
