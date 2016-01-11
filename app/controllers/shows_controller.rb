@@ -10,11 +10,14 @@ class ShowsController < ApplicationController
 	end
 
 	def new
-		@show = Show.new
+		city 		= {:city=>'Pune'}
+		@theatre 	= Theatre.get_all_theatre(city)
+		@show    	= Show.new
 	end
 
 	def edit
-
+		city 		= {:city=>'Pune'}
+		@theatre 	= Theatre.get_all_theatre(city)
 	end
 
 	def create
@@ -34,7 +37,7 @@ class ShowsController < ApplicationController
 
 	def update
 		respond_to do |format|
-			if @show.update(screen_params)
+			if @show.update(show_params)
 				format.html { redirect_to edit_movie_show_path(@movie,@show), notice: 'Show was successfully updated.' }
 				format.json { render :show, status: :ok, location: @show }
 			else
@@ -58,7 +61,7 @@ class ShowsController < ApplicationController
 	end
 
 	def show_params
-		params.require(:show).permit(:starttime, :endtime)
+		params.require(:show).permit(:starttime, :endtime, :screen_id)
 	end
 
 	def load_authorize_parent

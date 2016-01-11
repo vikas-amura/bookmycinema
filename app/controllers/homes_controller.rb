@@ -1,6 +1,14 @@
 class HomesController < ApplicationController
-  before_action :authenticate_user!
+    before_action :authenticate_user!
 
-  def index
-  end
+	def index
+	end
+
+	def display
+		@theatre    = Theatre.first
+		@screens    = @theatre.screens
+
+		@shows = Show.all
+	end
+
 end

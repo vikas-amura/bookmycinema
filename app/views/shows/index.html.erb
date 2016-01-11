@@ -1,11 +1,12 @@
-<h1>Listing Shows</h1>
-<h3>Movie Name:<%=@movie.name%></h3>
+<%=render 'layouts/breadcrumb'%>
 <table>
   <thead>
     <tr>
       <th>Start Time</th>
       <th>End Time</th>
-      <th colspan="3"></th>
+      <th>Screen</th>
+      <th>Theater</th>
+      <th colspan="3">Action</th>
     </tr>
   </thead>
 
@@ -14,6 +15,9 @@
       <tr>
         <td><%= show.starttime %></td>
         <td><%= show.endtime %></td>
+        <td><%= show.screen.name if show.screen? %></td>
+        <td>City Pride<%#= screen.theater.name if screen.theater? %></td>
+
         <td><%= link_to 'Show', movie_show_path(@movie,show) %></td>
         <td><%= link_to 'Edit', edit_movie_show_path(@movie,show) %></td>
         <td><%= link_to 'Destroy',[@movie,show], method: :delete, data: { confirm: 'Are you sure?' } %></td>

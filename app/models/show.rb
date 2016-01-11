@@ -9,8 +9,9 @@ class Show
   #associations
   belongs_to :screen
   belongs_to :movie
-  has_many :bookings
-  has_many :tickets
+
+  has_many   :bookings
+  has_many   :tickets
 
   #validations
   validates :starttime, :endtime, presence: true

@@ -1,0 +1,70 @@
+<ol class="breadcrumb">
+	<li><a href="javscript:;">Home</a></li>
+
+	<% if @movie.present? %>
+		<li><a href="<%= movies_path %>">Movies</a></li>
+
+		<% if @movie.present? %>
+		<% if @movie.new_record? %>
+		<li class="active">New Movie</li>
+		<% else %>
+		<li><a href="<%= movie_shows_path(@movie) %>">Shows</a></li>
+		<li class="active"><%= @movie.name %></li>
+		<% end %>
+	<% end %>
+	<% else %>
+		<%if @seats.present?%>
+			<% if @theatre.present? %>
+				<li><a href="<%= theatres_path %>">Theatre</a></li>
+			<% end %>
+			<% if @screen.present? %>
+				<li><a href="<%= theatre_screens_path %>"><%=@screen.name%></a></li>
+				<li class="active">Seats</li>
+			<% end %>
+
+		<%elsif @seat.present?%>
+
+			<% if @theatre.present? %>
+				<li><a href="<%= theatres_path %>">Theatre</a></li>
+			<% end %>
+
+			<% if @screen.present? %>
+				<li><a href="<%= theatre_screens_path %>"><%=@screen.name%></a></li>
+			<% end %>
+
+				<% if @seat.new_record? %>
+					<li class="active">New Seat</li>
+				<% else %>
+					<li><a href="<%= theatre_screen_seats_path %>">Seats</a></li>
+					<li class="active"><%= @seat.row %></li>
+				<% end %>
+
+		<% else %>
+
+			<% if @theatre.present? %>
+				<li><a href="<%= theatres_path %>">Theatre</a></li>
+			<% end %>
+			<% if @theatre.present? %>
+				<% if @theatre.new_record? %>
+					<li class="active">New Theatre</li>
+				<% else %>
+					<li class="active"><%= @theatre.name %></li>
+				<% end %>
+			<% end %>
+			<% if @screen.present? %>
+				<% if @screen.new_record? %>
+					<li class="active">New Screen</li>
+				<% else %>
+					<li class="active"><%= @screen.name %></li>
+				<% end %>
+			<% end %>
+
+			<% if @screens.present? %>
+			<li class="active">Screens</li>
+			<%end%>
+		<% end %>
+	<% end %>
+
+
+
+</ol>
