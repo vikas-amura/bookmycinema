@@ -1,11 +1,12 @@
-<h1>Listing Screens</h1>
+<%=render 'layouts/breadcrumb'%>
 
 <table>
   <thead>
     <tr>
       <th>Name</th>
       <th>Capacity</th>
-      <th colspan="3"></th>
+      <th>Seats</th>
+      <th colspan="3">Action</th>
     </tr>
   </thead>
 
@@ -14,6 +15,7 @@
       <tr>
         <td><%= screen.name %></td>
         <td><%= screen.capacity %></td>
+        <td><%= link_to 'Seats', theatre_screen_seats_path(@theatre,screen) %></td>
         <td><%= link_to 'Show', theatre_screen_path(@theatre,screen) %></td>
         <td><%= link_to 'Edit', edit_theatre_screen_path(@theatre,screen) %></td>
         <td><%= link_to 'Destroy',[@theatre,screen], method: :delete, data: { confirm: 'Are you sure?' } %></td>

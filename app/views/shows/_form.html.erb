@@ -1,20 +1,30 @@
 <%= form_for [@movie,@show] do |f| %>
-  <% if @show.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@show.errors.count, "error") %> prohibited this show from being saved:</h2>
+<% if @show.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@show.errors.count, "error") %> prohibited this show from being saved:</h2>
 
-      <ul>
-      <% @show.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div class="field">
-    <%= f.label :starttime %><br>
-    <%= f.datetime_local_field :starttime %>
+  <ul>
+    <% @show.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="form-group">
+  <%= f.label :screen_id, class: "col-sm-2 control-label" %>
+  <div class="col-sm-10">
+  <%= f.select :screen_id, options_for_select(@theatre.collect{ |u| [u.name, u.id] }), {}, class: "form-control amura-select2", required: "required", data: {type: "ds", "vertical-blank" => true, "default-value" => f.object.screen_id, name: "screen_id"} %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+</div>
+<br><br><br>
+<div class="form-group">
+  <%= f.label :starttime, class: "col-sm-2 control-label" %>
+  <div class="col-sm-10">
+    <%= f.datetime_local_field :starttime, class: "form-control amura-select2", required: "required"  %>
   </div>
+</div>
+<div class="actions">
+  <%= f.submit %>
+</div>
 <% end %>
