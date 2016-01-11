@@ -19,8 +19,10 @@
 
 body {
   background: #fdfdfd !important;
+  -webkit-font-smoothing: antialiased !important;
 }
-/* login page */
+
+/* user actions page */
 .login-container{
   max-height: 385px;
   width: 400px;
@@ -103,4 +105,37 @@ body {
   left: 0;
   right: 0;
   margin: auto;
+}
+
+/* custom navbar */
+.globalnav{
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 9999;
+  display: block;
+  width: 100%;
+  min-width: 1024px;
+  height: 48px;
+  max-height: 44px;
+  background: rgba(0, 0, 0, 0.8);
+  font-size: 18px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased !important;
+  box-sizing: content-box;
+  pointer-events: auto;
+  letter-spacing: normal;
+  padding: 0;
+}
+.globalnav-content{
+  margin: 0 auto;
+  max-width: 980px;
+  padding: 0 22px;
+  position: relative;
+  z-index: 2;
 }

@@ -12,7 +12,11 @@
 
 //= require jquery
 //= require semantic_ui/semantic_ui
+//= require jquery.validate
+//= require jquery.validate.additional-methods
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(".form-validatable").validate();
