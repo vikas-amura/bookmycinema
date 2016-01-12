@@ -1,1 +1,42 @@
-here All ticket print
+<style type="text/css">
+th,td,tr{
+	border: 1px solid #ccc;
+}
+</style>
+userName:
+<%= @user.first_name %>
+<br>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ticket No</th>
+      <th>Movie Name</th>
+      <th>Time</th>
+      <th>Screen</th>
+      <th>No of ticket</th>
+      <th>amout</th>
+      <th>Ticket No</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @bookings.each do |book| %>
+      <tr>
+      	<td><%=book.ticket_numbers %></td>
+      	<td><%=book.movie.name%></td>
+      	<td><%=book.show.starttime.strftime("on %d/%m/%Y at %I:%M%p")%></td>
+        <td><%=book.show.screen.name %></td>
+        <td><%=book.number_of_tickets %></td>
+        <td><%=book.amount %></td>
+        <td><%=book.show.movieshows.each do|p|%>
+        	<%if p.status=='booked'%>
+        	<%=p.seat.row%><%=p.seat.seat_number%>
+        	<%end%>
+        	<%end%>
+        </td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>

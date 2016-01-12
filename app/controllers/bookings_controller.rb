@@ -15,7 +15,7 @@ class BookingsController < ApplicationController
 	def create
 		@booking=Booking.new(booking_params)
 		@booking.user_id=current_user.id
-		@booking.ticket_numbers="123456"
+		@booking.ticket_numbers=
 		@booking.number_of_tickets=params['seatids'].count
 		amount=params['booking']['amount'].to_i
 		@booking.amount= @booking.number_of_tickets * amount
@@ -49,6 +49,6 @@ class BookingsController < ApplicationController
 	private
 
 	 def booking_params
-      params.require(:booking).permit(:payment_mode, :card_type,:card_number,:movie_id)
+      params.require(:booking).permit(:payment_mode, :card_type,:card_number,:movie_id,:show_id)
     end
 end

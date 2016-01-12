@@ -16,7 +16,7 @@
 					<a href="" class="category-heading list-group-item active">English</a>
 					<% @movie.each do |m| %>
 						<% if m.language.humanize == "English" %>
-						 <a href="" class="list-group-item">
+						 <a href="" class="list-group-item" style="text-overfloaw: ellipsis"  >
 							 <%= m.name %>
 							 <span class="badge"><%= m.movie_format %></span>
 						 </a>
@@ -30,7 +30,7 @@
 					<a href="" class="category-heading list-group-item active">Hindi</a>
 					<% @movie.each do |m| %>
 						<% if m.language.humanize == "Hindi" %>
-						 <a href="" class="list-group-item">
+						 <a href="" class="list-group-item" style="text-overfloaw: ellipsis">
 							 <%= m.name %>
 							 <span class="badge"><%= m.movie_format %></span>
 						 </a>
@@ -44,7 +44,7 @@
 					<a href="" class="category-heading list-group-item active">Marathi</a>
 					<% @movie.each do |m| %>
 						<% if m.language.humanize == "Marathi" %>
-						 <a href="" class="list-group-item">
+						 <a href="" class="list-group-item" style="text-overfloaw: ellipsis">
 							 <%= m.name %>
 							 <span class="badge"><%= m.movie_format %></span>
 						 </a>
