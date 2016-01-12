@@ -15,7 +15,7 @@ class Movieshow
   end
   def self.change_status(showid,seatid)
    # Movieshow.where(:show_id =>showid,:seat_id=>seatid).update_all(:status => 'booked')
-
+   
   end
 
 end

@@ -1,5 +1,10 @@
-<%=render 'layouts/breadcrumb'%>
-<table>
+<%= render 'layouts/headbar'%>
+<%= render 'layouts/breadcrumb'%>
+<% if current_user.role == "admin "%>
+  <%= link_to 'New Theatre', new_theatre_path %>
+<% end %>
+
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Name</th>
@@ -23,6 +28,3 @@
     <% end %>
   </tbody>
 </table>
-<br>
-
-<%= link_to 'New Theatre', new_theatre_path %>

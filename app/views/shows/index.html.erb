@@ -1,12 +1,18 @@
+<%= render 'layouts/headbar'%>
 <%=render 'layouts/breadcrumb'%>
-<table>
+<% if current_user.role == "admin" %>
+  <%= link_to 'New Show', new_movie_show_path(@movie) %>
+<% end %>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Start Time</th>
       <th>End Time</th>
       <th>Screen</th>
       <th>Theater</th>
-      <th colspan="3">Action</th>
+      <% if current_user.role == "admin" %>
+        <th colspan="3">Action</th>
+      <% end %>
     </tr>
   </thead>
 
@@ -17,15 +23,12 @@
         <td><%= show.endtime.strftime("on %d/%m/%Y at %I:%M%p") %>|</td>
         <td><%= show.screen.name if show.screen? %></td>
         <td>City Pride<%#= screen.theater.name if screen.theater? %></td>
-
-        <td><%= link_to 'Show', movie_show_path(@movie,show) %></td>
-        <td><%= link_to 'Edit', edit_movie_show_path(@movie,show) %></td>
-        <td><%= link_to 'Destroy',[@movie,show], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_user.role == "admin" %>
+          <td><%= link_to 'Show', movie_show_path(@movie,show) %></td>
+          <td><%= link_to 'Edit', edit_movie_show_path(@movie,show) %></td>
+          <td><%= link_to 'Destroy',[@movie,show], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Show', new_movie_show_path(@movie) %>
