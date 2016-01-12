@@ -5,6 +5,7 @@ class Seat
   #attributes
   field :row, type: String
   field :seat_number, type: Integer
+  field :status, type: String ,:default => 'available'
 
   #associations
   belongs_to :screen

@@ -3,10 +3,13 @@ class ShowsController < ApplicationController
 	before_action :load_authorize_parent
 
 	def index
-		@shows = @movie.shows.all
+		@shows   = @movie.shows.all
 	end
 
 	def show
+		@bookings= Booking.new
+		@screen  = @show.screen
+		@seats   = @screen.seats
 	end
 
 	def new
