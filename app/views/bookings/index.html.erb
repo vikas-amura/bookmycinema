@@ -1,1 +1,41 @@
-<h1>All Booking</h1>
+<style type="text/css">
+th,td,tr{
+	border: 1px solid #ccc;
+}
+</style>
+<table>
+  <thead>
+    <tr>
+      <th>User Name</th>
+      <th>No of ticket</th>
+      <th>amout</th>
+      <th>Payment Mode</th>
+      <th>Card Type</th>
+      <th>Card No</th>
+      <th>Ticket</th>
+      <th colspan="3">Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bookings.each do |booking| %>
+      <tr>
+        <td><%= booking.user.first_name %></td>
+        <td><%= booking.number_of_tickets %></td>
+        <td><%= booking.amount %></td>
+        <td><%= booking.payment_mode %></td>
+        <td><%= booking.card_type %></td>
+        <td><%= booking.card_number %></td>
+
+        <td><%= link_to 'Add Shows', movie_shows_path(booking) %></td>
+        <td><%= link_to 'Show', booking %></td>
+        <td><%= link_to 'Edit', edit_movie_path(booking) %></td>
+        <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Movie', new_movie_path %>

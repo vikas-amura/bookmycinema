@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
 	def index
+		@bookings=Booking.all
 	end
 
 	def show
@@ -12,16 +13,16 @@ class BookingsController < ApplicationController
 	end
 
 	def create
-		@booking = Booking.new
-		@booking.ticket_numbers     ="123554"
-		@booking.number_of_tickets  = 4
-		@booking.amount             = 3222
-		@booking.payment_mode       = "cash"
-		@booking.card_type          = "Debit"
-		@booking.card_number        =123456789555
-		@booking.user_id            = current_user.id
-		@booking.movie_id           = "568e749f839a1e1bf4000000"
-		debugger
+		@booking=Booking.new(booking_params)
+		@booking.user_id=current_user.id
+		@booking.ticket_numbers="123456"
+		@booking.number_of_tickets=params['seatids'].count
+		amount=params['booking']['amount'].to_i
+		@booking.amount= @booking.number_of_tickets * amount
+
+		params['seatids'].each do |seatid|
+			Movieshow.where(:seat_id=>seatid,:show_id=>params['booking']['show_id']).update_all(status: 'booked')
+		end
 		respond_to do |format|
 			if @booking.save
 				format.html { redirect_to booking_tickets_path(@booking), notice: 'Ticket was successfully created.' }
@@ -44,4 +45,10 @@ class BookingsController < ApplicationController
 		@screens    = @theatre.screens
 		@shows      = Show.all
 	end
+
+	private
+
+	 def booking_params
+      params.require(:booking).permit(:payment_mode, :card_type,:card_number,:movie_id)
+    end
 end
