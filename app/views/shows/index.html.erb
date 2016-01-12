@@ -13,8 +13,8 @@
   <tbody>
     <% @shows.each do |show| %>
       <tr>
-        <td><%= show.starttime %></td>
-        <td><%= show.endtime %></td>
+        <td><%= show.starttime.strftime("on %d/%m/%Y at %I:%M%p") %>|</td>
+        <td><%= show.endtime.strftime("on %d/%m/%Y at %I:%M%p") %>|</td>
         <td><%= show.screen.name if show.screen? %></td>
         <td>City Pride<%#= screen.theater.name if screen.theater? %></td>
 

@@ -5,10 +5,12 @@ class Seat
   #attributes
   field :row, type: String
   field :seat_number, type: Integer
+  field :status, type: String ,:default => 'available'
 
   #associations
   belongs_to :screen
   has_one :ticket
+  has_many :movieshow
 
   #validations
   validates :row, :seat_number, presence: true

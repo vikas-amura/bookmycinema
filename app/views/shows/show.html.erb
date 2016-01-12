@@ -1,15 +1,79 @@
-<p id="notice"><%= notice %></p>
+<center>
+<%= form_for @bookings, html: {class: "nifty_form"} do |f| %>
+<p>
+  <strong>Screen Name:</strong>
+  <%= @screen.name%>
 
-<h3>Movie Name:<%=@movie.name%></h3>
+</p>
+
+<p>
+ <strong>Movie Name:</strong>
+ <%=@movie.name%>
+  </div>
+</p>
 <p>
   <strong>Start Time:</strong>
-  <%= @show.starttime %>
+  <%= @show.starttime.strftime("on %d/%m/%Y at %I:%M%p")%>
+   <%=f.hidden_field :show_id,value:params[:id]%>
 </p>
 
 <p>
   <strong>End Time:</strong>
-  <%= @show.endtime %>
+  <%= @show.endtime.strftime("on %d/%m/%Y at %I:%M%p")%>
 </p>
+<p>
+	<strong>Total Seat:</strong>
+	<%=@seats.count%>
+</p>
+<%@book.each do |ss|%>
+  <%if ss.status!='booked' %>
+  <%=check_box_tag("seatids[]",value =ss.seat_id, checked = false)%>
+  <%else%>
+    []
+  <%end%>
+  <%=ss.seat.row%>
+  <%=ss.seat.seat_number%>
+  <%=ss.status%>
+  <br>
+<%end%>
 
-<%= link_to 'Edit', edit_movie_show_path(@movie,@show) %> |
-<%= link_to 'Back', movie_shows_path(@movie) %>
+
+
+<div class="">
+  <%= f.label :amount, class: "" %>
+  <div class="">
+  <% @amount={100=>100,150=>150,200=>200} %>
+  <%= f.select :amount, options_for_select(@amount), class: "", required: "required", data: {type: "ds", "vertical-blank" => true, "default-value" => f.object.amount, name: "amount"} %>
+  </div>
+</div>
+
+
+<div class="">
+  <%= f.label :card_type, class: "" %>
+  <div class="">
+  	<%@card_type={"Debit"=>"Debit","Credit"=>"Credit"} %>
+  <%= f.select :card_type, options_for_select(@card_type), class: "", required: "required", data: {type: "ds", "vertical-blank" => true, "default-value" => f.object.card_type, name: "card_type"} %>
+  </div>
+</div>
+
+<div class="">
+  <%= f.label :payment_mode, class: "" %>
+  <div class="">
+  	<%@payment_mode={"Online"=>"online","Cash"=>"Cash"} %>
+  <%= f.select :payment_mode, options_for_select(@payment_mode), class: "", required: "required", data: {type: "ds", "vertical-blank" => true, "default-value" => f.object.payment_mode, name: "payment_mode"} %>
+  </div>
+</div>
+ <div class="field">
+    <%= f.label :card_number %><br>
+    <%= f.text_field :card_number %>
+    <%=f.hidden_field :movie_id,value:params[:movie_id]%>
+  </div>
+<%= submit_tag("Book") %>
+<% end %>
+
+<%if current_user.role=="admin"%>
+	<%= link_to 'Edit', edit_movie_show_path(@movie,@show) %> |
+	<%= link_to 'Back', movie_shows_path(@movie) %>
+<%end%>
+
+</center>

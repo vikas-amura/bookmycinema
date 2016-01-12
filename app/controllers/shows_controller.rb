@@ -3,10 +3,15 @@ class ShowsController < ApplicationController
 	before_action :load_authorize_parent
 
 	def index
-		@shows = @movie.shows.all
+		@shows   = @movie.shows.all
 	end
 
 	def show
+
+		@bookings= Booking.new
+		@screen  = @show.screen
+		@seats   = @screen.seats
+		@book    = @show.movieshows
 	end
 
 	def new
@@ -24,8 +29,18 @@ class ShowsController < ApplicationController
 		@show = @movie.shows.new(show_params)
 		@show.endtime = (@show.starttime.to_time + @movie.duration.hours).to_datetime
 
+		screen=params['show']['screen_id']
+		@screen =Screen.find(screen)
+		@seat   = @screen.seats
 		respond_to do |format|
 			if @show.save
+				debugger
+				lastid=Show.find(@show.id)
+				@seat.each do |seat|
+					Movieshow.save_movies_show(lastid,seat.id)
+				end
+
+
 				format.html { redirect_to edit_movie_show_path(@movie,@show), notice: 'Show was successfully created.' }
 				format.json { render :show, status: :created, location: @show }
 			else

@@ -10,5 +10,4 @@ class HomesController < ApplicationController
 		@screens    = @theatre.screens
     @shows = Show.all
 	end
-
 end
