@@ -9,6 +9,7 @@ gem 'less-rails'
 
 #bootstrap gem for styling
 gem 'bootstrap-sass', '~> 3.3.6'
+gem 'font-awesome-rails'
 
 #gem for semantic UI
 gem 'less-rails-semantic_ui'

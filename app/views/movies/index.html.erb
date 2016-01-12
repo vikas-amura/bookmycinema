@@ -1,9 +1,11 @@
-<p id="notice"><%= notice %></p>
-
+<%= render 'layouts/headbar'%>
+<%= render 'layouts/breadcrumb'%>
 <h1>Listing Movies</h1>
+<% if current_user.role == "admin"%>
+  <%= link_to 'New Movie', new_movie_path %>
+<% end %>
 
-<table>
-  <thead>
+<table class="table table-striped">
     <tr>
       <th>Name</th>
       <th>Language</th>
@@ -13,10 +15,11 @@
       <th>Trailer url</th>
       <th>Rating</th>
       <th>Release date</th>
-      <th>Movies Shows</th>
-      <th colspan="3">Action</th>
+      <% if current_user.role == "admin"%>
+        <th>Movies Shows</th>
+        <th colspan="3">Action</th>
+      <% end %>
     </tr>
-  </thead>
 
   <tbody>
     <% @movies.each do |movie| %>
@@ -29,16 +32,13 @@
         <td><%= movie.trailer_url %></td>
         <td><%= movie.rating %></td>
         <td><%= movie.release_date %></td>
-        <td><%= link_to 'Add Shows', movie_shows_path(movie) %></td>
-
-        <td><%= link_to 'Show', movie %></td>
-        <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
-        <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_user.role == "admin"%>
+          <td><%= link_to 'Add Shows', movie_shows_path(movie) %></td>
+          <td><%= link_to 'Show', movie %></td>
+          <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
+          <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Movie', new_movie_path %>

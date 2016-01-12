@@ -11,7 +11,7 @@ class User
   field :email, type: String, default: ""
   field :encrypted_password, type: String, default: ""
   field :mobile, type: Integer
-  field :gender, type: String, default: ""
+  field :gender, type: String
   field :date_of_birth, type: Date
   field :role, type: String, default: "user"
 
@@ -45,7 +45,7 @@ class User
   has_many :bookings
 
   #validations
-  validates :first_name, :last_name, :email, :encrypted_password, :mobile, :gender, :date_of_birth, presence: true
+  validates :first_name, :last_name, :mobile, :gender, :date_of_birth, presence: true
   validates :first_name, :last_name, length: { minimum: 2 }
   validates :mobile, numericality: { only_integer: true }, length: { is: 10 }
 end

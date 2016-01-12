@@ -1,8 +1,9 @@
+<%= render 'layouts/headbar'%>
 <% if current_user.role=="admin"%>
 <%=render 'layouts/breadcrumb'%>
 <%end%>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Seat Row</th>
