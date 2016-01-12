@@ -109,23 +109,18 @@ body {
 
 /* custom navbar */
 .globalnav{
-  position: absolute;
   top: 0;
   right: 0;
   left: 0;
-  z-index: 9999;
   display: block;
   width: 100%;
-  min-width: 1024px;
   height: 48px;
   max-height: 44px;
   background: rgba(0, 0, 0, 0.8);
-  font-size: 18px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased !important;
   box-sizing: content-box;
   pointer-events: auto;
@@ -137,5 +132,30 @@ body {
   max-width: 980px;
   padding: 0 22px;
   position: relative;
-  z-index: 2;
+}
+.globalnav-item-holder{
+  display: inline-block;
+  position: relative;
+  height: 44px;
+  vertical-align: top;
+}
+.globalnav-item{
+  font-size: 18px;
+  color: #fff;
+  height: 48px;
+  margin-top: 8px;
+  cursor: default;
+}
+
+/* home  page */
+.container{
+  padding: 5px;
+}
+.category-heading{
+  color: #a1a1a1;
+  font-weight: lighter;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.61) !important;
+  border: 0px;
+  cursor: default;
 }
