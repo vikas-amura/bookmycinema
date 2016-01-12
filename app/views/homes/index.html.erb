@@ -1,28 +1,57 @@
-<style type="text/css">
-body{
-	background: url("images/home.JPG") !important;
-	background-repeat: no-repeat !important;
-	background-size: cover !important;
-}
-h1,p{
-	color: #fff;
-}
-</style>
-<center>
-	<%= render "layouts/headbar" %>
-	<h1>Welcome To BookMyCinema</h1>
-	<% if current_user.role == "admin" %>
-	<p>Book Movie Ticket Online & get Discount!!</p>
-	<% end %>
+<%= render "layouts/headbar" %>
+<div class="container">
+	<div class="well well-lg">
+		<div class="input-group">
+			<input type="search" class="search-query form-control" placeholder="search movie..." style="height: 40px; font-size: 16px;">
+			<span class="input-group-btn">
+				<button class="btn btn-default" type="button" style="height: 40px;"><span class="glyphicon glyphicon-search"></span></button>
+			</span>
+		</div>
 
-	<% if user_signed_in? %>
-	<li>
-		<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-	</li>
-	<% else %>
-	<li>
-		<%= link_to('Login', new_user_session_path)  %>
-	</li>
-	<% end %>
-</center>
+		<div style="margin-top: 25px;"></div>
 
+		<div class="row">
+			<div class="col-xs-4 col-md-4 col-lg-4">
+				<div class="list-group">
+					<a href="" class="category-heading list-group-item active">English</a>
+					<% @movie.each do |m| %>
+						<% if m.language.humanize == "English" %>
+						 <a href="" class="list-group-item">
+							 <%= m.name %>
+							 <span class="badge"><%= m.movie_format %></span>
+						 </a>
+						<% end %>
+					<% end %>
+				</div>
+			</div>
+
+			<div class="col-xs-4 col-md-4 col-lg-4">
+				<div class="list-group">
+					<a href="" class="category-heading list-group-item active">Hindi</a>
+					<% @movie.each do |m| %>
+						<% if m.language.humanize == "Hindi" %>
+						 <a href="" class="list-group-item">
+							 <%= m.name %>
+							 <span class="badge"><%= m.movie_format %></span>
+						 </a>
+						<% end %>
+					<% end %>
+				</div>
+			</div>
+
+			<div class="col-xs-4 col-md-4 col-lg-4">
+				<div class="list-group">
+					<a href="" class="category-heading list-group-item active">Marathi</a>
+					<% @movie.each do |m| %>
+						<% if m.language.humanize == "Marathi" %>
+						 <a href="" class="list-group-item">
+							 <%= m.name %>
+							 <span class="badge"><%= m.movie_format %></span>
+						 </a>
+						<% end %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
