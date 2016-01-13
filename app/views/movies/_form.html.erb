@@ -13,25 +13,25 @@
 
   <div class="form-group">
     <%= f.label :name %><br>
-    <%= f.text_field :name,:required => true, class: "form-control" %>
+    <%= f.text_field :name, :required => true, class: "form-control" %>
   </div>
   <div class="form-group">
     <%= f.label :language %><br>
-    <%=f.select :language,LANGUAGE,:required => true, class: "form-control" %>
+    <%= f.select :language, LANGUAGE, {}, :required => true, class: "form-control", :selected => f.object.language %>
   </div>
   <div class="form-group">
     <%= f.label :genre %><br>
-    <%=f.select :genre,GENRE,:required => true, class: "form-control" %>
+    <%= f.select :genre, GENRE, {}, :required => true, class: "form-control", :selected => f.object.genre %>
   </div>
 
   <div class="form-group">
     <%= f.label :duration %><br>
-    <%= f.text_field :duration ,:required => true , class: "form-control"%>
+    <%= f.text_field :duration, :required => true, class: "form-control" %>
   </div>
 
   <div class="form-group">
     <%= f.label :movie_format %><br>
-    <%= f.select :movie_format,MOVIE_FORMAT,:required => true , class: "form-control" %>
+    <%= f.select :movie_format, MOVIE_FORMAT, {}, :required => true, class: "form-control", :selected => f.object.movie_format %>
   </div>
   <div class="form-group">
     <%= f.label :trailer_url %><br>
@@ -40,7 +40,7 @@
   <div class="form-group">
     <%= f.label :rating %><br>
     <% (1..10).each do |value| %>
-      <%=value%><%= f.radio_button'rating', value, :required => true, class: "form-control"  %>
+      <%=value%><%= f.radio_button'rating', value, :required => true %>
     <% end %>
   </div>
   <div class="form-group">

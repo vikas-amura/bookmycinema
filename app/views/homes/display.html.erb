@@ -1,15 +1,12 @@
-<h1><%=@theatre.name%></h1>
-<%@screens.each do |screen|%>
-	<%=screen.name %>
+<h1><%= @theatre.name %></h1>
+<% @screens.each do | s | %>
+	<%= s.name %>
 	<br>
-<%end%>
+<% end %>
 
-<br>
-<br>
-
-<%@shows.each do |show|%>
-	<%=link_to show.movie.name , theatre_screen_seats_path(@theatre,show.screen) %>
-	<%=show.screen.name%> |
-	<%=show.starttime.strftime("on %d/%m/%Y at %I:%M%p")%>
+<% @shows.each do | show |%>
+	<%= link_to show.movie.name, theatre_screen_seats_path(@theatre, show.screen) %>
+	<%= show.screen.name %> |
+	<%= show.starttime.strftime("on %d/%m/%Y at %I:%M%p") %>
 	<br>
 <%end%>
