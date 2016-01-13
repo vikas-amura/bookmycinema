@@ -1,44 +1,38 @@
-<style type="text/css">
-  td,tr,th{
-    border: 1px solid #ccc;
-  }
-</style>
 <%= render 'layouts/headbar'%>
 
-userName:
-<%= current_user.first_name %>
-<br>
-
-<table>
-  <thead>
-    <tr>
-      <th>Booking No</th>
-      <th>Movie Name</th>
-      <th>Time</th>
-      <th>Screen</th>
-      <th>Type</th>
-      <th>amout</th>
-      <th>Ticket No</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @tickets.each do |ticket| %>
-      <tr>
-        <%@total=ticket%>
-      	<td><%=ticket.booking.id %></td>
-        <td><%=ticket.movie.name %></td>
-      	<td><%=ticket.show.starttime.strftime("on %d/%m/%Y at %I:%M%p")%></td>
-        <td><%=ticket.show.screen.name %></td>
-        <td><%=ticket.type if ticket.type.present? %></td>
-        <td><%=ticket.booking.amount.to_i / ticket.booking.number_of_tickets.to_i %></td>
-        <td><%=ticket.seat.row%><%=ticket.seat.seat_number%></td>
-      </tr>
-    <% end %>
-    <tr>
-      <td></td><td></td><td></td><td></td><td></td><td>Total:</td><td><%=@total.booking.amount if @total.present?%></td>
-    </tr>
-  </tbody>
-</table>
-<br>
-
-
+<div class="container">
+  <%= render 'layouts/breadcrumb'%>
+  <div class="well">
+    <p class="lead"> User: <%= current_user.first_name %> </p>
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>Booking No</th>
+          <th>Movie Name</th>
+          <th>Time</th>
+          <th>Screen</th>
+          <th>Type</th>
+          <th>amout</th>
+          <th>Ticket No</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @tickets.each do |ticket| %>
+        <tr>
+          <%@total=ticket%>
+          <td><%=ticket.booking.id %></td>
+          <td><%=ticket.movie.name %></td>
+          <td><%=ticket.show.starttime.strftime("on %d/%m/%Y at %I:%M%p")%></td>
+          <td><%=ticket.show.screen.name %></td>
+          <td><%=ticket.type if ticket.type.present? %></td>
+          <td><%=ticket.booking.amount.to_i / ticket.booking.number_of_tickets.to_i %></td>
+          <td><%=ticket.seat.row%><%=ticket.seat.seat_number%></td>
+        </tr>
+        <% end %>
+        <tr>
+          <td></td><td></td><td></td><td></td><td></td><td>Total:</td><td><%=@total.booking.amount if @total.present?%></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

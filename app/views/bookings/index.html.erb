@@ -1,31 +1,34 @@
 <%= render 'layouts/headbar'%>
-<%= render 'layouts/breadcrumb'%>
+<div class="container">
+  <%= render 'layouts/breadcrumb'%>
+  <div class="well">
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>User Name</th>
+          <th>No of ticket</th>
+          <th>amout</th>
+          <th>Payment Mode</th>
+          <th>Card Type</th>
+          <th>Card No</th>
+          <th>Ticket</th>
+        </tr>
+      </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>User Name</th>
-      <th>No of ticket</th>
-      <th>amout</th>
-      <th>Payment Mode</th>
-      <th>Card Type</th>
-      <th>Card No</th>
-      <th>Ticket</th>
-    </tr>
-  </thead>
+      <tbody>
+        <% @bookings.each do |booking| %>
+        <tr>
+          <td><%= booking.user.first_name %></td>
+          <td><%= booking.number_of_tickets %></td>
+          <td><%= booking.amount %></td>
+          <td><%= booking.payment_mode %></td>
+          <td><%= booking.card_type %></td>
+          <td><%= booking.card_number %></td>
+          <td><%= link_to 'Shows Ticket',booking_tickets_path(booking) %></td>
 
-  <tbody>
-    <% @bookings.each do |booking| %>
-      <tr>
-        <td><%= booking.user.first_name %></td>
-        <td><%= booking.number_of_tickets %></td>
-        <td><%= booking.amount %></td>
-        <td><%= booking.payment_mode %></td>
-        <td><%= booking.card_type %></td>
-        <td><%= booking.card_number %></td>
-        <td><%= link_to 'Shows Ticket',booking_tickets_path(booking) %></td>
-
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
