@@ -21,7 +21,7 @@ class Show
   def save_movie_show_wise_ticket
       @show=self
       @show.screen.seats.each do |seat|
-          @ticket = @show.tickets.create(seat_id:seat.id,movie_id:@show.movie.id)
+          @ticket = @show.tickets.create(type:seat.seat_type,seat_id:seat.id,movie_id:@show.movie.id)
       end
   end
 end

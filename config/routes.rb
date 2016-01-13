@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   resources :movies, controller: 'movies' do
     resources :shows, controller: 'shows'
+    resources :bookings, controller: 'bookings'
   end
 
   resources :bookings, controller: 'bookings' do

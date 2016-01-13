@@ -12,7 +12,7 @@ userName:
 <table>
   <thead>
     <tr>
-      <th>Ticket No</th>
+      <th>Booking No</th>
       <th>Movie Name</th>
       <th>Time</th>
       <th>Screen</th>
@@ -29,7 +29,7 @@ userName:
         <td><%=ticket.movie.name %></td>
       	<td><%=ticket.show.starttime.strftime("on %d/%m/%Y at %I:%M%p")%></td>
         <td><%=ticket.show.screen.name %></td>
-        <td><%='Gold'%></td>
+        <td><%=ticket.type if ticket.type.present? %></td>
         <td><%=ticket.booking.amount.to_i / ticket.booking.number_of_tickets.to_i %></td>
         <td><%=ticket.seat.row%><%=ticket.seat.seat_number%></td>
       </tr>

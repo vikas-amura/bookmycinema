@@ -50,7 +50,7 @@ class SeatsController < ApplicationController
 		@seat = Seat.find(params[:id])
 	end
 	def seat_params
-		  params.require(:seat).permit(:row, :seat_number)
+		  params.require(:seat).permit(:row, :seat_number,:seat_type)
 	end
 	def load_authorize_parent
 		if params[:screen_id].present?

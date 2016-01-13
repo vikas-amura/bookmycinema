@@ -8,9 +8,8 @@ class BookingsController < ApplicationController
 	end
 
 	def new
-		@booking  = Booking.new
-		@tickets   = Ticket.all
-		@ticket    = Ticket.first
+		@booking   = Booking.new
+		@tickets   = Ticket.where(:movie_id=>params['movie_id'])
 	end
 
 	def edit
