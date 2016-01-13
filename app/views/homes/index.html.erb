@@ -1,5 +1,6 @@
 <%= render "layouts/headbar" %>
 <div class="container">
+	<%=link_to @theatre.name,"display/#{@theatre.id}" %>
 	<div class="well well-lg">
 		<p class="lead">Now showing...</p>
 		<div style="margin-top: 25px;"></div>

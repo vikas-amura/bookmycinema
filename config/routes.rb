@@ -1,14 +1,11 @@
 Rails.application.routes.draw do
 
   root 'homes#index'
-  get 'display', to: 'homes#display'
-
   devise_for :users, controllers: { registrations: "users/registrations",  sessions: "users/sessions", passwords: "users/passwords", confirmations: "users/confirmations" }
-
+  get 'display/:id',to: 'homes#display'
   resources :theatres do
     resources :screens do
       resources :seats
-         get 'display',to: 'bookings#display'
          get 'screen_layout', to: 'bookings#screen_layout'
     end
   end
