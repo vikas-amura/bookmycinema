@@ -1,17 +1,25 @@
-<p>
-  <strong>Name:</strong>
-  <%= @theatre.name %>
-</p>
+<%= render 'layouts/headbar'%>
+<% if current_user.role=="admin"%>
+  <%=render 'layouts/breadcrumb'%>
+<%end%>
+<div class="container">
+  <div class="well">
+    <p class="lead">
+      <strong>Name:</strong>
+      <%= @theatre.name %>
+    </p>
 
-<p>
-  <strong>Address:</strong>
-  <%= @theatre.address %>
-</p>
+    <p class="lead">
+      <strong>Address:</strong>
+      <%= @theatre.address %>
+    </p>
 
-<p>
-  <strong>City:</strong>
-  <%= @theatre.city %>
-</p>
+    <p class="lead">
+      <strong>City:</strong>
+      <%= @theatre.city %>
+    </p>
 
-<%= link_to 'Edit', edit_theatre_path(@theatre) %> |
-<%= link_to 'Back', theatres_path %>
+    <%= link_to 'Edit', edit_theatre_path(@theatre) %> |
+    <%= link_to 'Back', theatres_path %>
+  </div>
+</div>

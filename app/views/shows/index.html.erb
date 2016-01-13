@@ -3,7 +3,7 @@
 <% if current_user.role == "admin" %>
   <%= link_to 'New Show', new_movie_show_path(@movie) %>
 <% end %>
-<table class="table table-striped">
+<table id="datatable" class="table table-striped">
   <thead>
     <tr>
       <th>Start Time</th>
@@ -11,7 +11,9 @@
       <th>Screen</th>
       <th>Theater</th>
       <% if current_user.role == "admin" %>
-        <th colspan="3">Action</th>
+        <th>Action</th>
+        <th>Action</th>
+        <th>Action</th>
       <% end %>
     </tr>
   </thead>

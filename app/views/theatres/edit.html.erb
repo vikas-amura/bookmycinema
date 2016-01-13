@@ -1,6 +1,12 @@
-<%=render 'layouts/breadcrumb'%>
+<%= render 'layouts/headbar'%>
+<% if current_user.role=="admin"%>
+  <%=render 'layouts/breadcrumb'%>
+<%end%>
+<div class="container">
+  <div class="well">
+    <%= render 'form' %>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @theatre %> |
-<%= link_to 'Back', theatres_path %>
+    <%= link_to 'Show', @theatre %> |
+    <%= link_to 'Back', theatres_path %>
+  </div>
+</div>

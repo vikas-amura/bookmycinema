@@ -1,43 +1,49 @@
-<p>
-  <strong>Name:</strong>
-  <%= @movie.name %>
-</p>
+<%= render 'layouts/headbar'%>
+<%= render 'layouts/breadcrumb'%>
+<div class="container">
+  <div class="well">
+    <p class="lead">
+      <strong>Name:</strong>
+      <%= @movie.name %>
+    </p>
 
-<p>
-  <strong>Language:</strong>
-  <%= @movie.language %>
-</p>
+    <p class="lead">
+      <strong>Language:</strong>
+      <%= @movie.language %>
+    </p>
 
-<p>
-  <strong>Genre:</strong>
-  <%= @movie.genre %>
-</p>
+    <p class="lead">
+      <strong>Genre:</strong>
+      <%= @movie.genre %>
+    </p>
 
-<p>
-  <strong>Duration:</strong>
-  <%= @movie.duration %>
-</p>
+    <p class="lead">
+      <strong>Duration:</strong>
+      <%= @movie.duration %>
+    </p>
 
-<p>
-  <strong>Movie format:</strong>
-  <%= @movie.movie_format %>
-</p>
+    <p class="lead">
+      <strong>Movie format:</strong>
+      <%= @movie.movie_format %>
+    </p>
 
-<p>
-  <strong>Trailer url:</strong>
-  <%= @movie.trailer_url %>
-</p>
+    <p class="lead">
+      <strong>Trailer url:</strong>
+      <%= @movie.trailer_url %>
+    </p>
 
-<p>
-  <strong>Rating:</strong>
-  <%= @movie.rating %>
-</p>
+    <p class="lead">
+      <strong>Rating:</strong>
+      <%= @movie.rating %>
+    </p>
 
-<p>
-  <strong>Release date:</strong>
-  <%= @movie.release_date %>
-</p>
-<% if current_user.role == "admin" %>
-  <%= link_to 'Edit', edit_movie_path(@movie) %> |
-<% end %>
-<%= link_to 'Back', movies_path %>
+    <p class="lead">
+      <strong>Release date:</strong>
+      <%= @movie.release_date %>
+    </p>
+    <% if current_user.role == "admin" %>
+    <%= link_to 'Edit', edit_movie_path(@movie) %> |
+    <% end %>
+    <%= link_to 'Back', movies_path %>
+  </div>
+</div>

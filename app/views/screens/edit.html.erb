@@ -1,6 +1,12 @@
-<h1>Editing Screen</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', theatre_screen_path(@theatre,@screen) %> |
-<%= link_to 'Back', theatre_screens_path(@theatre) %>
+<%= render 'layouts/headbar'%>
+<% if current_user.role=="admin"%>
+  <%=render 'layouts/breadcrumb'%>
+<%end%>
+<div class="container">
+  <div class="well">
+    <h1>Editing Screen</h1>
+    <%= render 'form' %>
+    <%= link_to 'Show', theatre_screen_path(@theatre,@screen) %> |
+    <%= link_to 'Back', theatre_screens_path(@theatre) %>
+  </div>
+</div>

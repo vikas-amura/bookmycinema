@@ -1,5 +1,11 @@
-<%=render 'layouts/breadcrumb'%>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', theatres_path %>
+<%= render 'layouts/headbar'%>
+<% if current_user.role=="admin"%>
+  <%=render 'layouts/breadcrumb'%>
+<%end%>
+<div class="container">
+  <div class="well">
+    <p class="lead">Create New Theatres</p>
+    <%= render 'form' %>
+    <%= link_to 'Back', theatres_path %>
+  </div>
+</div>

@@ -11,39 +11,39 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :language %><br>
-    <%= f.text_field :language %>
+    <%= f.text_field :language, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :genre %><br>
-    <%= f.text_field :genre %>
+    <%= f.text_field :genre, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :duration %><br>
-    <%= f.text_field :duration %>
+    <%= f.text_field :duration, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :movie_format %><br>
-    <%= f.text_field :movie_format %>
+    <%= f.text_field :movie_format, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :trailer_url %><br>
-    <%= f.text_field :trailer_url %>
+    <%= f.text_field :trailer_url, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :rating %><br>
-    <%= f.text_field :rating %>
+    <%= f.text_field :rating, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :release_date %><br>
-    <%= f.date_field :release_date %>
+    <%= f.date_field :release_date, class: "form-control" %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <%= f.submit class: "btn btn-default" %>
   </div>
 <% end %>

@@ -1,14 +1,20 @@
-<p id="notice"><%= notice %></p>
+<%= render 'layouts/headbar'%>
+<% if current_user.role=="admin"%>
+  <%=render 'layouts/breadcrumb'%>
+<%end%>
+<div class="container">
+  <div class="well">
+    <p class="lead">
+      <strong>Name:</strong>
+      <%= @screen.name %>
+    </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @screen.name %>
-</p>
+    <p class="lead">
+      <strong>Capacity:</strong>
+      <%= @screen.capacity %>
+    </p>
 
-<p>
-  <strong>Capacity:</strong>
-  <%= @screen.capacity %>
-</p>
-
-<%= link_to 'Edit', edit_theatre_screen_path(@theatre,@screen) %> |
-<%= link_to 'Back', theatre_screens_path(@theatre) %>
+    <%= link_to 'Edit', edit_theatre_screen_path(@theatre,@screen) %> |
+    <%= link_to 'Back', theatre_screens_path(@theatre) %>
+  </div>
+</div>
