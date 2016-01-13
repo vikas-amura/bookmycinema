@@ -2,66 +2,11 @@
 <div class="container">
   <%=render 'layouts/breadcrumb'%>
   <div class="well">
-    <%= form_for @bookings, html: {class: "nifty_form"} do |f| %>
-      <p class="lead">
-        <strong>Screen Name:</strong>
-        <%= @screen.name%>
-      </p>
-      <p class="lead">
-        <strong>Movie Name:</strong>
-        <%=@movie.name%>
-      </p>
-      <p class="lead">
-        <strong>Start Time:</strong>
-        <%= @show.starttime.strftime("on %d/%m/%Y at %I:%M%p")%>
-        <%=f.hidden_field :show_id,value:params[:id]%>
-      </p>
-      <p class="lead">
-        <strong>End Time:</strong>
-        <%= @show.endtime.strftime("on %d/%m/%Y at %I:%M%p")%>
-      </p>
-      <p class="lead">
-        <strong>Total Seat:</strong>
-        <%=@seats.count%>
-      </p>
-
-      <%@book.each do |ss|%>
-        <%if ss.status!='booked' %>
-          <%=check_box_tag("seatids[]",value = ss.seat_id, checked = false)%>
-        <%else%>
-          []
-        <%end%>
-        <%=ss.seat.row%>
-        <%=ss.seat.seat_number%>
-        <%=ss.status%>
-        <br />
-      <%end%>
-
-      <div class="form-gorup">
-        <%= f.label :amount, class: "" %>
-        <% @amount={100=>100,150=>150,200=>200} %>
-        <%= f.select :amount, options_for_select(@amount), class: "form-control", required: "required", data: {type: "ds", "vertical-blank" => true, "default-value" => f.object.amount, name: "amount"} %>
-      </div>
-      <div class="form-gorup">
-        <%= f.label :card_type %>
-        <%@card_type={"Debit"=>"Debit","Credit"=>"Credit"} %>
-        <%= f.select :card_type, options_for_select(@card_type), class: "form-control", required: "required", data: {type: "ds", "vertical-blank" => true, "default-value" => f.object.card_type, name: "card_type"} %>
-      </div>
-      <div class="form-gorup">
-        <%= f.label :payment_mode, class: "" %>
-        <%@payment_mode={"Online"=>"online","Cash"=>"Cash"} %>
-        <%= f.select :payment_mode, options_for_select(@payment_mode), class: "", required: "required", data: {type: "ds", "vertical-blank" => true, "default-value" => f.object.payment_mode, name: "payment_mode"} %>
-      </div>
-      <div class="form-gorup">
-        <%= f.label :card_number %><br>
-        <%= f.text_field :card_number, class: "form-control" %>
-        <%=f.hidden_field :movie_id,value:params[:movie_id]%>
-      </div>
-      <div class="form-gorup">
-        <%= f.submit class: "btn btn-default" %>
-      </div>
-    <% end %>
-
+      MovieName:<%=@show.movie.name%><br>
+      StartTime:<%=@show.starttime.strftime("on %d/%m/%Y at %I:%M%p")%><br>
+      EndTime:<%=@show.endtime.strftime("on %d/%m/%Y at %I:%M%p")%><br>
+  </div>
+  <div>
     <%if current_user.role=="admin"%>
       <%= link_to 'Edit', edit_movie_show_path(@movie,@show) %> |
       <%= link_to 'Back', movie_shows_path(@movie) %>

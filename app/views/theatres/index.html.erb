@@ -1,11 +1,4 @@
 <%= render 'layouts/headbar'%>
-
-<%= render 'layouts/breadcrumb'%>
-<% if current_user.role =="admin"%>
-  <%= link_to 'New Theatre', new_theatre_path %>
-<% end %>
-
-
 <div class="container">
   <%= render 'layouts/breadcrumb'%>
   <% if current_user.role == "admin" %>
