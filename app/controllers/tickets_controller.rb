@@ -1,9 +1,7 @@
 class TicketsController < ApplicationController
 
 	def index
-		@user = User.find(current_user.id)
-
-		@bookings = @user.bookings
+		@tickets =Ticket.where(booking_id:params['booking_id'])
 	end
 
 	def new

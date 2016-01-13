@@ -9,8 +9,8 @@ class Seat
 
   #associations
   belongs_to :screen
-  has_one :ticket
-  has_many :movieshow
+  has_many :ticket
+
 
   #validations
   validates :row, :seat_number, presence: true

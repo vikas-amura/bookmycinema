@@ -13,35 +13,38 @@
 
   <div class="field">
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name,:required => true %>
   </div>
   <div class="field">
     <%= f.label :language %><br>
-    <%= f.text_field :language %>
+    <%=f.select :language,LANGUAGE,:required => true %>
   </div>
   <div class="field">
     <%= f.label :genre %><br>
-    <%= f.text_field :genre %>
+    <%=f.select :genre,GENRE,:required => true %>
   </div>
+
   <div class="field">
     <%= f.label :duration %><br>
-    <%= f.text_field :duration %>
+    <%= f.text_field :duration ,:required => true %>
   </div>
   <div class="field">
     <%= f.label :movie_format %><br>
-    <%= f.text_field :movie_format %>
+    <%= f.select :movie_format,MOVIE_FORMAT,:required => true  %>
   </div>
   <div class="field">
     <%= f.label :trailer_url %><br>
-    <%= f.text_field :trailer_url %>
+    <%= f.text_field :trailer_url,:required => true  %>
   </div>
   <div class="field">
     <%= f.label :rating %><br>
-    <%= f.text_field :rating %>
+    <% (1..10).each do |value| %>
+      <%=value%><%= f.radio_button'rating', value, :required => true %>
+    <% end %>
   </div>
   <div class="field">
     <%= f.label :release_date %><br>
-    <%= f.date_field :release_date %>
+    <%= f.date_field :release_date ,:required => true %>
   </div>
   <div class="actions">
     <%= f.submit %>

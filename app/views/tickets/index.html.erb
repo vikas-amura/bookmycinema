@@ -1,7 +1,12 @@
+<style type="text/css">
+  td,tr,th{
+    border: 1px solid #ccc;
+  }
+</style>
 <%= render 'layouts/headbar'%>
 
 userName:
-<%= @user.first_name %>
+<%= current_user.first_name %>
 <br>
 
 <table>
@@ -11,29 +16,27 @@ userName:
       <th>Movie Name</th>
       <th>Time</th>
       <th>Screen</th>
-      <th>No of ticket</th>
+      <th>Type</th>
       <th>amout</th>
       <th>Ticket No</th>
     </tr>
   </thead>
   <tbody>
-    <% @bookings.each do |book| %>
+    <% @tickets.each do |ticket| %>
       <tr>
-      	<td><%=book.ticket_numbers %></td>
-      	<td><%=book.movie.name%></td>
-      	<td><%=book.show.starttime.strftime("on %d/%m/%Y at %I:%M%p")%></td>
-        <td><%=book.show.screen.name %></td>
-        <td><%=book.number_of_tickets %></td>
-        <td><%=book.amount %></td>
-        <td><%=book.show.movieshows.each do|p|%>
-        	<%if p.status=='booked'%>
-        	<%=p.seat.row%><%=p.seat.seat_number%>
-        	<%end%>
-        	<%end%>
-        </td>
-
+        <%@total=ticket%>
+      	<td><%=ticket.booking.id %></td>
+        <td><%=ticket.movie.name %></td>
+      	<td><%=ticket.show.starttime.strftime("on %d/%m/%Y at %I:%M%p")%></td>
+        <td><%=ticket.show.screen.name %></td>
+        <td><%='Gold'%></td>
+        <td><%=ticket.booking.amount.to_i / ticket.booking.number_of_tickets.to_i %></td>
+        <td><%=ticket.seat.row%><%=ticket.seat.seat_number%></td>
       </tr>
     <% end %>
+    <tr>
+      <td></td><td></td><td></td><td></td><td></td><td>Total:</td><td><%=@total.booking.amount if @total.present?%></td>
+    </tr>
   </tbody>
 </table>
 <br>
