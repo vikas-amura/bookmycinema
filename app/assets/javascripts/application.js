@@ -16,7 +16,13 @@
 //= require jquery.validate.additional-methods
 //= require bootstrap-sprockets
 //= require jquery_ujs
+//= require dataTables/jquery.dataTables
+//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+//= require dataTables/jquery.dataTables
 //= require turbolinks
 //= require_tree .
 
-$(".form-validatable").validate();
+$(document).ready(function(){
+  $('.form-validatable').validate();
+  $('#datatable').dataTable();
+});

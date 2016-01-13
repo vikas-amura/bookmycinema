@@ -1,17 +1,24 @@
-<p>
-  <strong>Name:</strong>
-  <%= @theatre.name %>
-</p>
+<%= render 'layouts/headbar'%>
 
-<p>
-  <strong>Address:</strong>
-  <%= @theatre.address %>
-</p>
+<div class="container">
+  <%=render 'layouts/breadcrumb'%>
+  <div class="well">
+    <p class="lead">
+      <strong>Name:</strong>
+      <%= @theatre.name %>
+    </p>
 
-<p>
-  <strong>City:</strong>
-  <%= @theatre.city %>
-</p>
+    <p class="lead">
+      <strong>Address:</strong>
+      <%= @theatre.address %>
+    </p>
 
-<%= link_to 'Edit', edit_theatre_path(@theatre) %> |
-<%= link_to 'Back', theatres_path %>
+    <p class="lead">
+      <strong>City:</strong>
+      <%= @theatre.city %>
+    </p>
+
+    <%= link_to 'Edit', edit_theatre_path(@theatre) %> |
+    <%= link_to 'Back', theatres_path %>
+  </div>
+</div>

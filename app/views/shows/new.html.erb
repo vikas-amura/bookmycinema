@@ -1,5 +1,9 @@
-<%=render 'layouts/breadcrumb'%>
+<%=render 'layouts/headbar'%>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', movie_shows_path(@movie) %>
+<div class="container">
+  <%=render 'layouts/breadcrumb'%>
+  <div class="well">
+    <%= render 'form' %>
+    <%= link_to 'Back', movie_shows_path(@movie) %>
+  </div>
+</div>

@@ -1,4 +1,10 @@
-<%=render 'layouts/breadcrumb'%>
-<%= render 'form' %>
+<%= render 'layouts/headbar'%>
+<%= render 'layouts/breadcrumb'%>
 
-<%= link_to 'Back', theatre_screen_seats_path(@theatre, @screen, @seat) %>
+<div class="container">
+  <div class="well">
+    <p class="lead">Edit Seat</p>
+    <%= render 'form' %>
+    <%= link_to 'Back', theatre_screen_seats_path(@theatre, @screen, @seat) %>
+  </div>
+</div>

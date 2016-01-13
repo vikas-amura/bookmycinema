@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 
@@ -9,7 +10,9 @@ gem 'less-rails'
 
 #bootstrap gem for styling
 gem 'bootstrap-sass', '~> 3.3.6'
-gem 'font-awesome-rails'
+
+#gem for datatables
+gem 'jquery-datatables-rails', '~> 3.3.0'
 
 #gem for semantic UI
 gem 'less-rails-semantic_ui'
