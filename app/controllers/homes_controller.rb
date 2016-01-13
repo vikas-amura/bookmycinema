@@ -3,11 +3,11 @@ class HomesController < ApplicationController
 
   def index
     @movie = Movie.all
+    @theatre=Theatre.first
 	end
 
 	def display
-		@theatre = Theatre.first
-		@screens = @theatre.screens
-    @shows = Show.all
+		@theatre = Theatre.find(params['id'])
+        @shows = Show.all
 	end
 end
