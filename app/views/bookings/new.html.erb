@@ -1,1 +1,76 @@
-<h1>New Booking</h1>
+<%= render 'layouts/headbar'%>
+<center>
+<%= form_for @booking, html: {class: "nifty_form"} do |f| %>
+<p>
+  <strong>Screen Name:</strong>
+  <%= @ticket.show.screen.name%>
+
+</p>
+
+<p>
+ <strong>Movie Name:</strong>
+ <%=@ticket.movie.name%>
+  </div>
+</p>
+<p>
+  <strong>Start Time:</strong>
+  <%= @ticket.show.starttime.strftime("on %d/%m/%Y at %I:%M%p")%>
+   <%=f.hidden_field :show_id,value:params[:id]%>
+</p>
+
+<p>
+  <strong>End Time:</strong>
+  <%= @ticket.show.endtime.strftime("on %d/%m/%Y at %I:%M%p")%>
+</p>
+<p>
+  <strong>Total Seat:</strong>
+  <%=@tickets.count%>
+</p>
+<%@tickets.each do |ticket|%>
+  <%if ticket.status!='booked' %>
+  <%=check_box_tag("ticketid[]",value = ticket.id, checked = false)%>
+  <%else%>
+    []
+  <%end%>
+  <%= ticket.seat.row%>
+  <%= ticket.seat.seat_number%>
+  <%= ticket.status%>
+  <br>
+<%end%>
+
+
+
+<div class="">
+  <%= f.label :amount, class: "" %>
+  <div class="">
+  <% @amount={100=>100,150=>150,200=>200} %>
+  <%= f.select :amount, options_for_select(@amount), class: "", required: "required", data: {type: "ds", "vertical-blank" => true, "default-value" => f.object.amount, name: "amount"} %>
+  </div>
+</div>
+
+
+<div class="">
+  <%= f.label :card_type, class: "" %>
+  <div class="">
+    <%@card_type={"Debit"=>"Debit","Credit"=>"Credit"} %>
+  <%= f.select :card_type, options_for_select(@card_type), class: "", required: "required", data: {type: "ds", "vertical-blank" => true, "default-value" => f.object.card_type, name: "card_type"} %>
+  </div>
+</div>
+
+<div class="">
+  <%= f.label :payment_mode, class: "" %>
+  <div class="">
+    <%@payment_mode={"Online"=>"online","Cash"=>"Cash"} %>
+  <%= f.select :payment_mode, options_for_select(@payment_mode), class: "", required: "required", data: {type: "ds", "vertical-blank" => true, "default-value" => f.object.payment_mode, name: "payment_mode"} %>
+  </div>
+</div>
+ <div class="field">
+    <%= f.label :card_number %><br>
+    <%= f.text_field :card_number %>
+    <%=f.hidden_field :movie_id,value:params[:movie_id]%>
+  </div>
+<%= submit_tag("Book") %>
+<% end %>
+
+
+</center>

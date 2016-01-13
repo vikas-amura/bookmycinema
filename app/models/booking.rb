@@ -14,6 +14,7 @@ class Booking
   #associations
   belongs_to :user
   belongs_to :movie
+  belongs_to :show
   has_many :tickets
 
   #validations

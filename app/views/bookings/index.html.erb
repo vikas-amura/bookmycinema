@@ -11,7 +11,6 @@
       <th>Card Type</th>
       <th>Card No</th>
       <th>Ticket</th>
-      <th colspan="3">Action</th>
     </tr>
   </thead>
 
@@ -24,16 +23,9 @@
         <td><%= booking.payment_mode %></td>
         <td><%= booking.card_type %></td>
         <td><%= booking.card_number %></td>
+        <td><%= link_to 'Shows Ticket',booking_tickets_path(booking) %></td>
 
-        <td><%= link_to 'Add Shows', movie_shows_path(booking) %></td>
-        <td><%= link_to 'Show', booking %></td>
-        <td><%= link_to 'Edit', edit_movie_path(booking) %></td>
-        <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Movie', new_movie_path %>
