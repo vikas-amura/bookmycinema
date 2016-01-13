@@ -1,47 +1,49 @@
 <%= render 'layouts/headbar'%>
-<%= render 'layouts/breadcrumb'%>
-<h1>Listing Movies</h1>
-<% if current_user.role == "admin"%>
-<%= link_to 'New Movie', new_movie_path %>
-<% end %>
-
-<table id="datatable" class="table table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Language</th>
-      <th>Genre</th>
-      <th>Duration</th>
-      <th>Movie format</th>
-      <th>Trailer url</th>
-      <th>Rating</th>
-      <th>Release date</th>
-      <% if current_user.role == "admin"%>
-      <th>Movies Shows</th>
-      <th>Action</th>
-      <th>Action</th>
-      <th>Action</th>
-      <% end %>
-    </tr>
-  </thead>
-  <tbody>
-    <% @movies.each do |movie| %>
-    <tr>
-      <td><%= movie.name %></td>
-      <td><%= movie.language %></td>
-      <td><%= movie.genre %></td>
-      <td><%= movie.duration %></td>
-      <td><%= movie.movie_format %></td>
-      <td><%= movie.trailer_url %></td>
-      <td><%= movie.rating %></td>
-      <td><%= movie.release_date %></td>
-      <% if current_user.role == "admin"%>
-      <td><%= link_to 'Add Shows', movie_shows_path(movie) %></td>
-      <td><%= link_to 'Show', movie %></td>
-      <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
-      <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <% end %>
-    </tr>
+<div class="container">
+  <%= render 'layouts/breadcrumb'%>
+  <div class="well">
+    <h1>Listing Movies</h1>
+    <% if current_user.role == "admin"%>
+    <%= link_to 'New Movie', new_movie_path %>
     <% end %>
-  </tbody>
-</table>
+    <table id="datatable" class="table table-condensed">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Language</th>
+          <th>Genre</th>
+          <th>Duration</th>
+          <th>Movie format</th>
+          <th>Trailer url</th>
+          <th>Rating</th>
+          <th>Release date</th>
+          <% if current_user.role == "admin"%>
+          <th>Movies Shows</th>
+          <th>Action</th>
+          <th>Action</th>
+          <th>Action</th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% @movies.each do |movie| %>
+        <tr>
+          <td><%= movie.name %></td>
+          <td><%= movie.language %></td>
+          <td><%= movie.genre %></td>
+          <td><%= movie.duration %></td>
+          <td><%= movie.movie_format %></td>
+          <td><%= movie.trailer_url %></td>
+          <td><%= movie.rating %></td>
+          <td><%= movie.release_date %></td>
+          <% if current_user.role == "admin"%>
+          <td><%= link_to 'Add Shows', movie_shows_path(movie) %></td>
+          <td><%= link_to 'Show', movie %></td>
+          <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
+          <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>

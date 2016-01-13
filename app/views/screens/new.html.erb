@@ -1,8 +1,7 @@
 <%= render 'layouts/headbar'%>
-<% if current_user.role=="admin"%>
-  <%=render 'layouts/breadcrumb'%>
-<%end%>
+
 <div class="container">
+  <%=render 'layouts/breadcrumb'%>
   <div class="well">
     <p class="lead">Create New Screen</p>
     <%= render 'form' %>

@@ -1,11 +1,7 @@
 <%= render "layouts/headbar" %>
 <div class="container">
 	<div class="well well-lg">
-		<div class="input-group">
-			<input type="search" class="search-query form-control" placeholder="search movie..." style="height: 40px; font-size: 16px;">
-			<div class="input-group-addon"><i class="fa fa-search"></i></div>
-		</div>
-
+		<p class="lead">Now showing...</p>
 		<div style="margin-top: 25px;"></div>
 
 		<div class="row">
@@ -14,7 +10,7 @@
 					<a href="" class="col-xs-12 col-md-12 category-heading list-group-item active">English</a>
 					<% @movie.each do |m| %>
 						<% if m.language.humanize == "English" %>
-						 <a href="" class="col-xs-12 col-md-12 list-group-item" style="text-overflow: ellipsis;">
+						 <a href="<%= movie_path(m.id) %>" class="col-xs-12 col-md-12 list-group-item" style="text-overflow: ellipsis;">
 							 <%= m.name %>
 							 <span class="badge"><%= m.movie_format %></span>
 						 </a>
@@ -28,7 +24,7 @@
 					<a href="" class="col-xs-12 col-md-12 category-heading list-group-item active">Hindi</a>
 					<% @movie.each do |m| %>
 						<% if m.language.humanize == "Hindi" %>
-						 <a href="" class="col-xs-12 col-md-12 list-group-item" style="text-overflow: ellipsis;">
+						 <a href="<%= movie_path(m.id) %>" class="col-xs-12 col-md-12 list-group-item" style="text-overflow: ellipsis;">
 							 <%= m.name %>
 							 <span class="badge"><%= m.movie_format %></span>
 						 </a>
@@ -42,7 +38,7 @@
 					<a href="" class="col-xs-12 col-md-12 category-heading list-group-item active">Marathi</a>
 					<% @movie.each do |m| %>
 						<% if m.language.humanize == "Marathi" %>
-						 <a href="" class="col-xs-12 col-md-12 list-group-item" style="text-overflow: ellipsis;">
+						 <a href="<%= movie_path(m.id) %>" class="col-xs-12 col-md-12 list-group-item" style="text-overflow: ellipsis;">
 							 <%= m.name %>
 							 <span class="badge"><%= m.movie_format %></span>
 						 </a>
