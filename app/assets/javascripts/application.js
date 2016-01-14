@@ -24,5 +24,4 @@
 
 $(document).ready(function(){
   $('.form-validatable').validate();
-  $('#datatable').dataTable();
  });

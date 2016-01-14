@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
 	def index
-		@user     = User.find(current_user.id)
+		@user = User.find(current_user.id)
 		@bookings = @user.bookings
 	end
 
@@ -8,8 +8,9 @@ class BookingsController < ApplicationController
 	end
 
 	def new
-		@booking   = Booking.new
-		@tickets   = Ticket.where(:movie_id=>params['movie_id'])
+		@booking = Booking.new
+		@show = Show.find(params['show_id'])
+		@tickets = Ticket.where(:movie_id=>params['movie_id'],:show_id=>params['show_id'])
 	end
 
 	def edit
@@ -24,7 +25,7 @@ class BookingsController < ApplicationController
 		@booking.amount= @booking.number_of_tickets * amount
 		respond_to do |format|
 			if @booking.save
-				Ticket.change_ticket_status(params['ticketid'],@booking.id);
+				Ticket.create_ticket(params['ticketid'],@booking);
 				format.html { redirect_to booking_tickets_path(@booking), notice: 'Ticket was successfully created.' }
 				format.json { render :show, status: :created, location: @booking }
 			else

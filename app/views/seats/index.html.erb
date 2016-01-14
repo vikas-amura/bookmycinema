@@ -1,5 +1,4 @@
 <%= render 'layouts/headbar'%>
-
 <div class="container">
   <%=render 'layouts/breadcrumb'%>
   <% if current_user.role=="admin"%>
@@ -37,3 +36,7 @@
     </table>
   </div>
 </div>
+<div class="digg_pagination">
+  <%= will_paginate @seats, :container => false %>
+</div>
+

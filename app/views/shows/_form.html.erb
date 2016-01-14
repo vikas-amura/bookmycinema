@@ -10,10 +10,13 @@
       </ul>
     </div>
   <% end %>
+  <div class="form-group">
+    <h3>Theatre Name : <%=@theatre.name%></h3>
+  </div>
 
   <div class="form-group">
     <%= f.label :screen_id, class: "control-label" %>
-    <%= f.select :screen_id, @theatre.collect{ |u| [u.name, u.id] }, class: "form-control amura-select2", required: "required", data: {type: "ds", "vertical-blank" => true, "default-value" => f.object.screen_id, name: "screen_id"} %>
+    <%= f.select :screen_id, @theatre.screens.collect{ |u| [u.name, u.id] }, class: "form-control amura-select2", required: "required", data: {type: "ds", "vertical-blank" => true, "default-value" => f.object.screen_id, name: "screen_id"} %>
   </div>
   <div class="form-group">
     <%= f.label :starttime, class: "control-label" %>

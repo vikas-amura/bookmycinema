@@ -3,24 +3,19 @@ class ShowsController < ApplicationController
 	before_action :load_authorize_parent
 
 	def index
-		@shows   = @movie.shows.all
+		@shows = @movie.shows.paginate(:page=>params[:page],:per_page=>10)
 	end
 
 	def show
-		@screen  = @show.screen
-		@seats   = @screen.seats
-		@book    = @show.tickets
 	end
 
 	def new
-		city 		= {:city=>'Pune'}
-		@theatre 	= Theatre.get_all_theatre(city)
-		@show    	= Show.new
+		@show = Show.new
+		@theatre = Theatre.first
 	end
 
 	def edit
-		city 		= {:city=>'Pune'}
-		@theatre 	= Theatre.get_all_theatre(city)
+		@theatre = Theatre.first
 	end
 
 	def create
@@ -28,7 +23,7 @@ class ShowsController < ApplicationController
 		@show.endtime = (@show.starttime.to_time + @movie.duration.hours).to_datetime
 		respond_to do |format|
 			if @show.save
-				format.html { redirect_to edit_movie_show_path(@movie,@show), notice: 'Show was successfully created.' }
+				format.html { redirect_to movie_shows_path(@movie), notice: 'Show was successfully created.' }
 				format.json { render :show, status: :created, location: @show }
 			else
 				format.html { render :new }
@@ -40,7 +35,7 @@ class ShowsController < ApplicationController
 	def update
 		respond_to do |format|
 			if @show.update(show_params)
-				format.html { redirect_to edit_movie_show_path(@movie,@show), notice: 'Show was successfully updated.' }
+				format.html { redirect_to movie_shows_path(@movie), notice: 'Show was successfully updated.' }
 				format.json { render :show, status: :ok, location: @show }
 			else
 				format.html { render :edit }

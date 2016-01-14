@@ -33,6 +33,9 @@ gem 'cancancan'
 # gem for mail handling
 gem 'mailcatcher'
 
+#gem for pagination
+gem 'will_paginate_mongoid'
+
 #mongoid as database
 gem 'mongoid', '~> 5.0.0'
 

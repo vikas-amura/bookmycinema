@@ -3,7 +3,7 @@ class SeatsController < ApplicationController
 	before_action :load_authorize_parent
 
 	def index
-		@seats = @screen.seats.all
+		@seats = @screen.seats.paginate(:page => params[:page],:per_page=>10)
 	end
 
 	def show
@@ -20,7 +20,7 @@ class SeatsController < ApplicationController
 		@seat = @screen.seats.new(seat_params)
 		respond_to do |format|
 			if @seat.save
-				format.html { redirect_to edit_theatre_screen_seat_path(@theatre,@screen,@seat), notice: 'Seat was successfully created.' }
+				format.html { redirect_to theatre_screen_seats_path(@theatre,@screen), notice: 'Seat was successfully created.' }
 				format.json { render :show, status: :created, location: @seat }
 			else
 				format.html { render :new }
@@ -32,7 +32,7 @@ class SeatsController < ApplicationController
 	def update
 		respond_to do |format|
 			if @seat.update(seat_params)
-				format.html { redirect_to edit_theatre_screen_seat_path(@theatre,@screen,@seat), notice: 'Seat was successfully updated.' }
+				format.html { redirect_to theatre_screen_seats_path(@theatre,@screen), notice: 'Seat was successfully updated.' }
 				format.json { render :show, status: :ok, location: @seat }
 			else
 				format.html { render :edit }

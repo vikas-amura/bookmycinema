@@ -3,33 +3,25 @@ class ScreensController < ApplicationController
 
   before_action :load_authorize_parent
 
-  # GET /screens
-  # GET /screens.json
   def index
-    @screens = @theatre.screens.all
+    @screens = @theatre.screens.paginate(:page => params[:page],:per_page=>10)
   end
 
-  # GET /screens/1
-  # GET /screens/1.json
   def show
   end
 
-  # GET /screens/new
   def new
     @screen = Screen.new
   end
 
-  # GET /screens/1/edit
   def edit
   end
 
-  # POST /screens
-  # POST /screens.json
   def create
     @screen = @theatre.screens.new(screen_params)
     respond_to do |format|
       if @screen.save
-        format.html { redirect_to edit_theatre_screen_path(@theatre,@screen), notice: 'Screen was successfully created.' }
+        format.html { redirect_to theatre_screens_path(@theatre), notice: 'Screen was successfully created.' }
         format.json { render :show, status: :created, location: @screen }
       else
         format.html { render :new }
@@ -38,12 +30,10 @@ class ScreensController < ApplicationController
     end
   end
 
-  # PATCH/PUT /screens/1
-  # PATCH/PUT /screens/1.json
   def update
     respond_to do |format|
       if @screen.update(screen_params)
-        format.html { redirect_to edit_theatre_screen_path(@theatre,@screen), notice: 'Screen was successfully updated.' }
+        format.html { redirect_to theatre_screens_path(@theatre), notice: 'Screen was successfully updated.' }
         format.json { render :show, status: :ok, location: @screen }
       else
         format.html { render :edit }
@@ -52,8 +42,6 @@ class ScreensController < ApplicationController
     end
   end
 
-  # DELETE /screens/1
-  # DELETE /screens/1.json
   def destroy
     @screen.destroy
     respond_to do |format|
@@ -63,13 +51,10 @@ class ScreensController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_screen
       @screen = Screen.find(params[:id])
     end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def screen_params
+  def screen_params
       params.require(:screen).permit(:name, :capacity)
     end
 
