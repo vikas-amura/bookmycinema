@@ -50,4 +50,10 @@ class User
   validates :first_name, :last_name, length: { minimum: 2 }, allow_blank: true
   validates :gender, :inclusion => %w(male female)
   validates :mobile, numericality: { only_integer: true }, length: { is: 10 }
+
+  #methods
+  def admin?
+    self.role.name == "Admin"
+  end
+
 end

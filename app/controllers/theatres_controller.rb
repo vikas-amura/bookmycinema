@@ -1,5 +1,5 @@
 class TheatresController < ApplicationController
-  before_action :set_theatre, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /theatres
   # GET /theatres.json
@@ -14,7 +14,6 @@ class TheatresController < ApplicationController
 
   # GET /theatres/new
   def new
-    @theatre = Theatre.new
   end
 
   # GET /theatres/1/edit
@@ -24,8 +23,6 @@ class TheatresController < ApplicationController
   # POST /theatres
   # POST /theatres.json
   def create
-    @theatre = Theatre.new(theatre_params)
-
     respond_to do |format|
       if @theatre.save
         format.html { redirect_to @theatre, notice: 'Theatre was successfully created.' }
@@ -60,15 +57,4 @@ class TheatresController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_theatre
-      @theatre = Theatre.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def theatre_params
-      params.require(:theatre).permit(:name, :address, :city)
-    end
 end
