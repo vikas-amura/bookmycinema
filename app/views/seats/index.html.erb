@@ -1,39 +1,42 @@
 <%= render 'layouts/headbar'%>
-<%=render 'layouts/breadcrumb'%>
+<div class="container">
+  <%=render 'layouts/breadcrumb'%>
+  <% if current_user.role=="admin"%>
+    <%= link_to 'New Seat', new_theatre_screen_seat_path(@theatre,@screen) %>
+  <%end%>
+  <div class="well">
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>Seat Row</th>
+          <th>Seat Number</th>
+          <th>Seat Type</th>
+          <th>Status</th>
+          <th>Action</th>
+          <th>Action</th>
+          <th>Action</th>
+        </tr>
+      </thead>
 
-<% if current_user.role=="admin"%>
-<%= link_to 'New Seat', new_theatre_screen_seat_path(@theatre,@screen) %>
-<%end%>
-<table id="datatable" class="table table-condensed">
-  <thead>
-    <tr>
-      <th>Seat Row</th>
-      <th>Seat Number</th>
-      <th>Seat Type</th>
-      <th>Status</th>
-      <th>Action</th>
-      <th>Action</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @seats.each do |seat| %>
-    <tr>
-      <td><%= seat.row %></td>
-      <td><%= seat.seat_number %></td>
-      <td><%= seat.seat_type %></td>
-      <% if current_user.role=="admin"%>
-      <td><%= link_to 'Show', theatre_screen_seat_path(@theatre,@screen,seat) %></td>
-      <td><%= link_to 'Edit', edit_theatre_screen_seat_path(@theatre,@screen,seat) %></td>
-      <td><%= link_to 'Destroy',[@theatre,@screen,seat], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <%end%>
-      <td><%=seat.status%></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+      <tbody>
+        <% @seats.each do |seat| %>
+        <tr>
+          <td><%= seat.row %></td>
+          <td><%= seat.seat_number %></td>
+          <td><%= seat.seat_type %></td>
+          <% if current_user.role=="admin"%>
+          <td><%= link_to 'Show', theatre_screen_seat_path(@theatre,@screen,seat) %></td>
+          <td><%= link_to 'Edit', edit_theatre_screen_seat_path(@theatre,@screen,seat) %></td>
+          <td><%= link_to 'Destroy',[@theatre,@screen,seat], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <%end%>
+          <td><%=seat.status%></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 <div class="digg_pagination">
-  <%= will_paginate @movies, :container => false %>
+  <%= will_paginate @seats, :container => false %>
 </div>
 

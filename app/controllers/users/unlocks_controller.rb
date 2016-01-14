@@ -25,4 +25,7 @@ class Users::UnlocksController < Devise::UnlocksController
   # def after_unlock_path_for(resource)
   #   super(resource)
   # end
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :role)
+  end
 end

@@ -14,7 +14,6 @@
           <th>Ticket</th>
         </tr>
       </thead>
-
       <tbody>
         <% @bookings.each do |booking| %>
         <tr>
@@ -25,7 +24,6 @@
           <td><%= booking.card_type %></td>
           <td><%= booking.card_number %></td>
           <td><%= link_to 'Shows Ticket',booking_tickets_path(booking) %></td>
-
         </tr>
         <% end %>
       </tbody>
