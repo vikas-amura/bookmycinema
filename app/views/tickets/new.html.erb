@@ -1,1 +1,11 @@
-<h1>New Ticket</h1>
+<h1>New Ticket</h1><% @tickets.each do |ticket| %>
+<% @total = ticket %>
+<% @movie_name = ticket %>
+  <%= ticket.movie.name %>
+  <%= ticket.show.starttime.strftime("on %d/%m/%Y at %I:%M%p") %>
+  <%= ticket.show.screen.name %>
+  <%= ticket.type if ticket.type.present? %>
+  <%= ticket.booking.amount.to_i / ticket.booking.number_of_tickets.to_i %>
+  <%= ticket.seat.row%><%=ticket.seat.seat_number %>
+  <%= @total.booking.amount if @total.present? %>
+<% end %>

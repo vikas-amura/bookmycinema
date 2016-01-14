@@ -1,5 +1,7 @@
 class User
   include Mongoid::Document
+  include Mongoid::Timestamps
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
@@ -39,13 +41,13 @@ class User
   # field :failed_attempts, type: Integer, default: 0 # Only if lock strategy is :failed_attempts
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
-  include Mongoid::Timestamps
 
   #associations
   has_many :bookings
 
   #validations
   validates :first_name, :last_name, :mobile, :gender, :date_of_birth, presence: true
-  validates :first_name, :last_name, length: { minimum: 2 }
+  validates :first_name, :last_name, length: { minimum: 2 }, allow_blank: true
+  validates :gender, :inclusion => %w(male female)
   validates :mobile, numericality: { only_integer: true }, length: { is: 10 }
 end

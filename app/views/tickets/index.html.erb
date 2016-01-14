@@ -2,37 +2,39 @@
 
 <div class="container">
   <%= render 'layouts/breadcrumb'%>
-  <div class="well">
-    <p class="lead"> User: <%= current_user.first_name %> </p>
-    <table class="table table-condensed">
-      <thead>
-        <tr>
-          <th>Booking No</th>
-          <th>Movie Name</th>
-          <th>Time</th>
-          <th>Screen</th>
-          <th>Type</th>
-          <th>amout</th>
-          <th>Ticket No</th>
-        </tr>
-      </thead>
-      <tbody>
+  <div class="panel panel-primary" style="margin: 0 auto; width: 40%;">
+    <div class="panel-heading">
+      <div class="panel-title">Ticket Details</div>
+    </div>
+    <div class="panel-body">
+      <p class="lead">
+        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        User : <%= current_user.first_name %>
+      </p>
+      <p class="lead">
+        <span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span>
         <% @tickets.each do |ticket| %>
-        <tr>
-          <%@total=ticket%>
-          <td><%=ticket.booking.id %></td>
-          <td><%=ticket.movie.name %></td>
-          <td><%=ticket.show.starttime.strftime("on %d/%m/%Y at %I:%M%p")%></td>
-          <td><%=ticket.show.screen.name %></td>
-          <td><%=ticket.type if ticket.type.present? %></td>
-          <td><%=ticket.booking.amount.to_i / ticket.booking.number_of_tickets.to_i %></td>
-          <td><%=ticket.seat.row%><%=ticket.seat.seat_number%></td>
-        </tr>
+        <% @movie_name = ticket %>
+        <% @total = ticket %>
+        <% @start_time = ticket %>
+        <% @screen = ticket %>
+        <%= ticket.type if ticket.type.present? %>
+        <%= ticket.seat.row%><%=ticket.seat.seat_number %>
         <% end %>
-        <tr>
-          <td></td><td></td><td></td><td></td><td></td><td>Total:</td><td><%=@total.booking.amount if @total.present?%></td>
-        </tr>
-      </tbody>
-    </table>
+      </span>
+    </p>
+    <p class="lead">
+      <span class="glyphicon glyphicon-film" aria-hidden="true"></span>
+      <%= @movie_name.movie.name if @movie_name.present? %>
+      <%= @start_time.show.starttime.strftime("on %d/%m/%Y at %I:%M%p") if @start_time.present? %>
+    </p>
+    <p class="lead">
+      <span class="glyphicon glyphicon-sound-dolby" aria-hidden="true"></span>
+      <%= @screen.show.screen.name if @screen.present? %>
+    </p>
+    <p class="lead">
+      <span class="glyphicon glyphicon-euro" aria-hidden="true"></span>
+      Price : <%= @total.booking.amount if @total.present? %>
+    </p>
   </div>
 </div>
