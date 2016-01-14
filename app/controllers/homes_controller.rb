@@ -8,6 +8,6 @@ class HomesController < ApplicationController
 
 	def display
 		@theatre = Theatre.find(params['id'])
-        @shows = Show.all
-	end
+    @shows = Show.all
+  end
 end

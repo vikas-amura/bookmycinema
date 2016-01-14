@@ -1,7 +1,7 @@
 <%= render 'layouts/headbar'  %>
 <div class="container">
 	<div class="well">
-<h3>Theatre Name:<%= @theatre.name %></h3>
+<h3>Theatre Name : <%= @theatre.name %></h3>
 <table id="datatable" class="table table-condensed">
 	<thead>
 		<th>Movie</th>
@@ -18,7 +18,11 @@
 			<td><%= show.screen.name %> </td>
 			<td><%= show.starttime.strftime("%d/%m/%Y") %></td>
 			<td><%= show.starttime.strftime("%I:%M%p") %></td>
-			<td><%=link_to 'Book Ticket', new_movie_show_booking_path(show.movie,show)%></td>
+			<% if current_user.role == "admin" %>
+				<td>Permission denied!</td>
+			<% else %>
+				<td><%=link_to 'Book Ticket', new_movie_show_booking_path(show.movie, show)%></td>
+			<% end %>
 		</tr>
 		<%end%>
 	</tbody>
