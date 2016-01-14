@@ -6,13 +6,14 @@ Rails.application.routes.draw do
   resources :theatres do
     resources :screens do
       resources :seats
-         get 'screen_layout', to: 'bookings#screen_layout'
+      get 'screen_layout', to: 'bookings#screen_layout'
     end
   end
 
   resources :movies, controller: 'movies' do
-    resources :shows, controller: 'shows'
-    resources :bookings, controller: 'bookings'
+    resources :shows, controller: 'shows' do
+      resources :bookings, controller: 'bookings'
+    end
   end
 
   resources :bookings, controller: 'bookings' do

@@ -1,38 +1,38 @@
 <%= render 'layouts/headbar' %>
 <div class="container">
   <div class="well">
-    <% if @tickets.present? %>
+    <% if @show.present? %>
     <%= form_for @booking, html: {class: "nifty_form"} do |f| %>
     <p class="lead">
       <strong>Screen Name:</strong>
-      <%= @tickets.first.show.screen.name%>
+      <%= @show.screen.name%>
     </p>
     <p class="lead">
       <strong>Movie Name:</strong>
-      <%= @tickets.first.movie.name %>
+      <%= @show.movie.name %>
     </p>
     <p class="lead">
       <strong>Start Time:</strong>
-      <%= @tickets.first.show.starttime.strftime("on %d/%m/%Y at %I:%M%p") %>
+      <%= @show.starttime.strftime("on %d/%m/%Y at %I:%M%p") %>
       <%= f.hidden_field :show_id,value:params[:id] %>
     </p>
     <p class="lead">
       <strong>End Time:</strong>
-      <%= @tickets.first.show.endtime.strftime("on %d/%m/%Y at %I:%M%p") %>
+      <%= @show.endtime.strftime("on %d/%m/%Y at %I:%M%p") %>
     </p>
     <p class="lead">
       <strong>Total Seat:</strong>
-      <%= @tickets.count %>
+      <%= @show.screen.seats.count %>
     </p>
-    <% @tickets.each do |ticket| %>
-    <% if ticket.status!='booked' %>
-      <%= check_box_tag("ticketid[]", value = ticket.id, checked = false) %>
+    <% @show.screen.seats.each do |seat| %>
+    <% if seat.ticket.present? %>
+     [*] booked
     <% else %>
-      [*]
+      <%= check_box_tag("ticketid[]", value = seat.id, checked = false) %>
+      avilable
     <% end %>
-    <%= ticket.seat.row %>
-    <%= ticket.seat.seat_number %>
-    <%= ticket.status %>
+    <%= seat.row %>
+    <%= seat.seat_number %>
     <br>
     <%end%>
 
@@ -63,6 +63,7 @@
       <%= f.label :card_number %><br>
       <%= f.text_field :card_number, class: "form-control" %>
       <%= f.hidden_field :movie_id,value:params[:movie_id] %>
+      <%= f.hidden_field :show_id,value:@show.id %>
     </div>
     <%= submit_tag "Book", class: "btn btn-default" %>
     <% end %>

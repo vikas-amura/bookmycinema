@@ -14,11 +14,11 @@
 	<tbody>
 		<% @shows.each do | show |%>
 		<tr>
-			<td><%= link_to show.movie.name, theatre_screen_seats_path(@theatre, show.screen) %></td>
+			<td><%= link_to show.movie.name, new_movie_show_booking_path(show.movie,show) %></td>
 			<td><%= show.screen.name %> </td>
 			<td><%= show.starttime.strftime("%d/%m/%Y") %></td>
 			<td><%= show.starttime.strftime("%I:%M%p") %></td>
-			<td><%=link_to 'Book Ticket', new_movie_booking_path(show.movie)%></td>
+			<td><%=link_to 'Book Ticket', new_movie_show_booking_path(show.movie,show)%></td>
 		</tr>
 		<%end%>
 	</tbody>

@@ -23,10 +23,10 @@
       <tbody>
         <% @shows.each do |show| %>
         <tr>
-          <td><%= show.starttime.strftime("on %d/%m/%Y at %I:%M%p") %>|</td>
-          <td><%= show.endtime.strftime("on %d/%m/%Y at %I:%M%p") %>|</td>
+          <td><%= show.starttime.strftime(" %d/%m/%Y time- %I:%M%p") %></td>
+          <td><%= show.endtime.strftime("%d/%m/%Y time- %I:%M%p") %></td>
           <td><%= show.screen.name if show.screen? %></td>
-          <td>City Pride<%#= screen.theater.name if screen.theater? %></td>
+          <td><%= show.screen.theatre.name if show.screen.theatre? %></td>
           <% if current_user.role == "admin" %>
           <td><%= link_to 'Show', movie_show_path(@movie,show) %></td>
           <td><%= link_to 'Edit', edit_movie_show_path(@movie,show) %></td>
@@ -36,5 +36,8 @@
         <% end %>
       </tbody>
     </table>
+    <div class="digg_pagination">
+      <%= will_paginate @shows, :container => false %>
+    </div>
   </div>
 </div>

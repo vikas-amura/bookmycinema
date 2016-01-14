@@ -13,12 +13,4 @@ class Theatre
 
   #validations
   validates :name, :address, :city, presence: true
-
-
-  def self.get_all_theatre(options={})
-   @theatre   =Theatre.first
-   @allscreen = @theatre.screens
-   return @allscreen
- end
-
 end

@@ -4,7 +4,7 @@ class TheatresController < ApplicationController
   # GET /theatres
   # GET /theatres.json
   def index
-    @theatres = Theatre.all
+    @theatres = Theatre.paginate(:page => params[:page],:per_page=>10)
   end
 
   # GET /theatres/1

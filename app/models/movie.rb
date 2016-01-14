@@ -24,4 +24,12 @@ class Movie
   validates :name, :language, :genre, :movie_format, length: { minimum: 1, maximum: 50 }
   validates_numericality_of :rating, length: { minimum: 0, maximum: 10 }
   validates :trailer_url, length: { maximum: 500 }
+
+  def self.search(search)
+    if search
+      where("name LIKE ?", "%#{search}%")
+    else
+      scoped
+    end
+  end
 end
