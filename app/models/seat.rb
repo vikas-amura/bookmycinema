@@ -5,8 +5,8 @@ class Seat
   #attributes
   field :row, type: String
   field :seat_number, type: Integer
+  field :seat_price, type: Integer
   field :seat_type, type: String
-  field :status, type: String ,:default => 'available'
 
   #associations
   belongs_to :screen
@@ -14,7 +14,7 @@ class Seat
 
 
   #validations
-  validates :row, :seat_number, presence: true
+  validates :row, :seat_number, :seat_price, presence: true
   validates :row, length: { minimum: 1, maximum: 2 }
   validates :seat_number, numericality: { only_integer: true }
 

@@ -24,4 +24,15 @@
 
 $(document).ready(function(){
   $('.form-validatable').validate();
+
+  $(function() {
+  $("#movies th a, #movies .pagination a").live("click", function() {
+    $.getScript(this.href);
+    return false;
+  });
+  $("#movies_search input").keyup(function() {
+    $.get($("#movies_search").attr("action"), $("#movies_search").serialize(), null, "script");
+    return false;
+  });
+});
  });

@@ -11,6 +11,7 @@
           <th>Seat Row</th>
           <th>Seat Number</th>
           <th>Seat Type</th>
+          <th>Seat Price</th>
           <th>Status</th>
           <th>Action</th>
           <th>Action</th>
@@ -24,12 +25,12 @@
           <td><%= seat.row %></td>
           <td><%= seat.seat_number %></td>
           <td><%= seat.seat_type %></td>
+          <td><%= seat.seat_price %></td>
           <% if current_user.role=="admin"%>
           <td><%= link_to 'Show', theatre_screen_seat_path(@theatre,@screen,seat) %></td>
           <td><%= link_to 'Edit', edit_theatre_screen_seat_path(@theatre,@screen,seat) %></td>
           <td><%= link_to 'Destroy',[@theatre,@screen,seat], method: :delete, data: { confirm: 'Are you sure?' } %></td>
           <%end%>
-          <td><%=seat.status%></td>
         </tr>
         <% end %>
       </tbody>

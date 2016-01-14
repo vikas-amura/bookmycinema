@@ -6,14 +6,12 @@
     <% if current_user.role == "admin"%>
     <%= link_to 'New Movie', new_movie_path %>
     <% end %>
-
-
-  <%=form_tag movies_path, :method => 'get' do %>
-  <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :name => nil %>
-  </p>
-<% end %>
+    <%= form_tag movies_path, :method => 'get', :id => "movies_search" do %>
+    <p>
+      <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag "Search", :name => nil %>
+    </p>
+  <% end %>
     <table id="datatable" class="table table-condensed">
       <thead>
         <tr>

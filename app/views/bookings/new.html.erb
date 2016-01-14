@@ -28,7 +28,7 @@
     <% if seat.ticket.present? %>
      [*] booked
     <% else %>
-      <%= check_box_tag("ticketid[]", value = seat.id, checked = false) %>
+      <%= check_box_tag("ticketid[]", value = seat.id, checked = false , class: seat.seat_price) %>
       avilable
     <% end %>
     <%= seat.row %>

@@ -19,8 +19,12 @@
     <%= f.number_field :seat_number, class: "form-control",:required => true %>
   </div>
   <div class="form-group">
+    <%= f.label :seat_price %><br>
+    <%= f.number_field :seat_price, class: "form-control",:required => true %>
+  </div>
+  <div class="form-group">
     <%= f.label :seat_type %><br>
-    <%= f.select :seat_type, SEAT_TPYE,{},class: "form-control amura-select2",:selected =>f.object.seat_type,:required => true%>
+    <%= f.select :seat_type, SEAT_TPYE,{},class: "form-control",:selected =>f.object.seat_type,:required => true%>
 
   </div>
   <div class="form-group">

@@ -2,7 +2,10 @@ class MoviesController < ApplicationController
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
 
   def index
-    @movies = Movie.search(params[:search]).paginate(:page => params[:page],:per_page=>10)
+    if params[:page].present?
+        params[:page] = params[:page].to_i <= 0 ? 1 : params[:page]
+    end
+    @movies = Movie.search(params[:search]).paginate(:per_page => 10, :page => params[:page])
   end
 
   def show
