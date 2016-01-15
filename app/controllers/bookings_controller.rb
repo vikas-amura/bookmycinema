@@ -11,6 +11,7 @@ class BookingsController < ApplicationController
 	def new
 		@booking = Booking.new
 		@show = Show.find(params['show_id'])
+		@all_seat=@show.screen.seats.order('row asc').group_by{|x| x.row }
 	end
 
 	def edit

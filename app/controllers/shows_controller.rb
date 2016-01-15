@@ -10,11 +10,9 @@ class ShowsController < ApplicationController
 	end
 
 	def new
-		@theatre = Theatre.first
 	end
 
 	def edit
-		@theatre = Theatre.first
 	end
 
 	def create
@@ -54,7 +52,7 @@ class ShowsController < ApplicationController
 	private
 
 	def show_params
-		params.require(:show).permit(:starttime, :endtime, :screen_id)
+		params.require(:show).permit(:starttime, :endtime, :screen_id,:theatre_id)
 	end
 
 	def load_authorize_parent

@@ -1,3 +1,10 @@
+<style type="text/css">
+    tr,td{
+        border: 1px solid #ccc;
+        padding: 15px;
+
+    }
+</style>
 <%= render 'layouts/headbar' %>
 <div class="container">
   <div class="well">
@@ -6,69 +13,75 @@
     <p class="lead">
       <strong>Screen Name:</strong>
       <%= @show.screen.name%>
-    </p>
-    <p class="lead">
+  </p>
+  <p class="lead">
       <strong>Movie Name:</strong>
       <%= @show.movie.name %>
-    </p>
-    <p class="lead">
+  </p>
+  <p class="lead">
       <strong>Start Time:</strong>
       <%= @show.starttime.strftime("on %d/%m/%Y at %I:%M%p") %>
       <%= f.hidden_field :show_id, value:params[:id] %>
-    </p>
-    <p class="lead">
+  </p>
+  <p class="lead">
       <strong>End Time:</strong>
       <%= @show.endtime.strftime("on %d/%m/%Y at %I:%M%p") %>
-    </p>
-    <p class="lead">
+  </p>
+  <p class="lead">
       <strong>Total Seat:</strong>
       <%= @show.screen.seats.count %>
-    </p>
-    <% @show.screen.seats.each do |seat| %>
-    <% if seat.tickets.where(show_id: @show.id).present? %>
-    <%= check_box_tag("ticketid[]", value = "", checked = true, :disabled => true) %>
-     <% else %>
-    <%= check_box_tag("ticketid[]", value = seat.id, checked = false) %>
-    <% end %>
-    <%= seat.row %>
-    <%= seat.seat_number %>
-    <br>
-    <%end%>
+  </p>
+<center>
+  <table>
+    <% @all_seat.each do |row,seats| %>
+        <tr>
+          <td><%=row%></td>
+          <%seats.each do |seat|%>
+            <td>
+              <% if seat.tickets.where(show_id: @show.id).present? %>
+              <%= check_box_tag("ticketid[]", value = "", checked = true, :disabled => true) %>
+              <% else %>
+              <%= check_box_tag("ticketid[]", value = seat.id, checked = false) %>
+              <% end %>
+            <%=seat.seat_number%>
+            </td>
+           <%end%>
+       </tr>
+   <%end%>
+</table>
+</center>
 
-    <div class="form-group">
-      <%= f.label :amount, class: "" %>
-      <div class="">
-        <% @amount={100=>100,150=>150,200=>200} %>
-        <%= f.select :amount, options_for_select(@amount), class: "form-control",  required: "required", data: {type: "ds", "vertical-blank" => true, "default-value" => f.object.amount, name: "amount"} %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :card_type, class: "control-label" %>
-      <div class="">
-        <% @card_type={"Debit"=>"Debit","Credit"=>"Credit"} %>
-        <%= f.select :card_type, options_for_select(@card_type), class: "form-control", required: "required", data: {type: "ds", "vertical-blank" => true, "default-value" => f.object.card_type, name: "card_type"} %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :payment_mode, class: "" %>
-      <div class="">
-        <% @payment_mode={"Online"=>"online","Cash"=>"Cash"} %>
-        <%= f.select :payment_mode, options_for_select(@payment_mode), class: "form-control", required: "required", data: {type: "ds", "vertical-blank" => true, "default-value" => f.object.payment_mode, name: "payment_mode"} %>
-      </div>
-    </div>
-    <div class="form-group">
-      <%= f.label :card_number %><br>
-      <%= f.text_field :card_number, class: "form-control" %>
-      <%= f.hidden_field :movie_id,value:params[:movie_id] %>
-      <%= f.hidden_field :show_id,value:@show.id %>
-    </div>
-    <%= submit_tag "Book", class: "btn btn-default" %>
-    <% end %>
-    <%else%>
-    <p>Show Not added</p>
-    <p>please Add Show <%= link_to 'click here..', movie_shows_path(params['movie_id']) %></p>
-    <%end%>
+<div class="form-group">
+    <div class="">
   </div>
+</div>
+
+<div class="form-group">
+    <%= f.label :card_type, class: "control-label" %>
+    <div class="">
+      <% @card_type={"Debit"=>"Debit","Credit"=>"Credit"} %>
+      <%= f.select :card_type, options_for_select(@card_type), class: "form-control", required: "required", data: {type: "ds", "vertical-blank" => true, "default-value" => f.object.card_type, name: "card_type"} %>
+  </div>
+</div>
+
+<div class="form-group">
+    <%= f.label :payment_mode, class: "" %>
+    <div class="">
+      <% @payment_mode={"Online"=>"online","Cash"=>"Cash"} %>
+      <%= f.select :payment_mode, options_for_select(@payment_mode), class: "form-control", required: "required", data: {type: "ds", "vertical-blank" => true, "default-value" => f.object.payment_mode, name: "payment_mode"} %>
+  </div>
+</div>
+<div class="form-group">
+    <%= f.label :card_number %><br>
+    <%= f.text_field :card_number, class: "form-control" %>
+    <%= f.hidden_field :movie_id,value:params[:movie_id] %>
+    <%= f.hidden_field :show_id,value:@show.id %>
+</div>
+<%= submit_tag "Book", class: "btn btn-default" %>
+<% end %>
+<%else%>
+<p>Show Not added</p>
+<p>please Add Show <%= link_to 'click here..', movie_shows_path(params['movie_id']) %></p>
+<%end%>
+</div>
 </div>

@@ -10,6 +10,7 @@ class Theatre
   #associations
   has_many :movies
   has_many :screens
+  has_many :shows
 
   #validations
   validates :name, :address, :city, presence: true
