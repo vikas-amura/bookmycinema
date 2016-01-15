@@ -7,6 +7,8 @@ class Ability
       user ||= User.new # guest user (not logged in)
       if !user.role.nil?
         can :manage, :all if user.role == "admin"
+        can :read, :all if user.role == "user"
+
       end
 
     # The first argument to `can` is the action you are giving the user

@@ -10,7 +10,7 @@ class Seat
 
   #associations
   belongs_to :screen
-  has_many :ticket
+  has_many :tickets
 
 
   #validations

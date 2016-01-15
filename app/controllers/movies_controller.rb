@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  before_action :set_movie, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   def index
     if params[:page].present?
@@ -12,7 +12,6 @@ class MoviesController < ApplicationController
   end
 
   def new
-    @movie = Movie.new
   end
 
   def edit
@@ -20,7 +19,6 @@ class MoviesController < ApplicationController
 
   def create
     @movie = Movie.new(movie_params)
-
     respond_to do |format|
       if @movie.save
         format.html { redirect_to @movie, notice: 'Movie was successfully created.' }
@@ -53,10 +51,6 @@ class MoviesController < ApplicationController
   end
 
   private
-    def set_movie
-      @movie = Movie.find(params[:id])
-    end
-
     def movie_params
       params.require(:movie).permit(:name, :language, :genre, :duration, :movie_format, :trailer_url, :rating, :release_date)
     end

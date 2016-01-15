@@ -1,5 +1,5 @@
 class ShowsController < ApplicationController
-	before_action :set_show, only: [:show, :edit, :update, :destroy]
+	load_and_authorize_resource
 	before_action :load_authorize_parent
 
 	def index
@@ -10,7 +10,6 @@ class ShowsController < ApplicationController
 	end
 
 	def new
-		@show = Show.new
 		@theatre = Theatre.first
 	end
 
@@ -53,9 +52,6 @@ class ShowsController < ApplicationController
 	end
 
 	private
-	def set_show
-		@show = Show.find(params[:id])
-	end
 
 	def show_params
 		params.require(:show).permit(:starttime, :endtime, :screen_id)

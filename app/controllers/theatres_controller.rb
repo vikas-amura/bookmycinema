@@ -1,27 +1,19 @@
 class TheatresController < ApplicationController
   load_and_authorize_resource
 
-  # GET /theatres
-  # GET /theatres.json
   def index
     @theatres = Theatre.paginate(:page => params[:page],:per_page=>10)
   end
 
-  # GET /theatres/1
-  # GET /theatres/1.json
   def show
   end
 
-  # GET /theatres/new
   def new
   end
 
-  # GET /theatres/1/edit
   def edit
   end
 
-  # POST /theatres
-  # POST /theatres.json
   def create
     respond_to do |format|
       if @theatre.save
@@ -34,8 +26,6 @@ class TheatresController < ApplicationController
     end
   end
 
-  # PATCH/PUT /theatres/1
-  # PATCH/PUT /theatres/1.json
   def update
     respond_to do |format|
       if @theatre.update(theatre_params)
@@ -48,8 +38,6 @@ class TheatresController < ApplicationController
     end
   end
 
-  # DELETE /theatres/1
-  # DELETE /theatres/1.json
   def destroy
     @theatre.destroy
     respond_to do |format|
