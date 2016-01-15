@@ -1,29 +1,36 @@
 <%= form_for [@theatre, @screen,@seat] do |f| %>
-  <% if @seat.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@seat.errors.count, "error") %> prohibited this seat from being saved:</h2>
+<% if @seat.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@seat.errors.count, "error") %> prohibited this seat from being saved:</h2>
 
-      <ul>
-      <% @seat.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div class="form-group">
-    <%= f.label :row %><br>
-    <%= f.text_field :row, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :seat_number %><br>
-    <%= f.number_field :seat_number, class: "form-control",:required => true %>
-  </div>
-  <div class="form-group">
-    <%= f.label :seat_type %><br>
-    <%= f.select :seat_type, SEAT_TPYE,{},class: "form-control amura-select2",:selected =>f.object.seat_type,:required => true%>
+  <ul>
+    <% @seat.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 
-  </div>
-  <div class="form-group">
-    <%= f.submit class: "btn btn-default" %>
-  </div>
+<div class="form-group">
+  <%= f.label :seat_type %><br>
+  <%= f.select :seat_type, SEAT_TPYE,{},class: "form-control",:selected =>f.object.seat_type,:required => true%>
+</div>
+<div class="form-group">
+  <%= f.label :row %><br>
+  <%= f.text_field :row, class: "form-control" %>
+</div>
+<% if @seat.new_record? %>
+<div class="form-group">
+  <%= f.label :number_of_seat %><br>
+  <%= number_field_tag :number_of_seat, class: "form-control",:required => true %>
+</div>
+<%else%>
+<div class="form-group">
+  <%= f.label :seat_number %><br>
+  <%= f.number_field :seat_number, class: "form-control",:required => true %>
+</div>
+<%end%>
+<div class="form-group">
+  <%= f.submit class: "btn btn-default" %>
+</div>
 <% end %>

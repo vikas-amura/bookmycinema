@@ -4,7 +4,6 @@ class Ticket
 
   #attributes
   field :number ,type: String
-  field :price ,type: Float
 
   #associations
   belongs_to :booking

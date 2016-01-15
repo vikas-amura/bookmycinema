@@ -12,9 +12,11 @@
           <th>Address</th>
           <th>City</th>
           <th>Screens</th>
-          <th>Action</th>
-          <th>Action</th>
-          <th>Action</th>
+          <% if current_user.role == "admin" %>
+            <th>Action</th>
+            <th>Action</th>
+            <th>Action</th>
+          <% end %>
         </tr>
       </thead>
       <tbody>
@@ -24,9 +26,11 @@
           <td><%= theatre.address %></td>
           <td><%= theatre.city %></td>
           <td><%= link_to 'Screens',theatre_screens_path(theatre) %></td>
-          <td><%= link_to 'Show', theatre %></td>
-          <td><%= link_to 'Edit', edit_theatre_path(theatre) %></td>
-          <td><%= link_to 'Destroy', theatre, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% if current_user.role == "admin" %>
+            <td><%= link_to 'Show', theatre %></td>
+            <td><%= link_to 'Edit', edit_theatre_path(theatre) %></td>
+            <td><%= link_to 'Destroy', theatre, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
         </tr>
         <% end %>
       </tbody>

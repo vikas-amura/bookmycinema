@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-	
+
 	def index
 		@user = User.find(current_user.id)
 		@bookings = @user.bookings
@@ -11,12 +11,10 @@ class BookingsController < ApplicationController
 	def new
 		@booking = Booking.new
 		@show = Show.find(params['show_id'])
-		@tickets = Ticket.where(:movie_id=>params['movie_id'],:show_id=>params['show_id'])
 	end
 
 	def edit
 	end
-
 	def create
 		@booking=Booking.new(booking_params)
 		@booking.user_id=current_user.id

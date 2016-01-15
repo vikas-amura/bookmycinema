@@ -18,7 +18,7 @@
         <% @total = ticket %>
         <% @start_time = ticket %>
         <% @screen = ticket %>
-        
+        <%= ticket.seat.seat_type if ticket.seat.seat_type.present? %>
         <%= ticket.seat.row%><%=ticket.seat.seat_number %>
         <% end %>
       </span>

@@ -25,9 +25,9 @@
       <%= @show.screen.seats.count %>
     </p>
     <% @show.screen.seats.each do |seat| %>
-    <% if seat.ticket.present? %>
+    <% if seat.tickets.where(show_id: @show.id).present? %>
     <%= check_box_tag("ticketid[]", value = "", checked = true, :disabled => true) %>
-    <% else %>
+     <% else %>
     <%= check_box_tag("ticketid[]", value = seat.id, checked = false) %>
     <% end %>
     <%= seat.row %>
