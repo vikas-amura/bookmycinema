@@ -21,7 +21,8 @@ class ScreensController < ApplicationController
     @screen = @theatre.screens.new(screen_params)
     respond_to do |format|
       if @screen.save
-        format.html { redirect_to theatre_screens_path(@theatre), notice: 'Screen was successfully created.' }
+        flash[:notice] = "Screen created successfully"
+        format.html { redirect_to theatre_screens_path(@theatre) }
         format.json { render :show, status: :created, location: @screen }
       else
         format.html { render :new }
@@ -33,7 +34,8 @@ class ScreensController < ApplicationController
   def update
     respond_to do |format|
       if @screen.update(screen_params)
-        format.html { redirect_to theatre_screens_path(@theatre), notice: 'Screen was successfully updated.' }
+        flash[:notice] = "Screen updated successfully"
+        format.html { redirect_to theatre_screens_path(@theatre) }
         format.json { render :show, status: :ok, location: @screen }
       else
         format.html { render :edit }
@@ -45,7 +47,8 @@ class ScreensController < ApplicationController
   def destroy
     @screen.destroy
     respond_to do |format|
-      format.html { redirect_to theatre_screens_path(@theatre), notice: 'Screen was successfully destroyed.' }
+      flash[:notice] = "Movie destroyed successfully"
+      format.html { redirect_to theatre_screens_path(@theatre) }
       format.json { head :no_content }
     end
   end

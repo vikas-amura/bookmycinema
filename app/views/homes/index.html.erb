@@ -1,5 +1,11 @@
 <%= render "layouts/headbar" %>
 <div class="container">
+	<% if flash[:notice] %>
+    <div class="alert alert-success">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
 	<%=link_to @theatre.name,"display/#{@theatre.id}" %>
 	<div class="well well-lg">
 		<p class="lead">Movies shown so far...</p>

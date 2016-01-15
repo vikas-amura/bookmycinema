@@ -1,6 +1,12 @@
 <%= render 'layouts/headbar'%>
 <div class="container">
   <%= render 'layouts/breadcrumb'%>
+  <% if flash[:notice] %>
+    <div class="alert alert-success">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
   <div class="well">
     <h1>Listing Movies</h1>
     <% if current_user.role == "admin"%>
@@ -56,4 +62,3 @@
       <%= will_paginate @movies, :container => false %>
     </div>
   </div>
-

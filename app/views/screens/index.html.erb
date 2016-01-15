@@ -1,6 +1,12 @@
 <%= render 'layouts/headbar'%>
 <div class="container">
   <%=render 'layouts/breadcrumb'%>
+  <% if flash[:notice] %>
+    <div class="alert alert-success">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
   <% if current_user.role == "admin" %>
   <%= link_to 'New Screen', new_theatre_screen_path(@theatre) %>
   <% end %>

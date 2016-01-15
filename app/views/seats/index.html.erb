@@ -4,6 +4,12 @@
   <% if current_user.role=="admin"%>
     <%= link_to 'New Seat', new_theatre_screen_seat_path(@theatre,@screen) %>
   <%end%>
+  <% if flash[:notice] %>
+    <div class="alert alert-success">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
   <div class="well">
     <table class="table table-condensed">
       <thead>
@@ -40,4 +46,3 @@
 <div class="digg_pagination">
   <%= will_paginate @seats, :container => false %>
 </div>
-

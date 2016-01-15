@@ -2,6 +2,12 @@
 
 <div class="container">
   <%=render 'layouts/breadcrumb'%>
+  <% if flash[:notice] %>
+    <div class="alert alert-success">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
   <div class="well">
     <p class="lead">
       <strong>Name:</strong>

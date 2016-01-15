@@ -20,6 +20,7 @@ class SeatsController < ApplicationController
 		show_seat_type={100=>'Silver',150=>'Gold',200=>'Platinum'}
 		@seat = @screen.seats.new(seat_params)
 		respond_to do |format|
+			flash[:notice] = "Seat created successfully"
 			if @seat
 				seat_per_row=params['number_of_seat'].to_i
 				seat_type =params['seat']['seat_type']
@@ -30,7 +31,7 @@ class SeatsController < ApplicationController
 					@seat.save
 				end
 
-				format.html { redirect_to theatre_screen_seats_path(@theatre,@screen), notice: 'Seat was successfully created.' }
+				format.html { redirect_to theatre_screen_seats_path(@theatre,@screen) }
 				format.json { render :show, status: :created, location: @seat }
 			else
 				format.html { render :new }
@@ -41,8 +42,9 @@ class SeatsController < ApplicationController
 
 	def update
 		respond_to do |format|
+			flash[:notice] = "Seat updated successfully"
 			if @seat.update(seat_params)
-				format.html { redirect_to theatre_screen_seats_path(@theatre,@screen), notice: 'Seat was successfully updated.' }
+				format.html { redirect_to theatre_screen_seats_path(@theatre,@screen) }
 				format.json { render :show, status: :ok, location: @seat }
 			else
 				format.html { render :edit }
@@ -52,6 +54,12 @@ class SeatsController < ApplicationController
 	end
 
 	def destroy
+		@seat.destroy
+		respond_to do |format|
+			flash[:notice] = "Seat deleted successfully"
+			format.html { redirect_to theatre_screen_seats_path(@theatre,@screen) }
+			format.json { head :no_content }
+		end
 	end
 
 	private

@@ -1,27 +1,30 @@
 <%= render 'layouts/headbar' %>
 <div class="container">
   <div class="well">
+    <% if flash[:notice] %>
+      <div class="notice"><%= flash[:notice] %></div>
+    <% end %>
     <% if @show.present? %>
     <%= form_for @booking, html: {class: "nifty_form"} do |f| %>
     <p class="lead">
-      <strong>Screen Name:</strong>
+      <strong>Screen Name : </strong>
       <%= @show.screen.name%>
     </p>
     <p class="lead">
-      <strong>Movie Name:</strong>
+      <strong>Movie Name : </strong>
       <%= @show.movie.name %>
     </p>
     <p class="lead">
-      <strong>Start Time:</strong>
+      <strong>Start Time : </strong>
       <%= @show.starttime.strftime("on %d/%m/%Y at %I:%M%p") %>
       <%= f.hidden_field :show_id, value:params[:id] %>
     </p>
     <p class="lead">
-      <strong>End Time:</strong>
+      <strong>End Time : </strong>
       <%= @show.endtime.strftime("on %d/%m/%Y at %I:%M%p") %>
     </p>
     <p class="lead">
-      <strong>Total Seat:</strong>
+      <strong>Total Seats : </strong>
       <%= @show.screen.seats.count %>
     </p>
     <% @show.screen.seats.each do |seat| %>

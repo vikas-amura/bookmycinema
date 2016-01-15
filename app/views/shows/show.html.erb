@@ -1,6 +1,12 @@
 <%=render 'layouts/headbar'%>
 <div class="container">
   <%=render 'layouts/breadcrumb'%>
+  <% if flash[:notice] %>
+    <div class="alert alert-success">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
   <div class="well">
       MovieName:<%=@show.movie.name%><br>
       StartTime:<%=@show.starttime.strftime("on %d/%m/%Y at %I:%M%p")%><br>
