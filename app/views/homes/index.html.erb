@@ -1,6 +1,11 @@
 <%= render "layouts/headbar" %>
 <div class="container">
-
+	<% if flash[:notice] %>
+	<div class="alert alert-success">
+		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		<%= flash[:notice] %>
+	</div>
+	<% end %>
 	<div class="well well-lg">
 		<p class="lead">Movies shown so far...</p>
 		<div style="margin-top: 25px;"></div>
@@ -11,12 +16,12 @@
 				<div class="col-xs-12 col-md-12 list-group">
 					<a href="" class="col-xs-12 col-md-12 category-heading list-group-item active">Select Theatre</a>
 					<% @theatres.each do |theatre| %>
-						<% if theatre.shows.present? %>
-						 <a href="display/<%=theatre.id%>" class="col-xs-12 col-md-12 list-group-item" style="text-overflow: ellipsis;">
-							 <%= theatre.name %>
-							 <span class="pull-right"><%= theatre.address %>,<%= theatre.city %></span>
-						 </a>
-						<% end %>
+					<% if theatre.shows.present? %>
+					<a href="display/<%=theatre.id%>" class="col-xs-12 col-md-12 list-group-item" style="text-overflow: ellipsis;">
+						<%= theatre.name %>
+						<span class="pull-right"><%= theatre.address %>,<%= theatre.city %></span>
+					</a>
+					<% end %>
 					<% end %>
 				</div>
 			</div>
@@ -24,12 +29,12 @@
 				<div class="col-xs-12 col-md-12 list-group">
 					<a href="" class="col-xs-12 col-md-12 category-heading list-group-item active">English</a>
 					<% @shows.each do |show| %>
-						<% if show.movie.language.humanize == "English" %>
-						 <a href="<%= movie_path(show.movie) %>" class="col-xs-12 col-md-12 list-group-item" style="text-overflow: ellipsis;">
-							 <%= show.movie.name %>
-							 <span class="badge"><%= show.movie.movie_format %></span>
-						 </a>
-						<% end %>
+					<% if show.movie.language.humanize == "English" %>
+					<a href="<%= movie_path(show.movie) %>" class="col-xs-12 col-md-12 list-group-item" style="text-overflow: ellipsis;">
+						<%= show.movie.name %>
+						<span class="badge"><%= show.movie.movie_format %></span>
+					</a>
+					<% end %>
 					<% end %>
 				</div>
 			</div>
@@ -38,12 +43,12 @@
 				<div class="col-xs-12 col-md-12 list-group">
 					<a href="" class="col-xs-12 col-md-12 category-heading list-group-item active">Hindi</a>
 					<% @shows.each do |show| %>
-						<% if show.movie.language.humanize == "Hindi" %>
-						 <a href="<%= movie_path(show.movie) %>" class="col-xs-12 col-md-12 list-group-item" style="text-overflow: ellipsis;">
-							 <%= show.movie.name %>
-							 <span class="badge"><%= show.movie.movie_format %></span>
-						 </a>
-						<% end %>
+					<% if show.movie.language.humanize == "Hindi" %>
+					<a href="<%= movie_path(show.movie) %>" class="col-xs-12 col-md-12 list-group-item" style="text-overflow: ellipsis;">
+						<%= show.movie.name %>
+						<span class="badge"><%= show.movie.movie_format %></span>
+					</a>
+					<% end %>
 					<% end %>
 				</div>
 			</div>

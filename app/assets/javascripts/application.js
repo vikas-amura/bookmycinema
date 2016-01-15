@@ -21,7 +21,3 @@
 //= require dataTables/jquery.dataTables
 //= require turbolinks
 //= require_tree .
-
-$(document).ready(function(){
-  $('.form-validatable').validate();
- });

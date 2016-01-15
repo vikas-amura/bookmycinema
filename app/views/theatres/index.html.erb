@@ -4,6 +4,12 @@
   <% if current_user.role == "admin" %>
   <%= link_to 'New Theatre', new_theatre_path %>
   <% end %>
+  <% if flash[:notice] %>
+    <div class="alert alert-success">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
   <div class="well">
     <table id="datatable" class="table table-condensed">
       <thead>

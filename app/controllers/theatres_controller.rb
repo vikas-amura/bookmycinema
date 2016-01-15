@@ -17,7 +17,8 @@ class TheatresController < ApplicationController
   def create
     respond_to do |format|
       if @theatre.save
-        format.html { redirect_to @theatre, notice: 'Theatre was successfully created.' }
+        flash[:notice] = "Theatre created successfully"
+        format.html { redirect_to @theatre }
         format.json { render :show, status: :created, location: @theatre }
       else
         format.html { render :new }
@@ -29,7 +30,8 @@ class TheatresController < ApplicationController
   def update
     respond_to do |format|
       if @theatre.update(theatre_params)
-        format.html { redirect_to @theatre, notice: 'Theatre was successfully updated.' }
+        flash[:notice] = "Theatre updated successfully"
+        format.html { redirect_to @theatre }
         format.json { render :show, status: :ok, location: @theatre }
       else
         format.html { render :edit }
@@ -41,8 +43,13 @@ class TheatresController < ApplicationController
   def destroy
     @theatre.destroy
     respond_to do |format|
-      format.html { redirect_to theatres_url, notice: 'Theatre was successfully destroyed.' }
+      flash[:notice] = "Theatre deleted successfully"
+      format.html { redirect_to theatres_url }
       format.json { head :no_content }
     end
+  end
+  private
+  def theatre_params
+    params.require(:theatre).permit(:name, :address, :city)
   end
 end

@@ -1,6 +1,12 @@
 <%= render 'layouts/headbar'%>
 <%= render 'layouts/breadcrumb'%>
 <div class="container">
+  <% if flash[:notice] %>
+    <div class="alert alert-success">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
   <div class="well">
     <p class="lead">
       <strong>Row:</strong>

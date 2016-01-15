@@ -25,8 +25,9 @@ class BookingsController < ApplicationController
 		@booking.amount= @booking.number_of_tickets * amount
 		respond_to do |format|
 			if @booking.save
-				Ticket.create_ticket(params['ticketid'],@booking);
-				format.html { redirect_to booking_tickets_path(@booking), notice: 'Ticket was successfully created.' }
+				flash[:notice] = "Booking created successfully"
+				Ticket.create_ticket(params['ticketid'], @booking);
+				format.html { redirect_to booking_tickets_path(@booking) }
 				format.json { render :show, status: :created, location: @booking }
 			else
 				format.html { render :new }

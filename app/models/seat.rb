@@ -20,3 +20,14 @@ class Seat
 
   #add validation on seats. don't allot seat if don't have capacity
 end
+
+#301 41 33 74
+#302 33 32 65
+#303 41 38 79
+#304 50 44 94
+#305 41 35 76
+#306 43 36 79
+#308 36 36 72
+#5.670 / 6
+
+#539 / 700
