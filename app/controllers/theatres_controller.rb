@@ -48,6 +48,11 @@ class TheatresController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def all_theatres
+    @theatres = Theatre.all
+  end
+
   private
   def theatre_params
     params.require(:theatre).permit(:name, :address, :city)

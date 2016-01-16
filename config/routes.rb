@@ -2,7 +2,10 @@ Rails.application.routes.draw do
 
   root 'homes#index'
   devise_for :users, controllers: { registrations: "users/registrations",  sessions: "users/sessions", passwords: "users/passwords", confirmations: "users/confirmations" }
-  get 'display/:id',to: 'homes#display'
+  get 'theater_movies/:id',to: 'homes#theater_movies'
+  get 'movie_theatres/:id', to: 'homes#movie_theatres'
+  get 'all_theatres',to: 'theatres#all_theatres'
+
   resources :theatres do
     resources :screens do
       resources :seats
