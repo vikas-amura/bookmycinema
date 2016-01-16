@@ -7,11 +7,11 @@
       <%= flash[:notice] %>
     </div>
   <% end %>
+  <% if current_user.role == "admin"%>
+    <%= link_to 'New Movie', new_movie_path %>
+  <% end %>
   <div class="well">
     <h1>Listing Movies</h1>
-    <% if current_user.role == "admin"%>
-    <%= link_to 'New Movie', new_movie_path %>
-    <% end %>
     <%= form_tag movies_path, :method => 'get', :id => "movies_search" do %>
     <p>
       <%= text_field_tag :search, params[:search] %>
