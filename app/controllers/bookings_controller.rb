@@ -22,7 +22,7 @@ class BookingsController < ApplicationController
 		@booking.ticket_numbers= @booking.id
 		@booking.number_of_tickets=params['ticketid'].count
 		amount=params['booking']['amount'].to_i
-		@booking.amount= @booking.number_of_tickets * amount
+		@booking.amount=amount
 		respond_to do |format|
 			if @booking.save
 				flash[:notice] = "Booking created successfully"
