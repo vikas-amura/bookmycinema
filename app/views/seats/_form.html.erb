@@ -22,7 +22,7 @@
 <% if @seat.new_record? %>
 <div class="form-group">
   <%= f.label :number_of_seat %>&nbsp;&nbsp;<small>Capacity left : <%= @screen.capacity - @screen.seats.count %></small>
-  <%= number_field_tag :number_of_seat, nil, :class => "number form-control", :required => true %>
+  <%= f.number_field :seat_number, :class => "number form-control", :required => true %>
   <span class="error-action label label-danger" style="display: none;">Capacity Overloaded</span>
 </div>
 <%else%>

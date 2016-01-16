@@ -1,6 +1,5 @@
 class ScreensController < ApplicationController
-  before_action :set_screen, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
   before_action :load_authorize_parent
 
   def index
@@ -11,7 +10,6 @@ class ScreensController < ApplicationController
   end
 
   def new
-    @screen = Screen.new
   end
 
   def edit
@@ -54,16 +52,13 @@ class ScreensController < ApplicationController
   end
 
   private
-    def set_screen
-      @screen = Screen.find(params[:id])
-    end
   def screen_params
-      params.require(:screen).permit(:name, :capacity)
-    end
+    params.require(:screen).permit(:name, :capacity)
+  end
 
-    def load_authorize_parent
-      if params[:theatre_id].present?
-        @theatre = Theatre.find(params[:theatre_id])
-      end
+  def load_authorize_parent
+    if params[:theatre_id].present?
+      @theatre = Theatre.find(params[:theatre_id])
     end
   end
+end
