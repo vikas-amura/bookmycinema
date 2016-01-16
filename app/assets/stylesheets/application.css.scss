@@ -161,3 +161,26 @@ body {
   border: 0px;
   cursor: default;
 }
+
+/* new booking */
+
+input[type=checkbox]{
+  margin-left: 6px;
+  height: 19px;
+}
+input[type=checkbox] + label{
+  background: url('/images/seat_selected.png') 0 0px no-repeat;
+  background-size: 50%;
+  height: 50px;
+  width: 50px;
+  display: inline-block;
+  padding: 25px 0 0 7px;
+}
+input[type=checkbox]:checked + label{
+  background: url('/images/seat_booked.png') 0 0px no-repeat;
+  background-size: 50%;
+  height: 50px;
+  width: 50px;
+  display:inline-block;
+  padding: 25px 0 0 7px;
+}

@@ -1,15 +1,8 @@
-<style type="text/css">
-    tr,td{
-        border: 1px solid #ccc;
-        padding: 15px;
-
-    }
-</style>
 <%= render 'layouts/headbar' %>
 <div class="container">
   <div class="well">
     <% if flash[:notice] %>
-      <div class="notice"><%= flash[:notice] %></div>
+    <div class="notice"><%= flash[:notice] %></div>
     <% end %>
     <% if @show.present? %>
     <%= form_for @booking, html: {class: "nifty_form"} do |f| %>
@@ -34,58 +27,55 @@
     <p class="lead">
       <strong>Total Seats : </strong>
       <%= @show.screen.seats.count %>
-  </p>
-<center>
-  <table>
-    <% @all_seat.each do |row,seats| %>
+    </p>
+    <center>
+      <table>
+        <% @all_seat.each do |row,seats| %>
         <tr>
           <td><%=row%></td>
           <%seats.each do |seat|%>
-            <td>
-              <% if seat.tickets.where(show_id: @show.id).present? %>
-              <%= check_box_tag("ticketid[]", value = "", checked = true, :disabled => true) %>
-              <% else %>
+          <td width="50" height="60">
+            <% if seat.tickets.where(show_id: @show.id).present? %>
+              <%= check_box_tag("ticketid[]", value = "", checked = true, :disabled => true, id: seat.id) %>
+            <% else %>
               <%= check_box_tag("ticketid[]", value = seat.id, checked = false) %>
-              <% end %>
-            <%=seat.seat_number%>
-            </td>
-           <%end%>
-       </tr>
-   <%end%>
-</table>
-</center>
+            <% end %>
+            <label for: "<%= seat.id %>"><%=seat.seat_number%></label>
+          </td>
+          <%end%>
+        </tr>
+        <%end%>
+      </table>
+    </center>
 
-<div class="form-group">
-    <div class="">
-  </div>
-</div>
+    <div class="form-group">
+      <div class="">
+      </div>
+    </div>
 
-<div class="form-group">
-    <%= f.label :card_type, class: "control-label" %>
-    <div class="">
-      <% @card_type={"Debit"=>"Debit","Credit"=>"Credit"} %>
-      <%= f.select :card_type, options_for_select(@card_type), class: "form-control", required: "required", data: {type: "ds", "vertical-blank" => true, "default-value" => f.object.card_type, name: "card_type"} %>
-  </div>
-</div>
+    <div class="form-group">
+      <%= f.label :card_type, class: "control-label" %>
+      <div class="">
+        <% @card_type={"Debit"=>"Debit","Credit"=>"Credit"} %>
+        <%= f.select :card_type, options_for_select(@card_type), class: "form-control", required: "required", data: {type: "ds", "vertical-blank" => true, "default-value" => f.object.card_type, name: "card_type"} %>
+      </div>
+    </div>
 
-<div class="form-group">
-    <%= f.label :payment_mode, class: "" %>
-    <div class="">
-      <% @payment_mode={"Online"=>"online","Cash"=>"Cash"} %>
-      <%= f.select :payment_mode, options_for_select(@payment_mode), class: "form-control", required: "required", data: {type: "ds", "vertical-blank" => true, "default-value" => f.object.payment_mode, name: "payment_mode"} %>
+    <div class="form-group">
+      <%= f.label :payment_mode, class: "" %>
+      <div class="">
+        <% @payment_mode={"Online"=>"online","Cash"=>"Cash"} %>
+        <%= f.select :payment_mode, options_for_select(@payment_mode), class: "form-control", required: "required", data: {type: "ds", "vertical-blank" => true, "default-value" => f.object.payment_mode, name: "payment_mode"} %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :card_number %><br>
+      <%= f.text_field :card_number, class: "form-control" %>
+      <%= f.hidden_field :movie_id,value:params[:movie_id] %>
+      <%= f.hidden_field :show_id,value:@show.id %>
+    </div>
+    <%= submit_tag "Book", class: "btn btn-default" %>
+    <% end %>
+  <%end%>
   </div>
-</div>
-<div class="form-group">
-    <%= f.label :card_number %><br>
-    <%= f.text_field :card_number, class: "form-control" %>
-    <%= f.hidden_field :movie_id,value:params[:movie_id] %>
-    <%= f.hidden_field :show_id,value:@show.id %>
-</div>
-<%= submit_tag "Book", class: "btn btn-default" %>
-<% end %>
-<%else%>
-<p>Show Not added</p>
-<p>please Add Show <%= link_to 'click here..', movie_shows_path(params['movie_id']) %></p>
-<%end%>
-</div>
 </div>

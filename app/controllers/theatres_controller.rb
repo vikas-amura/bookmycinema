@@ -49,9 +49,7 @@ class TheatresController < ApplicationController
     end
   end
 
-  def all_theatres
-    @theatres = Theatre.all
-  end
+
 
   private
   def theatre_params
