@@ -1,5 +1,6 @@
 class SeatsController < ApplicationController
-	before_action :set_seat, only: [:show, :edit, :update, :destroy]
+	load_and_authorize_resource
+
 	before_action :load_authorize_parent
 
 	def index
@@ -10,27 +11,16 @@ class SeatsController < ApplicationController
 	end
 
 	def new
-		@seat = Seat.new
 	end
 
 	def edit
 	end
 
 	def create
-		show_seat_type={100=>'Silver',150=>'Gold',200=>'Platinum'}
 		@seat = @screen.seats.new(seat_params)
 		respond_to do |format|
 			flash[:notice] = "Seat created successfully"
-			if @seat
-				seat_per_row=params['number_of_seat'].to_i
-				seat_type =params['seat']['seat_type']
-				(1..seat_per_row).each do |seat_number|
-					@seat = @screen.seats.new(seat_params)
-					@seat.seat_number=seat_number
-					@seat.seat_price = show_seat_type.index(seat_type)
-					@seat.save
-				end
-
+			if Seat.save_multiple_seat(@seat)
 				format.html { redirect_to theatre_screen_seats_path(@theatre,@screen) }
 				format.json { render :show, status: :created, location: @seat }
 			else

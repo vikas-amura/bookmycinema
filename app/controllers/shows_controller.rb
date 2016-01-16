@@ -7,6 +7,7 @@ class ShowsController < ApplicationController
 	end
 
 	def show
+		@shows = @movie.shows.group_by {|x| x.theatre.name}
 	end
 
 	def new
