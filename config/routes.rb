@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "users/registrations",  sessions: "users/sessions", passwords: "users/passwords", confirmations: "users/confirmations" }
   get 'theater_movies/:id',to: 'homes#theater_movies'
   get 'movie_theatres/:id', to: 'homes#movie_theatres'
-  get 'all_theatres',to: 'theatres#all_theatres'
+  get 'all_theatres', to: 'homes#all_theatres'
 
   resources :theatres do
     resources :screens do

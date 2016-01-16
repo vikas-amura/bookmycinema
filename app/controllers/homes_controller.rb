@@ -13,4 +13,7 @@ class HomesController < ApplicationController
 		@movie = Movie.find(params['id'])
 		@shows   = @movie.shows.group_by {|x| x.theatre.name}
 	end
+  def all_theatres
+    @theatres = Theatre.all.select{|movie|  movie.shows.present?}
+  end
 end
