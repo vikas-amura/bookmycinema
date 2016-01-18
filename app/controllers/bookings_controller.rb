@@ -1,8 +1,6 @@
 class BookingsController < ApplicationController
-
 	def index
-		@user = User.find(current_user.id)
-		@bookings = @user.bookings
+		@bookings = current_user.bookings
 	end
 
 	def show
@@ -18,11 +16,11 @@ class BookingsController < ApplicationController
 	end
 	def create
 		@booking=Booking.new(booking_params)
-		@booking.user_id=current_user.id
-		@booking.ticket_numbers= @booking.id
-		@booking.number_of_tickets=params['ticketid'].count
+		@booking.user_id = current_user.id
+		@booking.ticket_numbers = @booking.id
+		@booking.number_of_tickets = params['ticketid'].count
 		amount=params['booking']['amount'].to_i
-		@booking.amount=amount
+		@booking.amount = amount
 		respond_to do |format|
 			if @booking.save
 				flash[:notice] = "Booking created successfully"

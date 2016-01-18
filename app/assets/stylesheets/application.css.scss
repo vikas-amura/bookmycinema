@@ -15,7 +15,6 @@
 *= require semantic_ui/semantic_ui
 *= require dataTables/jquery.dataTables
 *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
-*= require_tree .
 *= require_self
 */
 
@@ -164,10 +163,10 @@ body {
 
 /* new booking */
 
-input[type=checkbox]{
+td > input[type=checkbox]{
   margin-left: 6px;
 }
-input[type=checkbox] + label{
+td > input[type=checkbox] + label{
   background: url('/images/seat_selected.png') 0 0px no-repeat;
   background-size: 50%;
   height: 50px;
@@ -175,7 +174,7 @@ input[type=checkbox] + label{
   display: inline-block;
   padding: 25px 0 0 7px;
 }
-input[type=checkbox]:checked + label{
+td > input[type=checkbox]:checked + label{
   background: url('/images/seat_booked.png') 0 0px no-repeat;
   background-size: 50%;
   height: 50px;

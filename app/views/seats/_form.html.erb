@@ -39,7 +39,7 @@
 $(document).ready(function(){
   capacity_left = <%= @screen.capacity - @screen.seats.count %>;
   $(".number").on("keyup", function() {
-    no_of_seats = $(this).val();
+    var no_of_seats = $(this).val();
     if(no_of_seats > capacity_left){
       $(".btn-action").attr("disabled", "disabled");
       $(".error-action").show();
