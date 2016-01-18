@@ -20,9 +20,8 @@ class BookingsController < ApplicationController
 		@booking=Booking.new(booking_params)
 		@booking.user_id=current_user.id
 		@booking.ticket_numbers= @booking.id
-		@booking.number_of_tickets=params['ticketid'].count
-		amount=params['booking']['amount'].to_i
-		@booking.amount=amount
+	    @booking.number_of_tickets=params['ticketid'].count
+		@booking.amount=params['booking']['amount'].to_i
 		respond_to do |format|
 			if @booking.save
 				flash[:notice] = "Booking created successfully"

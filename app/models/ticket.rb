@@ -17,8 +17,12 @@ class Ticket
   #validates :type , length: { minimum: 1, maximum: 10 }
 
   def self.create_ticket(seats,booking)
+      @ticket_amount=0
       seats.each do |seat|
-          @ticket = booking.tickets.create(seat_id:seat,movie_id:booking.movie.id,show_id:booking.show.id)
+        ticket = booking.tickets.create(seat_id:seat,movie_id:booking.movie.id,show_id:booking.show.id)
+        @ticket_amount =@ticket_amount+ticket.seat.seat_price
       end
+      booking.amount = @ticket_amount
+      booking.save
   end
 end
