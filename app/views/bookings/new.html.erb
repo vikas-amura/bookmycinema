@@ -5,7 +5,7 @@
     <div class="notice"><%= flash[:notice] %></div>
     <% end %>
     <% if @show.present? %>
-    <%= form_for [@booking], html: {class: "nifty_form"} do |f| %>
+    <%= form_for @booking, html: {class: "nifty_form"} do |f| %>
     <p class="lead">
       <strong>Screen Name : </strong>
       <%= @show.screen.name%>
@@ -51,15 +51,15 @@
     <div class="form-group">
       <%= f.label :amount, class: "" %>
       <div class="">
-      <%= f.text_field :amount, class: "form-control totalAmount"%>
+      <%= f.text_field :amount, class: "form-control totalAmount",disabled: true%>
       </div>
     </div>
 
     <div class="form-group">
       <%= f.label :payment_mode, class: "" %>
       <div class="">
-        <% @payment_mode={"Online"=>"online","Cash"=>"Cash"} %>
-        <%= f.select :payment_mode, options_for_select(@payment_mode), {}, class: "select-box form-control", required: "required", data: {type: "ds", "vertical-blank" => true, "default-value" => f.object.payment_mode, name: "payment_mode"} %>
+        <% @payment_mode={"Online"=>"online"} %>
+        <%= f.select :payment_mode, options_for_select(@payment_mode), class: "select-box form-control", required: "required", data: {type: "ds", "vertical-blank" => true, "default-value" => f.object.payment_mode, name: "payment_mode"} %>
       </div>
     </div>
     <div class="bytype">
@@ -95,16 +95,6 @@ $(document).ready(function(){
         amount = amount - ($(this).attr("data"));
       }
       $(".totalAmount").val(amount);
-  });
-  $(".bytype").hide();
-  $(".select-box").change(function(){
-    if( $(".select-box").val() == 'online') {
-      $(".bytype").show();
-    }
-    else {
-      $(".bytype").hide();
-    }
-    return false;
   });
 });
 </script>

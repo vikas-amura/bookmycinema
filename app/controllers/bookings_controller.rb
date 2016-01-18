@@ -1,26 +1,20 @@
 class BookingsController < ApplicationController
 
 	def index
-		@user = User.find(current_user.id)
-		@bookings = @user.bookings
+		@bookings = current_user.bookings
 	end
-
-	def show
-	end
-
 	def new
 		@booking = Booking.new
 		@show = Show.find(params['show_id'])
 		@all_seat=@show.screen.seats.order('row asc').group_by{|x| x.row }
 	end
-
 	def edit
 	end
 	def create
 		@booking=Booking.new(booking_params)
 		@booking.user_id=current_user.id
 		@booking.ticket_numbers= @booking.id
-	    @booking.number_of_tickets=params['ticketid'].count
+		@booking.number_of_tickets=params['ticketid'].count
 		respond_to do |format|
 			if @booking.save
 				flash[:notice] = "Booking created successfully"
@@ -33,16 +27,8 @@ class BookingsController < ApplicationController
 			end
 		end
 	end
-
-	def update
-	end
-
-	def destroy
-	end
-
 	private
-
-	 def booking_params
-      params.require(:booking).permit(:payment_mode, :card_type,:card_number,:movie_id,:show_id)
-    end
+	def booking_params
+		params.require(:booking).permit(:payment_mode, :card_type,:card_number,:movie_id,:show_id)
+	end
 end
