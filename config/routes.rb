@@ -13,14 +13,14 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :movies, controller: 'movies' do
-    resources :shows, controller: 'shows' do
-      resources :bookings, controller: 'bookings'
+  resources :movies do
+    resources :shows do
+      resources :bookings
     end
   end
 
-  resources :bookings, controller: 'bookings' do
-    resources :tickets, controller: 'tickets'
+  resources :bookings do
+    resources :tickets
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

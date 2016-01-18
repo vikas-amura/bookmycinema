@@ -8,7 +8,6 @@ class Ability
       if !user.role.nil?
         can :manage, :all if user.role == "admin"
         can :read, :all if user.role == "user"
-
       end
 
     # The first argument to `can` is the action you are giving the user
