@@ -5,7 +5,7 @@
     <div class="notice"><%= flash[:notice] %></div>
     <% end %>
     <% if @show.present? %>
-    <%= form_for @booking, html: {class: "nifty_form"} do |f| %>
+    <%= form_for [@booking], html: {class: "nifty_form"} do |f| %>
     <p class="lead">
       <strong>Screen Name : </strong>
       <%= @show.screen.name%>
