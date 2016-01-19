@@ -21,3 +21,10 @@
 //= require dataTables/jquery.dataTables
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function(){
+  //bookings/new.html.erb
+
+  //seats/_form.html.erb
+
+});

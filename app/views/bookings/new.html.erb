@@ -84,27 +84,25 @@
   </div>
 </div>
 <script>
-$(document).ready(function(){
-  var amount=0;
-  $(".seatclass").click(function () {
-    var a = ($(this).attr("data"));
-      if($(this).is(':checked')){
-         amount = amount + parseInt($(this).attr("data"));
-      }
-      else {
-        amount = amount - ($(this).attr("data"));
-      }
-      $(".totalAmount").val(amount);
-  });
-  $(".bytype").hide();
-  $(".select-box").change(function(){
-    if( $(".select-box").val() == 'online') {
-      $(".bytype").show();
-    }
-    else {
-      $(".bytype").hide();
-    }
-    return false;
-  });
+var amount=0;
+$(".seatclass").click(function () {
+  var a = ($(this).attr("data"));
+  if($(this).is(':checked')){
+    amount = amount + parseInt($(this).attr("data"));
+  }
+  else {
+    amount = amount - ($(this).attr("data"));
+  }
+  $(".totalAmount").val(amount);
+});
+$(".bytype").hide();
+$(".select-box").change(function(){
+  if( $(".select-box").val() == 'online') {
+    $(".bytype").show();
+  }
+  else {
+    $(".bytype").hide();
+  }
+  return false;
 });
 </script>

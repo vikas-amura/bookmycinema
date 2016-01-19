@@ -1,6 +1,6 @@
-<%= render 'layouts/headbar'%>
+<%= render template: "layouts/headbar" %>
 <div class="container">
-  <%=render 'layouts/breadcrumb'%>
+  <%= render 'shared/breadcrumb' %>
   <% if current_user.role == "admin" %>
   <%= link_to 'New Show', new_movie_show_path(@movie) %>
   <% end %>

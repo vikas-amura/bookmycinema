@@ -1,18 +1,19 @@
-
-<div class="well">
-		<p class="lead">Select Theatre...</p>
-		<div style="margin-top: 25px;"></div>
+<%= render template: "layouts/headbar" %>
+<div class="container">
+	<div class="well">
 		<div class="row">
-			<div class="">
-				<div class="col-xs-12 col-md-12 list-group">
-					<a href="" class="col-xs-12 col-md-12 category-heading list-group-item active">Select Theatre</a>
-					<% @theatres.each do |theatre| %>
-					<a href="theater_movies/<%=theatre.id%>" class="col-xs-12 col-md-12 list-group-item" style="text-overflow: ellipsis;">
-						<%= theatre.name %>
-						<span class="pull-right"><%= theatre.address %>,<%= theatre.city %></span>
-					</a>
-					<% end %>
-				</div>
+				<div class="col-xs-3 col-md-3"></div>
+			<div class="col-xs-6 col-md-6 list-group">
+				<p class="lead">Listing Theatres</p>
+				<a href="" class="col-xs-12 col-md-12 category-heading list-group-item active">Theatres</a>
+				<% @theatres.each do |theatre| %>
+				<a href="theater_movies/<%= theatre.id %>" class="col-xs-12 col-md-12 list-group-item" style="text-overflow: ellipsis;">
+					<%= theatre.name %>
+					<span class="pull-right"><%= theatre.address %>, 	<%= theatre.city %></span>
+				</a>
+				<% end %>
 			</div>
+			<div class="col-xs-3 col-md-3"></div>
 		</div>
+	</div>
 </div>

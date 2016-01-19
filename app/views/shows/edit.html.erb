@@ -1,7 +1,6 @@
-<%=render 'layouts/headbar'%>
-
+<%= render template: "layouts/headbar" %>
 <div class="container">
-  <%=render 'layouts/breadcrumb'%>
+  <%= render 'shared/breadcrumb' %>
   <div class="well">
     <%= render 'form' %>
     <%= link_to 'Show', movie_show_path(@movie,@show) %> |

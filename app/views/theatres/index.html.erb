@@ -1,17 +1,17 @@
-<%= render 'layouts/headbar'%>
+<%= render template: "layouts/headbar" %>
+<%= render 'shared/breadcrumb' %>
+<% if current_user.role == "admin" %>
+<%= link_to 'New Theatre', new_theatre_path %>
+<% end %>
+<% if flash[:notice] %>
+<div class="alert alert-success">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <%= flash[:notice] %>
+</div>
+<% end %>
 <div class="container">
-  <%= render 'layouts/breadcrumb'%>
-  <% if current_user.role == "admin" %>
-  <%= link_to 'New Theatre', new_theatre_path %>
-  <% end %>
-  <% if flash[:notice] %>
-    <div class="alert alert-success">
-      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-      <%= flash[:notice] %>
-    </div>
-  <% end %>
   <div class="well">
-    <table id="datatable" class="table table-condensed">
+    <table class="table table-condensed">
       <thead>
         <tr>
           <th>Name</th>
@@ -19,9 +19,9 @@
           <th>City</th>
           <th>Screens</th>
           <% if current_user.role == "admin" %>
-            <th>Action</th>
-            <th>Action</th>
-            <th>Action</th>
+          <th>Action</th>
+          <th>Action</th>
+          <th>Action</th>
           <% end %>
         </tr>
       </thead>
@@ -33,9 +33,9 @@
           <td><%= theatre.city %></td>
           <td><%= link_to 'Screens',theatre_screens_path(theatre) %></td>
           <% if current_user.role == "admin" %>
-            <td><%= link_to 'Show', theatre %></td>
-            <td><%= link_to 'Edit', edit_theatre_path(theatre) %></td>
-            <td><%= link_to 'Destroy', theatre, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Show', theatre %></td>
+          <td><%= link_to 'Edit', edit_theatre_path(theatre) %></td>
+          <td><%= link_to 'Destroy', theatre, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           <% end %>
         </tr>
         <% end %>
