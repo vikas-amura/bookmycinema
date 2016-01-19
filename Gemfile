@@ -27,6 +27,12 @@ gem 'coffee-rails', '~> 4.1.0'
 #Devise gem for authentication
 gem 'devise'
 
+#gem for sidekiq
+gem 'sidekiq'
+
+#radis gem
+ gem 'redis', '~>3.2'
+
 #cancancan gem for authorization
 gem 'cancancan'
 
@@ -38,6 +44,9 @@ gem 'will_paginate_mongoid'
 
 #mongoid as database
 gem 'mongoid', '~> 5.0.0'
+
+#font awesome
+gem "font-awesome-rails"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

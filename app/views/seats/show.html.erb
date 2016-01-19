@@ -12,12 +12,13 @@
       <strong>Row:</strong>
       <%= @seat.row %>
     </p>
-
     <p class="lead">
       <strong>Number</strong>
       <%= @seat.seat_number %>
     </p>
+    <% if can? :manage, Seat %>
     <%= link_to 'Edit', edit_theatre_screen_seat_path(@theatre,@screen,@seat) %> |
     <%= link_to 'Back', theatre_screen_seats_path(@theatre, @screen, @seat) %>
+    <%end%>
   </div>
 </div>

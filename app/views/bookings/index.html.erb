@@ -1,4 +1,4 @@
-<%# render 'layouts/headbar'%>
+<%=render 'layouts/headbar'%>
 <div class="container">
   <%= render 'layouts/breadcrumb'%>
   <% if flash[:notice] %>
@@ -20,7 +20,7 @@
           <th>Payment Mode</th>
           <th>Card Type</th>
           <th>Card No</th>
-          <th>Ticket</th>
+          <th rowspan="2">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -33,6 +33,7 @@
           <td><%= booking.card_type %></td>
           <td><%= booking.card_number %></td>
           <td><%= link_to 'Shows Ticket',booking_tickets_path(booking) %></td>
+          <td><%= link_to '', booking, method: :delete, data: { confirm: 'Are you sure?' } ,class: "fa fa-times", title: "Cancle Booking" %></td>
         </tr>
         <% end %>
       </tbody>

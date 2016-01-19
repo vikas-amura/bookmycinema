@@ -1,0 +1,28 @@
+<h1>Your Booking Confirmation</h1>
+
+<h3>Dear <%= @booking.user.first_name.capitalize %> <%= @booking.user.last_name.capitalize %>,</h3>
+
+
+<p>
+	Movie Name:-<%= @booking.movie.name %><br>
+	TheatreName:-<%= @booking.show.screen.theatre.name %>
+</p>
+<p>
+	Show Time:-<%= @booking.show.starttime.strftime("on %d/%m/%Y at %I:%M%p") %>
+</p>
+
+<p class="lead">
+	<span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span>
+	<% @booking.tickets.each do |ticket| %>
+	<%= ticket.seat.seat_type if ticket.seat.seat_type.present? %>
+	<%= ticket.seat.row%><%=ticket.seat.seat_number %>
+	<% end %>
+</span>
+</p>
+<p>
+	Order Summary: <b><%= @booking.amount %></b>
+</p>
+<p>For any further assistance<br>
+	helpdesk@bookmycinema.com<br
+	<b>1234567890</b>
+</p>

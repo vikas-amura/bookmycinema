@@ -1,7 +1,7 @@
 class HomesController < ApplicationController
 	before_filter :authenticate_user!
 	def index
-		@movies = Movie.all.select{|movie|  movie.shows.count>0 }.group_by {|movies| movies.language}
+		@movies = Movie.limit(3).desc(:rating).select{|movie|  movie.shows.count>0 }.group_by {|movies| movies.language}
 	end
 	def theater_movies
 		@theatre = Theatre.find(params['id'])

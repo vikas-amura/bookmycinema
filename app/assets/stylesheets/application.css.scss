@@ -1,5 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome";
 /*
 * This is a manifest file that'll be compiled into application.css, which will include all the files
 * listed below.
@@ -13,9 +14,8 @@
 * file per style scope.
 *
 *= require semantic_ui/semantic_ui
-*= require dataTables/jquery.dataTables
-*= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 *= require_self
+*= require font-awesome
 */
 
 body {

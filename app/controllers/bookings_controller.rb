@@ -1,4 +1,5 @@
 class BookingsController < ApplicationController
+
 	def index
 		@bookings = current_user.bookings
 	end
@@ -26,8 +27,21 @@ class BookingsController < ApplicationController
 			end
 		end
 	end
+
+	def destroy
+	@booking = Booking.find(params[:id])
+    @booking.destroy
+    respond_to do |format|
+      flash[:notice] = "Booking destroyed successfully"
+      format.html { redirect_to bookings_url }
+      format.json { head :no_content }
+    end
+  end
+
 	private
 	def booking_params
 		params.require(:booking).permit(:payment_mode, :card_type,:card_number,:movie_id,:show_id)
 	end
+
+
 end

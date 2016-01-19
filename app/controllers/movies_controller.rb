@@ -32,6 +32,7 @@ class MoviesController < ApplicationController
   end
 
   def update
+     HelloWorld.hello.deliver
     respond_to do |format|
       if @movie.update(movie_params)
         flash[:notice] = "Movie updated successfully"

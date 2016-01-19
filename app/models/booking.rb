@@ -15,7 +15,7 @@ class Booking
   belongs_to :user
   belongs_to :movie
   belongs_to :show
-  has_many :tickets
+  has_many :tickets, dependent: :destroy
 
   #validations
   validates :ticket_numbers, :number_of_tickets, :payment_mode, :card_type, :card_number ,presence: true

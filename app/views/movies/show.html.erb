@@ -1,10 +1,10 @@
 <%= render 'layouts/headbar'%>
 <div class="container">
   <% if flash[:notice] %>
-    <div class="alert alert-success">
-      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-      <%= flash[:notice] %>
-    </div>
+  <div class="alert alert-success">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <%= flash[:notice] %>
+  </div>
   <% end %>
   <%= render 'layouts/breadcrumb'%>
   <div class="well">
@@ -47,9 +47,11 @@
       <strong>Release date:</strong>
       <%= @movie.release_date %>
     </p>
+    <% if can? :manage, Movie %>
     <% if current_user.role == "admin" %>
-      <%= link_to 'Edit', edit_movie_path(@movie) %> |
+    <%= link_to 'Edit', edit_movie_path(@movie) %> |
     <% end %>
     <%= link_to 'Back', movies_path %>
+    <% end %>
   </div>
 </div>
