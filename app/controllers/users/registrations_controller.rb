@@ -9,26 +9,39 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    super do |user|
-      user.first_name = params[:user][:first_name]
-      user.last_name = params[:user][:last_name]
-      user.mobile = params[:user][:mobile]
-      user.gender = params[:user][:gender]
-      user.date_of_birth = params[:user][:date_of_birth]
-      user.save
-    end
+    params[:user].permit(:first_name, :last_name, :mobile, :gender, :date_of_birth)
+    super
+    # super do |user|
+    #   user.first_name = params[:user][:first_name]
+    #   user.last_name = params[:user][:last_name]
+    #   user.mobile = params[:user][:mobile]
+    #   user.gender = params[:user][:gender]
+    #   user.date_of_birth = params[:user][:date_of_birth]
+    #   # user.save
+    # end
   end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+
+  end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
-
+  def update
+    params[:user].permit(:first_name, :last_name, :mobile, :gender, :date_of_birth)
+    super
+    # super do |user|
+    #   user.first_name = params[:user][:first_name]
+    #   user.last_name = params[:user][:last_name]
+    #   user.mobile = params[:user][:mobile]
+    #   user.gender = params[:user][:gender]
+    #   user.date_of_birth = params[:user][:date_of_birth]
+    #   # user.save
+    # end
+  end
+    # def after_update_path_for(resource)
+    #   root_path
+    # end
   # DELETE /resource
   # def destroy
   #   super
@@ -64,4 +77,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+  protected
+    def update_resource(resource, params)
+      resource.update_without_password(params)
+    end
+
+  private
+    def sign_up_params
+      params.require(:user).permit(:first_name, :last_name, :mobile, :gender, :date_of_birth, :email, :password, :password_confirmation, :current_password)
+    end
+
+    def account_update_params
+      params.require(:user).permit(:first_name, :last_name, :mobile, :gender, :date_of_birth, :email, :password, :password_confirmation, :current_password)
+    end
 end
