@@ -16,6 +16,7 @@
 *= require semantic_ui/semantic_ui
 *= require_self
 *= require font-awesome
+*= require jquery-star-rating
 */
 
 body {
@@ -182,3 +183,22 @@ td > input[type=checkbox]:checked + label{
   display:inline-block;
   padding: 25px 0 0 7px;
 }
+  .webwidget_rating_simple{
+    padding: 0px;
+    margin: 0px;
+    float: left;
+  }
+  .webwidget_rating_simple li{
+    line-height: 0px;
+    width: 15px;
+    height: 15px;
+    padding: 0px;
+    margin: 0px;
+    margin-left: 2px;
+    list-style: none;
+    float: left;
+    cursor: pointer;
+  }
+  .webwidget_rating_simple li span{
+    display: none;
+  }

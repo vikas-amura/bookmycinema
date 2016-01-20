@@ -18,6 +18,7 @@ class Movie
   has_many :shows
   has_many :bookings
   has_many :tickets
+  has_many :comments
 
   #validations
   validates :name, :language, :genre, :duration, :movie_format, :trailer_url, :rating, :release_date, presence: true

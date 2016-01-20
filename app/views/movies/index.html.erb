@@ -30,6 +30,7 @@
           <th>Rating</th>
           <th>Release date</th>
           <% if current_user.role == "admin"%>
+          <th>Comment</th>
           <th>Movies Shows</th>
           <th colspan =3>Action</th>
           <% end %>
@@ -48,6 +49,7 @@
           <td><%= movie.release_date %></td>
           <% if can? :manage, Movie %>
           <td><%= link_to 'Add Shows', movie_shows_path(movie) %></td>
+          <td><%= link_to 'Comments', movie_comments_path(movie) %></td>
           <td><%= link_to '', movie,class: "fa fa-eye" ,title: "Show"%></td>
           <td><%= link_to '', edit_movie_path(movie),class: "fa fa-pencil-square-o" ,title: "Edit" %></td>
           <td><%= link_to '', movie, method: :delete, data: { confirm: 'Are you sure?' } ,class: "fa fa-times", title: "Delete" %></td>

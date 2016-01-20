@@ -19,6 +19,5 @@ class Ticket
     end
     booking.amount = @ticket_amount
     booking.save
-    TicketBook.booking_confirm(booking).deliver
   end
 end
