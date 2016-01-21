@@ -10,7 +10,7 @@
 					<%showes.each do |show|%>
 					<td title="180 seat remain">
 					<%if show.starttime.strftime() > DateTime.now.strftime()%>
-						<%=link_to  show.starttime.strftime("%I:%M%p"),new_movie_show_booking_path(show.movie,show) %>
+						<%=link_to  show.starttime.strftime("%I:%M%p"),new_movie_show_booking_path(show.movie,show) %>(<%= show.screen.seats.count - show.tickets.count%> Seat)
 					<%else%>
 						<%=show.starttime.strftime("%I:%M%p") %>
 					<%end%>
