@@ -1,14 +1,14 @@
 <%= render template: "layouts/headbar" %>
 <div class="container">
-  <%= render 'shared/breadcrumb' %>
-  <% if current_user.role == "admin" %>
+  <%=render 'layouts/breadcrumb'%>
+  <% if can? :manage, Show %>
   <%= link_to 'New Show', new_movie_show_path(@movie) %>
   <% end %>
   <% if flash[:notice] %>
-    <div class="alert alert-success">
-      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-      <%= flash[:notice] %>
-    </div>
+  <div class="alert alert-success">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <%= flash[:notice] %>
+  </div>
   <% end %>
   <div class="well">
     <table class="table table-condensed">
@@ -18,14 +18,12 @@
           <th>End Time</th>
           <th>Screen</th>
           <th>Theater</th>
-          <% if current_user.role == "admin" %>
-          <th>Action</th>
-          <th>Action</th>
-          <th>Action</th>
+          <% if can? :manage, Show %>
+          <th>Send FeedBack Email</th>
+          <th colspan =3>Action</th>
           <% end %>
         </tr>
       </thead>
-
       <tbody>
         <% @shows.each do |show| %>
         <tr>
@@ -33,10 +31,11 @@
           <td><%= show.endtime.strftime("%d/%m/%Y time- %I:%M%p") %></td>
           <td><%= show.screen.name if show.screen? %></td>
           <td><%= show.screen.theatre.name if show.screen.theatre? %></td>
-          <% if current_user.role == "admin" %>
-          <td><%= link_to 'Show', movie_show_path(@movie,show) %></td>
-          <td><%= link_to 'Edit', edit_movie_show_path(@movie,show) %></td>
-          <td><%= link_to 'Destroy',[@movie,show], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% if can? :manage, Show %>
+           <td><%= link_to 'FeedBack Email', movie_show_send_feedback_email_path(@movie,show),class: "" ,title: "FeedBack Email" %></td>
+          <td><%= link_to '', movie_show_path(@movie,show),class: "fa fa-eye" ,title: "Show" %></td>
+          <td><%= link_to '', edit_movie_show_path(@movie,show),class: "fa fa-pencil-square-o" ,title: "Edit"%></td>
+          <td><%= link_to '',[@movie,show], method: :delete, data: { confirm: 'Are you sure?' },class: "fa fa-times", title: "Delete" %></td>
           <% end %>
         </tr>
         <% end %>

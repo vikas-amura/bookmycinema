@@ -27,6 +27,16 @@ gem 'coffee-rails', '~> 4.1.0'
 #Devise gem for authentication
 gem 'devise'
 
+#gem for sidekiq
+gem 'sidekiq'
+gem 'sinatra', :require => nil
+gem 'sidekiq-status'
+gem 'sidekiq-failures'
+#star rating
+gem 'jquery-star-rating-rails', '~> 4.0', '>= 4.0.4'
+#radis gem
+ gem 'redis', '~>3.2'
+
 #cancancan gem for authorization
 gem 'cancancan'
 
@@ -38,6 +48,9 @@ gem 'will_paginate_mongoid'
 
 #mongoid as database
 gem 'mongoid', '~> 5.0.0'
+
+#font awesome
+gem "font-awesome-rails"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -74,6 +87,6 @@ group :development do
   gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  # gem 'spring'
 end
 gem "rspec-rails", :group => [:development, :test]

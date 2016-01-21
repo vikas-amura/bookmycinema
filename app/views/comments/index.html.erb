@@ -1,0 +1,51 @@
+<%= render 'layouts/headbar'%>
+<div class="container">
+	<%= render 'layouts/breadcrumb'%>
+	<% if flash[:notice] %>
+	<div class="alert alert-success">
+		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		<%= flash[:notice] %>
+	</div>
+	<% end %>
+	<% if can? :create, Comment %>
+	<%= link_to 'New comment', new_movie_comment_path %>
+	<% end %>
+	<div class="well">
+		<h1>Listing comments</h1>
+
+		<table id="datatable" class="table table-condensed">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>MovieName</th>
+					<th>Rating</th>
+					<th>Review</th>
+					<th>Status</th>
+					<% if current_user.role == "admin"%>
+					<th colspan =4>Action</th>
+					<% end %>
+				</tr>
+			</thead>
+			<tbody>
+				<% @comments.each do |comment| %>
+				<tr>
+					<td><%= comment.user.first_name  if comment.user.present?%></td>
+					<td><%= comment.movie.name %></td>
+					<td><%= comment.rating %></td>
+					<td><%= comment.review %></td>
+					<td><%= comment.status %></td>
+					<% if can? :manage, Comment %>
+					<td><%= link_to 'Approved', approve_movie_comment_path(@movie,comment),class: "" ,title: "Approved" if comment.status=='pending' || comment.status=='reject' %></td>
+					<td><%= link_to 'Reject', reject_movie_comment_path(@movie,comment),class: "" ,title: "Reject" if comment.status=='pending' || comment.status=='approve' %></td>
+					<td><%= link_to '', edit_movie_comment_path(@movie,comment),class: "fa fa-pencil-square-o" ,title: "Edit" %></td>
+					<td><%= link_to '',[@movie,comment], method: :delete, data: { confirm: 'Are you sure?' } ,class: "fa fa-times", title: "Delete" %></td>
+					<% end %>
+
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+		<div class="digg_pagination">
+			<%= will_paginate @comments, :container => false %>
+		</div>
+	</div>

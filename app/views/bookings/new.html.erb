@@ -50,15 +50,15 @@
     <div class="form-group">
       <%= f.label :amount, class: "" %>
       <div class="">
-      <%= f.text_field :amount, class: "form-control totalAmount" %>
+      <%= f.text_field :amount, class: "form-control totalAmount",disabled: true%>
       </div>
     </div>
 
     <div class="form-group">
       <%= f.label :payment_mode, class: "" %>
       <div class="">
-        <% @payment_mode={"Online"=>"online","Cash"=>"Cash"} %>
-        <%= f.select :payment_mode, options_for_select(@payment_mode), {}, class: "select-box form-control", required: "required", data: {type: "ds", "vertical-blank" => true, "default-value" => f.object.payment_mode, name: "payment_mode"} %>
+        <% @payment_mode={"Online"=>"online"} %>
+        <%= f.select :payment_mode, options_for_select(@payment_mode), class: "select-box form-control", required: "required", data: {type: "ds", "vertical-blank" => true, "default-value" => f.object.payment_mode, name: "payment_mode"} %>
       </div>
     </div>
     <div class="bytype">
@@ -83,25 +83,17 @@
   </div>
 </div>
 <script>
-var amount=0;
-$(".seatclass").click(function () {
-  var a = ($(this).attr("data"));
-  if($(this).is(':checked')){
-    amount = amount + parseInt($(this).attr("data"));
-  }
-  else {
-    amount = amount - ($(this).attr("data"));
-  }
-  $(".totalAmount").val(amount);
-});
-$(".bytype").hide();
-$(".select-box").change(function(){
-  if( $(".select-box").val() == 'online') {
-    $(".bytype").show();
-  }
-  else {
-    $(".bytype").hide();
-  }
-  return false;
+$(document).ready(function(){
+  var amount=0;
+  $(".seatclass").click(function () {
+    var a = ($(this).attr("data"));
+      if($(this).is(':checked')){
+         amount = amount + parseInt($(this).attr("data"));
+      }
+      else {
+        amount = amount - ($(this).attr("data"));
+      }
+      $(".totalAmount").val(amount);
+  });
 });
 </script>

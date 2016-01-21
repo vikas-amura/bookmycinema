@@ -2,23 +2,23 @@
 <div class="container">
   <%= render 'shared/breadcrumb' %>
   <% if flash[:notice] %>
-    <div class="alert alert-success">
-      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-      <%= flash[:notice] %>
-    </div>
+  <div class="alert alert-success">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <%= flash[:notice] %>
+  </div>
   <% end %>
   <div class="well">
     <p class="lead">
       <strong>Name:</strong>
       <%= @screen.name %>
     </p>
-
     <p class="lead">
       <strong>Capacity:</strong>
       <%= @screen.capacity %>
     </p>
-
+    <% if can? :manage, Screen %>
     <%= link_to 'Edit', edit_theatre_screen_path(@theatre,@screen) %> |
     <%= link_to 'Back', theatre_screens_path(@theatre) %>
+    <%end%>
   </div>
 </div>

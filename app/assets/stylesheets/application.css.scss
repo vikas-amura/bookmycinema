@@ -190,3 +190,10 @@ td > input[type=checkbox]:checked + label{
   display:inline-block;
   padding: 25px 0 0 7px;
 }
+
+
+/* Devise error messages */
+#error_explanation{
+  font-size: 14px;
+  color: red;
+}
