@@ -1,6 +1,5 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "font-awesome";
 /*
 * This is a manifest file that'll be compiled into application.css, which will include all the files
 * listed below.
@@ -14,11 +13,20 @@
 * file per style scope.
 *
 *= require semantic_ui/semantic_ui
+*= require dataTables/jquery.dataTables
+*= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 *= require_self
-*= require font-awesome
-*= require jquery-star-rating
 */
 
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
 body {
   background: #fdfdfd !important;
   -webkit-font-smoothing: antialiased !important;
@@ -151,7 +159,7 @@ body {
 
 /* home  page */
 .container{
-  width: 90%;
+  width: 89.9999%;
 }
 .category-heading{
   color: #a1a1a1;
@@ -163,7 +171,6 @@ body {
 }
 
 /* new booking */
-
 td > input[type=checkbox]{
   margin-left: 6px;
 }
@@ -183,22 +190,10 @@ td > input[type=checkbox]:checked + label{
   display:inline-block;
   padding: 25px 0 0 7px;
 }
-  .webwidget_rating_simple{
-    padding: 0px;
-    margin: 0px;
-    float: left;
-  }
-  .webwidget_rating_simple li{
-    line-height: 0px;
-    width: 15px;
-    height: 15px;
-    padding: 0px;
-    margin: 0px;
-    margin-left: 2px;
-    list-style: none;
-    float: left;
-    cursor: pointer;
-  }
-  .webwidget_rating_simple li span{
-    display: none;
-  }
+
+
+/* Devise error messages */
+#error_explanation{
+  font-size: 14px;
+  color: red;
+}

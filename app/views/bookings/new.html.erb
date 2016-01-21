@@ -1,4 +1,4 @@
-<%# render 'layouts/headbar' %>
+<%= render template: "layouts/headbar" %>
 <div class="container">
   <div class="well">
     <% if flash[:notice] %>
@@ -9,7 +9,6 @@
     <p class="lead">
       <strong>Screen Name : </strong>
       <%= @show.screen.name%>
-
     </p>
     <p class="lead">
       <strong>Movie Name : </strong>

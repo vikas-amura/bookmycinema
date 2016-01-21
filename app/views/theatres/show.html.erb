@@ -1,7 +1,6 @@
-<%= render 'layouts/headbar'%>
-
+<%= render template: "layouts/headbar" %>
 <div class="container">
-  <%=render 'layouts/breadcrumb'%>
+  <%= render 'shared/breadcrumb' %>
   <% if flash[:notice] %>
   <div class="alert alert-success">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>

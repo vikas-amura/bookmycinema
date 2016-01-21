@@ -1,8 +1,8 @@
-<%= render 'layouts/headbar'  %>
+<%= render template: "layouts/headbar" %>
 <div class="container">
 	<div class="well">
 		<h3>Movie Name : <%= @movie.name %></h3>
-		<table id="datatable" class="table table-condensed">
+		<table  class="table table-condensed">
 			<tbody>
 				<% @shows.each do |theatre,showes| %>
 				<tr>

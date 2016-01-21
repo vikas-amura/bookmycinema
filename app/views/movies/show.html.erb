@@ -1,4 +1,4 @@
-<%= render 'layouts/headbar'%>
+<%= render template: "layouts/headbar" %>
 <div class="container">
   <% if flash[:notice] %>
   <div class="alert alert-success">
@@ -6,7 +6,7 @@
     <%= flash[:notice] %>
   </div>
   <% end %>
-  <%= render 'layouts/breadcrumb'%>
+  <%= render 'shared/breadcrumb' %>
   <div class="well">
     <p class="lead">
       <strong>Name:</strong>

@@ -1,0 +1,100 @@
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<%= render template: "layouts/headbar" %>
+<div class="container">
+  <%= render 'shared/breadcrumb' %>
+  <% if flash[:notice] %>
+  <div class="alert alert-success">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <%= flash[:notice] %>
+  </div>
+  <% end %>
+  <div class="row">
+    <div class="col-xs-12 col-md-12 col-lg-12 text-center">
+      <div class="row">
+        <div class="col-sm-12 col-md-12"><h3>Movie - Tickets Graph</h3></div>
+        <div class="col-sm-12 col-md-12" style="margin-top: -11px;"><small>(Click on bars for more details)</small></div>
+        <div class="col-sm-12 col-md-12">
+          <div id="column">
+            <div class="loading col-sm-12 col-md-12" style="margin-top: 60px;">Loading graph...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="row">
+    <div class="col-xs-12 col-md-12 col-lg-12 text-center">
+      <div class="row">
+        <div class="col-sm-12 col-md-12"><h3>Movies by language</h3></div>
+        <div class="col-sm-12 col-md-12" style="margin-top: -11px;"><small>(Click on slices for more details)</small></div>
+        <div class="col-sm-12 col-md-12">
+          <div id="pie1">
+            <div class="loading col-sm-12 col-md-12" style="margin-top: 60px;">Loading graph...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="row">
+    <div class="col-xs-12 col-md-12 col-lg-12 text-center">
+      <div class="row">
+        <div class="col-sm-12 col-md-12"><h3>Movies by genre</h3></div>
+        <div class="col-sm-12 col-md-12" style="margin-top: -11px;"><small>(Click on slices for more details)</small></div>
+        <div class="col-sm-12 col-md-12">
+          <div id="pie2">
+            <div class="loading col-sm-12 col-md-12" style="margin-top: 60px;">Loading graph...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+// $("chart_div").load(function(){
+//   $(document).find(".loading").remove();
+// });
+google.charts.load('current', {packages: ['corechart', 'bar']});
+google.charts.setOnLoadCallback(drawBasic);
+
+function drawBasic() {
+  //function for column chart
+  var data1 = google.visualization.arrayToDataTable([
+    ['Element', 'Tickets', { role: 'style' }],
+    <% @count.each do |key| %>
+    ['<%= Movie.find(key['_id']).name %>', <%= key['ticket_count'] %>, 'rgb(51, 102, 204)'],
+    <% end %>
+  ]);
+
+  //function for pie chart 1
+  var column = new google.visualization.ColumnChart(document.getElementById('column'));
+  column.draw(data1)
+
+  var data2 = google.visualization.arrayToDataTable([
+     ['Task', 'Hours per Day'],
+    <% @language.each do |key| %>
+    ['<%= key['_id'] %>', <%= key['language_movie_count'] %>],
+    <% end %>
+  ]);
+
+  var pie1 = new google.visualization.PieChart(document.getElementById('pie1'));
+  pie1.draw(data2);
+
+  //function for pie chart 2
+  var data3 = google.visualization.arrayToDataTable([
+     ['Task', 'Hours per Day'],
+    <% @genre.each do |key| %>
+    ['<%= key['_id'] %>', <%= key['genre_movie_count'] %>],
+    <% end %>
+  ]);
+
+  var pie2 = new google.visualization.PieChart(document.getElementById('pie2'));
+  pie2.draw(data3);
+}
+</script>

@@ -1,9 +1,9 @@
-<%= render 'layouts/headbar'  %>
+<%= render template: "layouts/headbar" %>
 <div class="container">
+	<%= render 'shared/breadcrumb' %>
 	<div class="well">
 		<h3>Theatre Name : <%= @theatre.name %></h3>
-		<table id="datatable" class="table table-condensed">
-
+		<table class="table table-condensed">
 			<tbody>
 				<% @shows.each do |mm,showes| %>
 				<tr>
@@ -16,6 +16,7 @@
 					<%= show.starttime.strftime("%I:%M%p") %>
 					<% end %>
 					</td>
+
 						<%end%>
 					</tr>
 					<%end%>
