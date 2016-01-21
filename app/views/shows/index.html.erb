@@ -1,6 +1,6 @@
 <%= render template: "layouts/headbar" %>
 <div class="container">
-  <%=render 'layouts/breadcrumb'%>
+  <%= render 'shared/breadcrumb' %>
   <% if can? :manage, Show %>
   <%= link_to 'New Show', new_movie_show_path(@movie) %>
   <% end %>
