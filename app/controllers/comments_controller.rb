@@ -29,12 +29,10 @@ class CommentsController < ApplicationController
 		end
 	end
 	def edit
-
 	end
 
 	def approve
 		@comment.status = 'approve'
-
 		@comment.approved_by=current_user.first_name
 		respond_to do |format|
 			if @comment.update_attributes

@@ -33,7 +33,7 @@ class Show
         options['starttime']=self.starttime
         if self.screen_id.present?
           options['screen_id']=self.screen_id
-          show = Show.where(options)#'movie_id' => options[:movie_id],'screen_id' => options[:screen_id],'starttime' => options[:starttime]).first
+          show = Show.where(options)
         end
       end
     end
