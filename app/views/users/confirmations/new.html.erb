@@ -1,20 +1,24 @@
 <div class="row">
-  <%= devise_error_messages! %>
+  <div class="row">
+    <div class="panel panel-warning">
+      <%= devise_error_messages! %>
+    </div>
+  </div>
   <div class="resend-confirmation-instructions">
     <div class="row">
       <h2>Resend confirmation instructions</h2>
     </div>
     <div class="row">
       <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-        <div class="field">
-          <div class="form-group">
-            <%= f.label :email, for: "email" %><br />
-            <%= f.email_field :password, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: "form-control", id: "email", placeholder: "xyz@example.com", autocomplete: "off" %>
-          </div>
+      <div class="field">
+        <div class="form-group">
+          <%= f.label :email, for: "email" %><br />
+          <%= f.email_field :password, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: "form-control", id: "email", placeholder: "xyz@example.com", autocomplete: "off" %>
         </div>
-        <%= f.submit "Resend confirmation instructions", class: "btn btn-default" %>
-        <br />
-        <%= render "users/shared/links" %>
+      </div>
+      <%= f.submit "Resend confirmation instructions", class: "btn btn-default" %>
+      <br />
+      <%= render "users/shared/links" %>
       <% end %>
     </div>
   </div>

@@ -1,8 +1,4 @@
 <%= render template: "layouts/headbar" %>
-<%= render 'shared/breadcrumb' %>
-<% if current_user.role == "admin" %>
-<%= link_to 'New Theatre', new_theatre_path %>
-<% end %>
 <% if flash[:notice] %>
 <div class="alert alert-success">
   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -10,7 +6,7 @@
 </div>
 <% end %>
 <div class="container">
-  <%= render 'layouts/breadcrumb'%>
+  <%= render 'shared/breadcrumb' %>
   <% if can? :manage, Theatre %>
   <%= link_to 'New Theatre', new_theatre_path %>
   <% end %>

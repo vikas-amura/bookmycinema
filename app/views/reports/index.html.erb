@@ -15,7 +15,7 @@
         <div class="col-sm-12 col-md-12" style="margin-top: -11px;"><small>(Click on bars for more details)</small></div>
         <div class="col-sm-12 col-md-12">
           <div id="column">
-            <div class="loading col-sm-12 col-md-12" style="margin-top: 60px;">Loading graph...</div>
+            <div class="loading1 col-sm-12 col-md-12" style="margin-top: 60px;">Loading graph...</div>
           </div>
         </div>
       </div>
@@ -31,7 +31,7 @@
         <div class="col-sm-12 col-md-12" style="margin-top: -11px;"><small>(Click on slices for more details)</small></div>
         <div class="col-sm-12 col-md-12">
           <div id="pie1">
-            <div class="loading col-sm-12 col-md-12" style="margin-top: 60px;">Loading graph...</div>
+            <div class="loading2 col-sm-12 col-md-12" style="margin-top: 60px;">Loading graph...</div>
           </div>
         </div>
       </div>
@@ -47,7 +47,7 @@
         <div class="col-sm-12 col-md-12" style="margin-top: -11px;"><small>(Click on slices for more details)</small></div>
         <div class="col-sm-12 col-md-12">
           <div id="pie2">
-            <div class="loading col-sm-12 col-md-12" style="margin-top: 60px;">Loading graph...</div>
+            <div class="loading3 col-sm-12 col-md-12" style="margin-top: 60px;">Loading graph...</div>
           </div>
         </div>
       </div>
@@ -57,9 +57,16 @@
 
 
 <script>
-// $("chart_div").load(function(){
-//   $(document).find(".loading").remove();
-// });
+$("#column").load(function(){
+  $(document).find(".loading1").remove();
+});
+$("#pie1").load(function(){
+  $(document).find(".loading2").remove();
+});
+$("#pie2").load(function(){
+  $(document).find(".loading3").remove();
+});
+
 google.charts.load('current', {packages: ['corechart', 'bar']});
 google.charts.setOnLoadCallback(drawBasic);
 
