@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
  mount Sidekiq::Web => '/sidekiq' # TODO: block access to sidekiq only to the super admin
- root 'homes#index'
  devise_for :users, controllers: { registrations: "users/registrations",  sessions: "users/sessions", passwords: "users/passwords", confirmations: "users/confirmations" }
  get 'theater_movies/:id',to: 'homes#theater_movies'
  get 'movie_theatres/:id', to: 'homes#movie_theatres'
@@ -33,6 +32,7 @@ end
 
 
 
+root 'homes#index'
   get 'reports', to: 'reports#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
