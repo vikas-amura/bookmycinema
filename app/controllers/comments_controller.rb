@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
 		respond_to do |format|
 			if @comment.save
 				flash[:notice] = "Comment created successfully"
-				format.html { redirect_to thank_you_path}
+				format.html { redirect_to params[:user_token].presence ? thank_you_path : movie_comments_path(@movie) }
 				format.json { render :show, status: :created, location: @comment }
 			else
 				format.html { render :new }
