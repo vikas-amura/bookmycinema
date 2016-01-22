@@ -4,7 +4,7 @@ class HomesController < ApplicationController
 	def index
 		@movies = Movie.limit(20).desc(:rating).select{|movie|  movie.shows.count > 0}.group_by {|movies| movies.language}
 	end
-	def theater_movies
+	def theatre_movies
 		@theatre = Theatre.find(params['id'])
 		@shows   = @theatre.shows.group_by {|show| show.movie.name}
 	end

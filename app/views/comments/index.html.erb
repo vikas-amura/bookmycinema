@@ -1,4 +1,4 @@
-<%= render 'layouts/headbar'%>
+<%= render template: "layouts/headbar" %>
 <div class="container">
 	<%= render 'shared/breadcrumb' %>
 	<% if flash[:notice] %>
@@ -12,7 +12,6 @@
 	<% end %>
 	<div class="well">
 		<h1>Listing comments</h1>
-
 		<table id="datatable" class="table table-condensed">
 			<thead>
 				<tr>
@@ -40,7 +39,6 @@
 					<td><%= link_to '', edit_movie_comment_path(@movie,comment),class: "fa fa-pencil-square-o" ,title: "Edit" %></td>
 					<td><%= link_to '',[@movie,comment], method: :delete, data: { confirm: 'Are you sure?' } ,class: "fa fa-times", title: "Delete" %></td>
 					<% end %>
-
 				</tr>
 				<% end %>
 			</tbody>
@@ -49,3 +47,4 @@
 			<%= will_paginate @comments, :container => false %>
 		</div>
 	</div>
+</div>
