@@ -7,28 +7,30 @@
     </div>
   </center>
 </nav>
-<div class="row">
+
+<div class="container-fluid">
+  <%= devise_error_messages! %>
   <div class="forgot-password-container">
     <div class="row">
       <h2>Change your password</h2>
     </div>
     <div class="row">
       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-        <%= devise_error_messages! %>
-        <%= f.hidden_field :reset_password_token %>
-        <div class="field">
-          <div class="form-group">
-            <%= f.label :password, "New password", for: "password" %><br />
-            <%= f.password_field :password, class: "form-control", id: "password", placeholder: "New password", autocomplete: "off" %>
-          </div>
+      <%= devise_error_messages! %>
+      <%= f.hidden_field :reset_password_token %>
+      <div class="field">
+        <div class="form-group">
+          <%= f.label :password, "New password", for: "password" %><br />
+          <%= f.password_field :password, class: "form-control", id: "password", placeholder: "New password", autocomplete: "off" %>
         </div>
+      </div>
 
-          <div class="field">
-            <div class="form-group">
-              <%= f.label :password_confirmation, "Confirm new password", for: "cpassword" %><br />
-              <%= f.password_field :password_confirmation, class: "form-control", id: "cpassword", placeholder: "Confirm new password", autocomplete: "off" %>
-            </div>
-          </div>
+      <div class="field">
+        <div class="form-group">
+          <%= f.label :password_confirmation, "Confirm new password", for: "cpassword" %><br />
+          <%= f.password_field :password_confirmation, class: "form-control", id: "cpassword", placeholder: "Confirm new password", autocomplete: "off" %>
+        </div>
+      </div>
 
       <%= f.submit "Change Password", class: "btn btn-default" %>
       <br />

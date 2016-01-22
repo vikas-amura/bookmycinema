@@ -156,8 +156,29 @@ td > input[type=checkbox]:checked + label{
   display:inline-block;
   padding: 25px 0 0 7px;
 }
-/* Devise error messages */
-#error_explanation{
-  font-size: 14px;
-  color: red;
-}
+
+/* Devise error messages - flash*/
+.alert-error {
+    background-color: #f2dede;
+    border-color: #eed3d7;
+    color: #b94a48;
+    text-align: left;
+ }
+.alert-alert {
+    background-color: #f2dede;
+    border-color: #eed3d7;
+    color: #b94a48;
+    text-align: left;
+ }
+.alert-success {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #468847;
+    text-align: left;
+ }
+.alert-notice {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #468847;
+    text-align: left;
+ }
