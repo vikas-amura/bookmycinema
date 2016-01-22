@@ -75,6 +75,11 @@ GEM
     erubis (2.7.0)
     eventmachine (1.0.8)
     execjs (2.6.0)
+    factory_girl (4.5.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.5.0)
+      factory_girl (~> 4.5.0)
+      railties (>= 3.0.0)
     font-awesome-rails (4.5.0.0)
       railties (>= 3.2, < 5.0)
     globalid (0.3.6)
@@ -95,9 +100,6 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-star-rating-rails (4.0.4)
       rails (>= 3.1.0)
-    jquery-validation-rails (1.13.1)
-      railties (>= 3.2, < 5.0)
-      thor (~> 0.14)
     json (1.8.3)
     less (2.6.0)
       commonjs (~> 0.2.7)
@@ -131,6 +133,10 @@ GEM
       mongo (~> 2.1)
       origin (~> 2.1)
       tzinfo (>= 0.3.37)
+    mongoid-rspec (3.0.0)
+      mongoid (~> 5.0)
+      rake
+      rspec (~> 3.3)
     multi_json (1.11.2)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
@@ -174,6 +180,10 @@ GEM
     ref (2.0.0)
     responders (2.1.1)
       railties (>= 4.2.0, < 5.1)
+    rspec (3.4.0)
+      rspec-core (~> 3.4.0)
+      rspec-expectations (~> 3.4.0)
+      rspec-mocks (~> 3.4.0)
     rspec-core (3.4.1)
       rspec-support (~> 3.4.0)
     rspec-expectations (3.4.0)
@@ -267,16 +277,17 @@ DEPENDENCIES
   cancancan
   coffee-rails (~> 4.1.0)
   devise
+  factory_girl_rails
   font-awesome-rails
   jbuilder (~> 2.0)
   jquery-datatables-rails (~> 3.3.0)
   jquery-rails
   jquery-star-rating-rails (~> 4.0, >= 4.0.4)
-  jquery-validation-rails
   less-rails
   less-rails-semantic_ui
   mailcatcher
   mongoid (~> 5.0.0)
+  mongoid-rspec (= 3.0.0)
   rails (= 4.2.5)
   redis (~> 3.2)
   rspec-rails

@@ -55,8 +55,8 @@ gem "font-awesome-rails"
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
-# Jquery validations gem
-gem "jquery-validation-rails"
+#factory_girl_rails gem
+gem 'factory_girl_rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -70,6 +70,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'sprockets-rails', '<=2.3.3'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+
+#mongoid gem for testing
+gem 'mongoid-rspec', '3.0.0'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
