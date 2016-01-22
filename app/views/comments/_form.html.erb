@@ -25,17 +25,39 @@
 <div class="form-group">
   <%= f.submit class: "btn btn-default btn-action" %>
 </div>
-
 <% end %>
 
 <script language="javascript" type="text/javascript">
  var count=<%=@star%>
-  $(function() {
-    $("#rating_simple").webwidget_rating_simple({
-      rating_star_length: '10',
-      rating_initial_value:count,
-      rating_function_name: '',
-      directory: '/images/'
-    });
+ $(function() {
+  $("#rating_simple").webwidget_rating_simple({
+    rating_star_length: '10',
+    rating_initial_value:count,
+    rating_function_name: '',
+    directory: '/images/'
   });
+});
 </script>
+
+<style type="text/css">
+
+  .webwidget_rating_simple{
+     padding: 0px;
+     margin: 0px;
+     float: left;
+   }
+   .webwidget_rating_simple li{
+     line-height: 0px;
+     width: 15px;
+     height: 15px;
+     padding: 0px;
+     margin: 0px;
+     margin-left: 2px;
+     list-style: none;
+     float: left;
+     cursor: pointer;
+   }
+   .webwidget_rating_simple li span{
+     display: none;
+   }
+</style>

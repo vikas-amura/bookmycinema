@@ -53,55 +53,101 @@
       </div>
     </div>
   </div>
+
+  <hr />
+
+  <div class="row">
+    <div class="col-xs-12 col-md-12 col-lg-12 text-center">
+      <div class="row">
+        <div class="col-sm-12 col-md-12"><h3>Trending Show Times</h3></div>
+        <div class="col-sm-12 col-md-12" style="margin-top: -11px;"><small>(Click on line interesctions for more details)</small></div>
+        <div class="col-sm-12 col-md-12">
+          <div id="chart_div">
+            <div class="loading4 col-sm-12 col-md-12" style="margin-top: 60px;">Loading graph...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
-
 <script>
-$("#column").load(function(){
-  $(document).find(".loading1").remove();
-});
-$("#pie1").load(function(){
-  $(document).find(".loading2").remove();
-});
-$("#pie2").load(function(){
-  $(document).find(".loading3").remove();
-});
+  $("#column").load(function(){
+    $(document).find(".loading1").remove();
+  });
+  $("#pie1").load(function(){
+    $(document).find(".loading2").remove();
+  });
+  $("#pie2").load(function(){
+    $(document).find(".loading3").remove();
+  });
+  $("#chart_div").load(function(){
+    $(document).find(".loading4").remove();
+  });
 
-google.charts.load('current', {packages: ['corechart', 'bar']});
-google.charts.setOnLoadCallback(drawBasic);
+  google.charts.load('current', {packages: ['corechart', 'bar', 'line']});
+  google.charts.setOnLoadCallback(drawBasic);
 
-function drawBasic() {
+  function drawBasic() {
   //function for column chart
   var data1 = google.visualization.arrayToDataTable([
     ['Element', 'Tickets', { role: 'style' }],
     <% @count.each do |key| %>
     ['<%= Movie.find(key['_id']).name %>', <%= key['ticket_count'] %>, 'rgb(51, 102, 204)'],
     <% end %>
-  ]);
+    ]);
 
   //function for pie chart 1
   var column = new google.visualization.ColumnChart(document.getElementById('column'));
   column.draw(data1)
 
   var data2 = google.visualization.arrayToDataTable([
-     ['Task', 'Hours per Day'],
-    <% @language.each do |key| %>
-    ['<%= key['_id'] %>', <%= key['language_movie_count'] %>],
-    <% end %>
-  ]);
+   ['Task', 'Hours per Day'],
+   <% @language.each do |key| %>
+   ['<%= key['_id'] %>', <%= key['language_movie_count'] %>],
+   <% end %>
+   ]);
 
   var pie1 = new google.visualization.PieChart(document.getElementById('pie1'));
   pie1.draw(data2);
 
   //function for pie chart 2
   var data3 = google.visualization.arrayToDataTable([
-     ['Task', 'Hours per Day'],
-    <% @genre.each do |key| %>
-    ['<%= key['_id'] %>', <%= key['genre_movie_count'] %>],
-    <% end %>
-  ]);
+   ['Task', 'Hours per Day'],
+   <% @genre.each do |key| %>
+   ['<%= key['_id'] %>', <%= key['genre_movie_count'] %>],
+   <% end %>
+   ]);
 
   var pie2 = new google.visualization.PieChart(document.getElementById('pie2'));
   pie2.draw(data3);
+
+
+  var line = new google.visualization.DataTable();
+  line.addColumn('number', 'X');
+  line.addColumn('number', 'Tickets');
+
+  line.addRows([
+  <% @ticket_list.sort.each do | key,value| %>
+    [<%=key%>, <%=value%>],
+  <% end %>
+    ]);
+
+  var options = {
+    hAxis: {
+      title: 'Show Time'
+    },
+    vAxis: {
+      title: 'No.of Ticket'
+    }
+  };
+
+  var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+  chart.draw(line, options);
 }
+
+
+
 </script>

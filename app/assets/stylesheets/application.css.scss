@@ -1,5 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome";
 /*
 * This is a manifest file that'll be compiled into application.css, which will include all the files
 * listed below.
@@ -12,9 +13,7 @@
 * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
 * file per style scope.
 *
-*= require semantic_ui/semantic_ui
-*= require dataTables/jquery.dataTables
-*= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+*= require font-awesome
 *= require_self
 */
 
@@ -181,15 +180,29 @@ td > input[type=checkbox] + label{
   width: 50px;
   display: inline-block;
   padding: 25px 0 0 7px;
+  cursor:pointer;
 }
 td > input[type=checkbox]:checked + label{
-  background: url('/images/seat_booked.png') 0 0px no-repeat;
+  background: url('http://cnt.in.bookmyshow.com/bmsin/SLIMG/1_4.gif') 0 0px no-repeat;
   background-size: 50%;
   height: 50px;
   width: 50px;
   display:inline-block;
   padding: 25px 0 0 7px;
 }
+.booked{
+  background: url('/images/seat_booked.png') 0 0px no-repeat !important;
+  cursor:default !important;
+  background-size: 50% !important;
+  width: 50px !important;
+  display: inline-block !important;
+  padding: 25px 0 0 7px !important;
+}
+.screen{
+  background-color:#49ba8e;
+  color:#000;
+}
+
 
 
 /* Devise error messages */

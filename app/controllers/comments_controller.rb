@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
 
 	def create
 		@comment = @movie.comments.new(comment_params)
-		@comment.user_id = @user.present? ? @user.id : current_user.id
+		@comment.user_id = current_user.id
 		respond_to do |format|
 			if @comment.save
 				flash[:notice] = "Comment created successfully"

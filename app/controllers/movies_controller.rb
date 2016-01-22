@@ -1,9 +1,10 @@
 class MoviesController < ApplicationController
+  before_filter :authenticate_user!
   load_and_authorize_resource
 
   def index
     if params[:page].present?
-        params[:page] = params[:page].to_i <= 0 ? 1 : params[:page]
+      params[:page] = params[:page].to_i <= 0 ? 1 : params[:page]
     end
     @movies = Movie.search(params[:search]).paginate(:per_page => 10, :page => params[:page])
   end
@@ -54,7 +55,7 @@ class MoviesController < ApplicationController
   end
 
   private
-    def movie_params
-      params.require(:movie).permit(:name, :language, :genre, :duration, :movie_format, :trailer_url, :rating, :release_date)
-    end
+  def movie_params
+    params.require(:movie).permit(:name, :language, :genre, :duration, :movie_format, :trailer_url, :rating, :release_date)
+  end
 end
