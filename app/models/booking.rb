@@ -18,8 +18,8 @@ class Booking
   has_many :tickets, dependent: :destroy
 
   #validations
-  validates :ticket_numbers, :number_of_tickets, :payment_mode, :card_type, :card_number ,presence: true
-  validates_numericality_of :number_of_tickets
+  validates :ticket_numbers, :number_of_tickets, :amount, :payment_mode, :card_type, :card_number ,presence: true
+  validates_numericality_of :number_of_tickets, :amount, :ticket_numbers
   validates_inclusion_of :number_of_tickets, in: 1..10
   validates :card_number, numericality: { only_integer: true }, length: { minimum: 13, maximum: 19 }
 end
