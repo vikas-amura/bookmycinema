@@ -19,9 +19,13 @@ module Bookmycinema
   class Application < Rails::Application
     config.generators do |g|
       g.orm :mongoid
-    end
-    config.mongoid.logger = Logger.new($stdout, :warn)
-    config.active_job.queue_adapter = :sidekiq
+      g.test_framework :rspec,fixtures: true, view_specs: false, helper_specs: false,controller_specs: true,request_specs: true
+      g.fixture_replacement :factory_girl, dir: "spec/factories"
+  end
+  config.mongoid.logger = Logger.new($stdout, :warn)
+  config.active_job.queue_adapter = :sidekiq
+
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -33,5 +37,5 @@ module Bookmycinema
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
-  end
+end
 end
