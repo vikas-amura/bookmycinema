@@ -23,7 +23,6 @@
     <% end %>
     <% if @show.present? %>
     <%= form_for @booking, html: {class: "nifty_form"} do |f| %>
-
     <ul class="nav nav-pills" role="tablist">
       <li role="presentation">
         <a href="javascript:void(0)"> <%= @show.movie.name %> <span class="badge"></span></a></li>

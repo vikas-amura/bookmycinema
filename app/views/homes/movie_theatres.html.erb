@@ -6,7 +6,7 @@
 			<tbody>
 				<% @shows.each do |theatre,showes| %>
 				<tr>
-					<td><%= link_to theatre, "/theater_movies/#{showes.first.theatre_id}" %>
+					<td><%= link_to theatre, "/theatre_movies/#{showes.first.theatre_id}" %>
 						<% showes.each do |show| %>
 						<td title="180 seat remain">
 							<%if show.starttime.strftime() > DateTime.now.strftime()%>
