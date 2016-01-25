@@ -55,9 +55,6 @@ gem "font-awesome-rails"
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
-#factory_girl_rails gem
-gem 'factory_girl_rails'
-
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
@@ -69,15 +66,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'sprockets-rails', '<=2.3.3'
 
-#mongoid gem for testing
-gem 'mongoid-rspec', '3.0.0'
-
-
-
 # testing
 group :test do
 	gem 'rspec-rails'
 	gem 'mongoid-rspec'
+	gem 'shoulda-matchers'
 end
 
 group :development, :test do
@@ -91,7 +84,3 @@ group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 end
-
-
-
-

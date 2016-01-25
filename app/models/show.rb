@@ -15,8 +15,8 @@ class Show
 
   #validations
   validates :starttime, :endtime, presence: true
-  validate :starttime_cannot_be_in_the_past,on: :create
-  validate :check_for_existing?,on: :create
+  validate :starttime_cannot_be_in_the_past, on: :create
+  validate :check_for_existing?, on: :create
 
   def starttime_cannot_be_in_the_past
     if starttime.present? && starttime < DateTime.now
@@ -28,11 +28,11 @@ class Show
   def check_for_existing?
     options = {}
     if self.movie_id.present?
-      options['movie_id']=self.movie_id
+      options['movie_id'] = self.movie_id
       if self.starttime.present?
-        options['starttime']=self.starttime
+        options['starttime'] = self.starttime
         if self.screen_id.present?
-          options['screen_id']=self.screen_id
+          options['screen_id'] = self.screen_id
           show = Show.where(options)
         end
       end

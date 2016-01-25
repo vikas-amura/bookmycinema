@@ -11,4 +11,8 @@ class Comment
   #associations
   belongs_to :user
   belongs_to :movie
+
+  #validations
+  validates :rating, :review, :status, :approved_by, presence: true
+  validates_numericality_of :rating, length: { minimum: 0, maximum: 10 }
 end
