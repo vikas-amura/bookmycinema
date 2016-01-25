@@ -69,11 +69,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'sprockets-rails', '<=2.3.3'
 
-#mongoid gem for testing
-gem 'mongoid-rspec', '3.0.0'
-
-
-
 # testing
 group :test do
 	gem 'rspec-rails'
