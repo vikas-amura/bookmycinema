@@ -24,6 +24,7 @@ module Bookmycinema
   end
   config.mongoid.logger = Logger.new($stdout, :warn)
   config.active_job.queue_adapter = :sidekiq
+  config.mongoid.observers = :booking_observer
 
 
     # Settings in config/environments/* take precedence over those specified here.

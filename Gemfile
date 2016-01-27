@@ -27,6 +27,9 @@ gem 'coffee-rails', '~> 4.1.0'
 #Devise gem for authentication
 gem 'devise'
 
+# gem fr mongoid Observers
+gem 'mongoid-observers'
+
 #gem for sidekiq
 gem 'sidekiq'
 gem 'sinatra', :require => nil

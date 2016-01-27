@@ -22,4 +22,5 @@ class Booking
   validates_numericality_of :number_of_tickets, :amount, :ticket_numbers
   validates_inclusion_of :number_of_tickets, in: 1..10
   validates :card_number, numericality: { only_integer: true }, length: { minimum: 13, maximum: 19 }
+
 end

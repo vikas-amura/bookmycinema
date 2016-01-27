@@ -1,20 +1,3 @@
-<style type="text/css">
-  .nav-pills{
-    background-color: #ccc;
-  }
-  .nav-pills li {
-    margin: 8px 12px 8px 10px;
-  }
-  .btn-primary{
-    margin: 11px 12px 8px 0;
-  }
-  .row_number{
-   color: #666;
-   font-weight: bold;
-   font-size: 16px;
-   padding-right: 10px;
- }
-</style>
 <%= render template: "layouts/headbar" %>
 <div class="container">
   <div class="well">
@@ -62,7 +45,7 @@
         <div class="form-group">
           <%= f.label :amount, class: "" %>
           <div class="">
-            <%= f.text_field :amount, class: "form-control totalAmount",disabled: true%>
+            <%= f.text_field :amount, class: "form-control totalAmount",:readonly => true%>
           </div>
         </div>
 

@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :screen do
-		name { ["A","B","C","D","E","F"].sample }
+		name { ("A".."M").to_a.sample }
 		capacity { Faker::Number.between(100, 200) }
 	end
 end

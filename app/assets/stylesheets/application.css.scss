@@ -151,7 +151,7 @@ td > input[type=checkbox] + label{
   cursor:pointer;
 }
 td > input[type=checkbox]:checked + label{
-  background: url('http://cnt.in.bookmyshow.com/bmsin/SLIMG/1_4.gif') 0 0px no-repeat;
+  background: url('/images/book_seat.gif') 0 0px no-repeat;
   background-size: 50%;
   height: 50px;
   width: 50px;
@@ -219,3 +219,18 @@ td > input[type=checkbox]:checked + label{
   text-align: left;
   display: none;
 }
+  .nav-pills{
+    background-color: #ccc;
+  }
+  .nav-pills li {
+    margin: 8px 12px 8px 10px;
+  }
+  .btn-primary{
+    margin: 11px 12px 8px 0;
+  }
+  .row_number{
+   color: #666;
+   font-weight: bold;
+   font-size: 16px;
+   padding-right: 10px;
+ }

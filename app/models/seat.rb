@@ -26,8 +26,8 @@ class Seat
       @seat.seat_number = seat_number
       @seat.seat_type = seat['seat_type']
       @seat.screen_id = seat['screen_id']
-      @seat.save
       @seat.seat_price = show_seat_type.index(seat['seat_type'])
+      @seat.save
     end
   end
 end

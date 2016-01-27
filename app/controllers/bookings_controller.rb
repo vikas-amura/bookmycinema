@@ -11,15 +11,16 @@ class BookingsController < ApplicationController
 	def edit
 	end
 	def create
-		@booking=Booking.new(booking_params)
-		@booking.user_id=current_user.id
-		@booking.ticket_numbers= @booking.id
-		@booking.number_of_tickets=params['ticketid'].count
+
+		@booking = Booking.new(booking_params)
+		@booking.user_id = current_user.id
+		@booking.ticket_numbers = rand(1 .. 10000)
+		@booking.number_of_tickets = params['ticketid'].count
+		@booking.amount = params['booking']['amount'].to_i
 		respond_to do |format|
 			if @booking.save
 				flash[:notice] = "Booking created successfully"
 				Ticket.create_ticket(params['ticketid'], @booking);
-				TicketConfirmJob.perform_later(@booking.id.to_s)
 				format.html { redirect_to booking_tickets_path(@booking) }
 				format.json { render :show, status: :created, location: @booking }
 			else
@@ -41,7 +42,7 @@ class BookingsController < ApplicationController
 
 	private
 	def booking_params
-		params.require(:booking).permit(:payment_mode, :card_type,:card_number,:movie_id,:show_id)
+		params.require(:booking).permit(:payment_mode, :card_type,:card_number,:movie_id,:show_id,:amount)
 	end
 
 
