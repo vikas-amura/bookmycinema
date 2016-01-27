@@ -72,8 +72,7 @@ gem 'sprockets-rails', '<=2.3.3'
 # testing
 group :test do
 	gem 'rspec-rails'
-	gem 'mongoid-rspec'
-	gem 'shoulda-matchers'
+	gem 'mongoid-rspec', '3.0.0'
 end
 
 group :development, :test do

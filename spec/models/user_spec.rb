@@ -1,32 +1,36 @@
-describe User do
+require "rails_helper"
 
-  it "should create a user" do
+RSpec.describe User do
+
+  it "is_expected.to create a user" do
     FactoryGirl.build(:user)
   end
 
   describe "first_name" do
-    it { should validate_presence_of(:first_name) }
-    it { should validate_length_of(:first_name).is_at_least(2) }
+    it { is_expected.to validate_presence_of(:first_name) }
+    it { is_expected.to validate_length_of(:first_name) }
   end
 
   describe "last_name" do
-    it { should validate_presence_of(:last_name) }
-    it { should validate_length_of(:last_name).is_at_least(2) }
+    it { is_expected.to validate_presence_of(:last_name) }
+    it { is_expected.to validate_length_of(:last_name) }
   end
 
   describe "email" do
-    it { should validate_presence_of(:email) }
+    it { is_expected.to validate_presence_of(:email) }
   end
 
   describe "mobile" do
-    it { should validate_presence_of(:mobile) }
+    it { is_expected.to validate_presence_of(:mobile) }
+    it { is_expected.to validate_numericality_of(:mobile) }
+    it { is_expected.to validate_length_of(:mobile) }
   end
 
   describe "gender" do
-    it { should validate_presence_of(:gender) }
+    it { is_expected.to validate_presence_of(:gender) }
   end
 
   describe "date_of_birth" do
-    it { should validate_presence_of(:date_of_birth) }
+    it { is_expected.to validate_presence_of(:date_of_birth) }
   end
 end
