@@ -2,11 +2,9 @@ require 'rails_helper'
 
 RSpec.describe TheatresController, type: :controller do
     before(:each) do
-      @user = FactoryGirl.create(:user)
-      @user.confirm!
+      @user = User.last
       sign_in @user
       @theatre = FactoryGirl.attributes_for(:theatre).stringify_keys
-
     end
 
   let(:valid_attributes) {
@@ -31,6 +29,13 @@ RSpec.describe TheatresController, type: :controller do
       expect(assigns(:theatre)).to be_a_new(Theatre)
     end
   end
+  describe "GET #edit" do
+    it "assigns the requested theatre as @theatre" do
+      theatre = Theatre.create! valid_attributes
+      get :edit, {:id => theatre.to_param}
+      expect(assigns(:theatre)).to eq(theatre)
+    end
+  end
 
 
   describe "POST #create" do
@@ -51,6 +56,47 @@ RSpec.describe TheatresController, type: :controller do
       it "re-renders the 'new' template" do
         post :create, {:theatre => invalid_attributes}
         expect(response).to render_template("new")
+      end
+    end
+  end
+
+
+  describe "PUT #update" do
+    context "with valid params" do
+      let(:new_attributes) {
+        {"name"=>"Inox Theatre", "address"=>"Pune", "city"=>"Pune"}
+      }
+
+      it "updates the requested theatre" do
+        theatre = Theatre.create! valid_attributes
+        put :update, {:id => theatre.to_param, :theatre => new_attributes}
+        theatre.reload
+      end
+
+      it "assigns the requested theatre as @theatre" do
+        theatre = Theatre.create! valid_attributes
+        put :update, {:id => theatre.to_param, :theatre => valid_attributes}
+        expect(assigns(:theatre)).to eq(theatre)
+      end
+
+      it "redirects to the theatre" do
+        theatre = Theatre.create! valid_attributes
+        put :update, {:id => theatre.to_param, :theatre => valid_attributes}
+        expect(response).to redirect_to(theatre)
+      end
+    end
+
+    context "with invalid params" do
+      it "assigns the theatre as @theatre" do
+        theatre = Theatre.create! valid_attributes
+        put :update, {:id => theatre.to_param, :theatre => invalid_attributes}
+        expect(assigns(:theatre)).to eq(theatre)
+      end
+
+      it "re-renders the 'edit' template" do
+        theatre = Theatre.create! valid_attributes
+        put :update, {:id => theatre.to_param, :theatre => invalid_attributes}
+        expect(response).to render_template("edit")
       end
     end
   end
