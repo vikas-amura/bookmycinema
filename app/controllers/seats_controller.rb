@@ -1,21 +1,15 @@
 class SeatsController < ApplicationController
 	load_and_authorize_resource
-
 	before_action :load_authorize_parent
-
 	def index
 		@seats = @screen.seats.paginate(:page => params[:page],:per_page=>10)
 	end
-
 	def show
 	end
-
 	def new
 	end
-
 	def edit
 	end
-
 	def create
 		@seat = @screen.seats.new(seat_params)
 		respond_to do |format|
@@ -29,7 +23,6 @@ class SeatsController < ApplicationController
 			end
 		end
 	end
-
 	def update
 		respond_to do |format|
 			flash[:notice] = "Seat updated successfully"
@@ -42,7 +35,6 @@ class SeatsController < ApplicationController
 			end
 		end
 	end
-
 	def destroy
 		@seat.destroy
 		respond_to do |format|
@@ -51,12 +43,7 @@ class SeatsController < ApplicationController
 			format.json { head :no_content }
 		end
 	end
-
 	private
-
-	def set_seat
-		@seat = Seat.find(params[:id])
-	end
 	def seat_params
 		params.require(:seat).permit(:row, :seat_number,:seat_price,:seat_type)
 	end

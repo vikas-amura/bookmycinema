@@ -1,5 +1,5 @@
 class Users::UnlocksController < Devise::UnlocksController
-  authorize!
+  # authorize!
   # GET /resource/unlock/new
   # def new
   #   super

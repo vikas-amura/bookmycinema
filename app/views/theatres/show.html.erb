@@ -2,10 +2,10 @@
 <div class="container">
   <%= render 'shared/breadcrumb' %>
   <% if flash[:notice] %>
-    <div class="alert alert-success">
-      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-      <%= flash[:notice] %>
-    </div>
+  <div class="alert alert-success">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <%= flash[:notice] %>
+  </div>
   <% end %>
   <div class="well">
     <p class="lead">
@@ -22,8 +22,9 @@
       <strong>City:</strong>
       <%= @theatre.city %>
     </p>
-
+    <% if can? :manage, Theatre %>
     <%= link_to 'Edit', edit_theatre_path(@theatre) %> |
     <%= link_to 'Back', theatres_path %>
+    <%end%>
   </div>
 </div>

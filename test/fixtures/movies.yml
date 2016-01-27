@@ -1,21 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  language: MyString
-  genre: MyString
-  duration: 1.5
-  movie_format: MyString
-  trailer_url: MyString
+DDlJ:
+  name: DDLG
+  language: Hindi
+  genre: Comedy
+  duration: 2.0
+  movie_format: 2D
+  trailer_url: www.disicounteddd.com/jfkdjkfd/fdsfds
   rating: 1.5
   release_date: 2016-01-07
 
-two:
-  name: MyString
-  language: MyString
-  genre: MyString
+KKHH:
+  name: KKHH
+  language: Marathi
+  genre: Action
   duration: 1.5
-  movie_format: MyString
-  trailer_url: MyString
+  movie_format: 3D
+  trailer_url: www.dfd.ff.df.sdf./fsdfsdf/fdsfsdf
   rating: 1.5
   release_date: 2016-01-07

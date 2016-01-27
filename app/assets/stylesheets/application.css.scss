@@ -1,5 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome";
+
 /*
 * This is a manifest file that'll be compiled into application.css, which will include all the files
 * listed below.
@@ -12,20 +14,30 @@
 * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
 * file per style scope.
 *
-*= require semantic_ui/semantic_ui
-*= require dataTables/jquery.dataTables
-*= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+*= require font-awesome
 *= require_self
 */
 
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
 body {
   background: #fdfdfd !important;
   -webkit-font-smoothing: antialiased !important;
 }
+::selection {
+  background-color: #CBD2D2;
+}
 
 /* user actions page */
 .login-container{
-  max-height: 385px;
+  height: auto;
   width: 400px;
   padding: 24px;
   background-color: #f5f5f5;
@@ -33,32 +45,21 @@ body {
   border: 1px solid #b1b1b1;
   border-radius: 2px;
   text-align: center;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
+  margin: 40px auto;
 }
 
 .signup-container{
-  max-height: 780px;
-  width: 400px;
+  height: auto;
+  width: auto;
   padding: 24px;
   background-color: #f5f5f5;
   color: #444;
   border: 1px solid #b1b1b1;
   border-radius: 2px;
-  text-align: center;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
+  margin: 40px auto;
 }
 .forgot-password-container{
-  max-height: 330px;
+  height: auto;
   width: 400px;
   padding: 24px;
   background-color: #f5f5f5;
@@ -66,33 +67,10 @@ body {
   border: 1px solid #b1b1b1;
   border-radius: 2px;
   text-align: center;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
+  margin: 40px auto;
 }
-
-.forgot-password-container{
-  max-height: 340px;
-  width: 400px;
-  padding: 24px;
-  background-color: #f5f5f5;
-  color: #444;
-  border: 1px solid #b1b1b1;
-  border-radius: 2px;
-  text-align: center;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-}
-
 .resend-confirmation-instructions{
-  max-height: 340px;
+  height: auto;
   width: 400px;
   padding: 24px;
   background-color: #f5f5f5;
@@ -100,12 +78,7 @@ body {
   border: 1px solid #b1b1b1;
   border-radius: 2px;
   text-align: center;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
+  margin: 40px auto;
 }
 
 /* custom navbar */
@@ -115,9 +88,9 @@ body {
   left: 0;
   display: block;
   width: 100%;
-  height: 48px;
-  max-height: 44px;
-  background: rgba(0, 0, 0, 0.8);
+  height: 52px;
+  max-height: 46px;
+  background: rgba(0, 0, 0, 0.8011);
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -128,16 +101,19 @@ body {
   letter-spacing: normal;
   padding: 0;
 }
+.globalnav:hover{
+  background: rgba(0, 0, 0, 0.7509);
+}
 .globalnav-content{
   margin: 0 auto;
   max-width: 980px;
-  padding: 0 22px;
+  padding: 0 24px;
   position: relative;
 }
 .globalnav-item-holder{
   display: inline-block;
   position: relative;
-  height: 44px;
+  height: 46px;
   vertical-align: top;
 }
 .globalnav-item{
@@ -150,7 +126,7 @@ body {
 
 /* home  page */
 .container{
-  width: 90%;
+  width: 89.9999%;
 }
 .category-heading{
   color: #a1a1a1;
@@ -162,7 +138,6 @@ body {
 }
 
 /* new booking */
-
 td > input[type=checkbox]{
   margin-left: 6px;
 }
@@ -173,12 +148,74 @@ td > input[type=checkbox] + label{
   width: 50px;
   display: inline-block;
   padding: 25px 0 0 7px;
+  cursor:pointer;
 }
 td > input[type=checkbox]:checked + label{
-  background: url('/images/seat_booked.png') 0 0px no-repeat;
+  background: url('http://cnt.in.bookmyshow.com/bmsin/SLIMG/1_4.gif') 0 0px no-repeat;
   background-size: 50%;
   height: 50px;
   width: 50px;
   display:inline-block;
   padding: 25px 0 0 7px;
+}
+.booked{
+  background: url('/images/seat_booked.png') 0 0px no-repeat !important;
+  cursor:default !important;
+  background-size: 50% !important;
+  width: 50px !important;
+  display: inline-block !important;
+  padding: 25px 0 0 7px !important;
+}
+.screen{
+  background-color:#49ba8e;
+  color:#000;
+}
+/*For star rating*/
+.webwidget_rating_simple{
+     padding: 0px;
+     margin: 0px;
+     float: left;
+   }
+   .webwidget_rating_simple li{
+     line-height: 0px;
+     width: 15px;
+     height: 15px;
+     padding: 0px;
+     margin: 0px;
+     margin-left: 2px;
+     list-style: none;
+     float: left;
+     cursor: pointer;
+   }
+   .webwidget_rating_simple li span{
+     display: none;
+   }
+
+/* Devise error messages - flash*/
+.alert-error{
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  color: #b94a48;
+  text-align: left;
+}
+.alert-alert{
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  color: #b94a48;
+  text-align: left;
+  display: none;
+}
+.alert-success{
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #468847;
+  text-align: left;
+  display: none;
+}
+.alert-notice{
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #468847;
+  text-align: left;
+  display: none;
 }

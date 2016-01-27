@@ -1,10 +1,20 @@
-<div class="row">
+<nav class="globalnav">
+  <center>
+    <div class="globalnav-content">
+      <div class="globalnav-item-holder col-sx-12">
+        <span class="globalnav-item col-xs-1">bookmycinema</span>
+      </div>
+    </div>
+  </center>
+</nav>
+<div class="container-fluid">
+  <%= devise_error_messages! %>
   <div class="login-container">
     <div class="row">
       <h3>Bookmycinema Login</h3>
     </div>
     <div class="row">
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "form-validatable") do |f| %>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="form-group">
         <%= f.label :email, for: "email" %><br />
         <%= f.email_field :email, class: "form-control", id: "email", placeholder: "Email", email: "true", autocomplete: "off" %>

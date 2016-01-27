@@ -1,6 +1,17 @@
-<h2>Resend unlock instructions</h2>
+<nav class="globalnav">
+  <center>
+    <div class="globalnav-content">
+      <div class="globalnav-item-holder col-sx-12">
+        <span class="globalnav-item col-xs-1">bookmycinema</span>
+      </div>
+    </div>
+  </center>
+</nav>
+<div class="container-fluid">
+  <%= devise_error_messages! %>
+  <h2>Resend unlock instructions</h2>
 
-<%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
+  <%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
   <%= devise_error_messages! %>
 
   <div class="field">
@@ -11,6 +22,7 @@
   <div class="actions">
     <%= f.submit "Resend unlock instructions" %>
   </div>
-<% end %>
+  <% end %>
 
-<%= render "users/shared/links" %>
+  <%= render "users/shared/links" %>
+</div>
