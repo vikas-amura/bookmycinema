@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+	source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
@@ -73,7 +73,9 @@ gem 'sprockets-rails', '<=2.3.3'
 group :test do
 	gem 'rspec-rails'
 	gem 'mongoid-rspec'
-	gem 'shoulda-matchers'
+	gem 'capybara'
+	gem 'database_cleaner'
+	gem 'selenium-webdriver'
 end
 
 group :development, :test do
