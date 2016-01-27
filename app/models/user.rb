@@ -14,6 +14,7 @@ class User
   field :encrypted_password, type: String, default: ""
   field :mobile, type: Integer
   field :gender, type: String
+  field :authentication_token, type: String
   field :date_of_birth, type: Date
   field :role, type: String, default: "user"
 
@@ -44,6 +45,7 @@ class User
 
   #associations
   has_many :bookings
+  has_many :comments
 
   #validations
   validates :first_name, :last_name, :mobile, :gender, :date_of_birth, presence: true
@@ -51,9 +53,22 @@ class User
   validates :gender, :inclusion => %w(male female)
   validates :mobile, numericality: { only_integer: true }, length: { is: 10 }
 
+  before_create :save_authentication_token
+
   #methods
   def admin?
     self.role.name == "Admin"
+  end
+
+  private
+  def save_authentication_token
+    self.authentication_token = generate_authentication_token
+  end
+  def generate_authentication_token
+    loop do
+      token = Devise.friendly_token
+      break token unless User.where(authentication_token: token).first
+    end
   end
 
 end

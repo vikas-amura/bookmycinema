@@ -1,0 +1,40 @@
+<%= form_for [@movie,@comment] do |f| %>
+<% if @comment.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+  <ul>
+    <% @comment.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<%@star = @comment.rating.present? ? @comment.rating : 0%>
+<h3>Movie Name:<%= @movie.name %></h3>
+<div class="form-group">
+  <%= f.label :rating %><br>
+  <%= f.hidden_field :rating, id: "rating_simple",:required => true , class: "form-control",:readonly=>true %>
+  <span>Star:<span class="starcount"><%=@star%></span></span>
+</div>
+<div class="form-group">
+  <%= f.label :review %><br>
+  <%= f.text_area :review , class: "form-control" , :required => true%>
+  <%= hidden_field_tag :user_token,@user_token %>
+</div>
+<div class="form-group">
+  <%= f.submit class: "btn btn-default btn-action" %>
+</div>
+<% end %>
+
+<script language="javascript" type="text/javascript">
+ var count=<%=@star%>
+ $(function() {
+  $("#rating_simple").webwidget_rating_simple({
+    rating_star_length: '10',
+    rating_initial_value:count,
+    rating_function_name: '',
+    directory: '/images/'
+  });
+});
+</script>

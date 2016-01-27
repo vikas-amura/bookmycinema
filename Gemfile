@@ -27,6 +27,19 @@ gem 'coffee-rails', '~> 4.1.0'
 #Devise gem for authentication
 gem 'devise'
 
+# gem fr mongoid Observers
+gem 'mongoid-observers'
+
+#gem for sidekiq
+gem 'sidekiq'
+gem 'sinatra', :require => nil
+gem 'sidekiq-status'
+gem 'sidekiq-failures'
+#star rating
+gem 'jquery-star-rating-rails', '~> 4.0', '>= 4.0.4'
+#radis gem
+gem 'redis', '~>3.2'
+
 #cancancan gem for authorization
 gem 'cancancan'
 
@@ -39,11 +52,11 @@ gem 'will_paginate_mongoid'
 #mongoid as database
 gem 'mongoid', '~> 5.0.0'
 
+#font awesome
+gem "font-awesome-rails"
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-
-# Jquery validations gem
-gem "jquery-validation-rails"
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -55,25 +68,22 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'sprockets-rails', '<=2.3.3'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
 
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+# testing
+group :test do
+	gem 'rspec-rails'
+	gem 'mongoid-rspec'
+	gem 'shoulda-matchers'
+end
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+	gem 'factory_girl_rails'
+	gem 'faker'
+	gem 'guard-rspec'
+	gem 'byebug'
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
-
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
 end
-gem "rspec-rails", :group => [:development, :test]

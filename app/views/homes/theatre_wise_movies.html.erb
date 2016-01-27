@@ -1,0 +1,25 @@
+<%= render template: "layouts/headbar" %>
+<div class="container">
+	<%= render 'shared/breadcrumb' %>
+	<div class="well">
+		<h3>Theatre Name : <%= @theatre.name %></h3>
+		<table class="table table-condensed">
+			<tbody>
+				<% @shows.each do |movie, shows| %>
+				<tr>
+					<td><%= link_to movie, movie_in_theatres_path(shows.first.movie) %></td>
+					<% shows.each do |show| %>
+					<td title="180 seat remain">
+					<%if show.starttime.strftime() > DateTime.now.strftime()%>
+						<%=link_to  show.starttime.strftime("%I:%M%p"),new_movie_show_booking_path(show.movie,show) %>(<%= show.screen.seats.count - show.tickets.count%> Seat)
+					<% else %>
+					<%= show.starttime.strftime("%I:%M%p") %>
+					<% end %>
+					</td>
+						<%end%>
+					</tr>
+					<%end%>
+				</tbody>
+			</table>
+		</div>
+	</div>

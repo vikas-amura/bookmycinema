@@ -1,59 +1,68 @@
-<div class="row">
+<nav class="globalnav">
+  <center>
+    <div class="globalnav-content">
+      <div class="globalnav-item-holder col-sx-12">
+        <span class="globalnav-item col-xs-1">bookmycinema</span>
+      </div>
+    </div>
+  </center>
+</nav>
+<div class="container-fluid">
+  <%= devise_error_messages! %>
   <div class="signup-container">
-    <div class="row">
+    <div class="row text-center">
       <h3>Signup to Bookmycinema</h3>
     </div>
-    <div class="row">
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <div class="form-group">
-        <%= f.label :first_name, class: "control-label", for: "firstname" %>
-        <%= f.text_field :first_name, class: "form-control", id: "firstname", placeholder: "First name" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :last_name, class: "control-label", for: "lastname" %>
-        <%= f.text_field :last_name, class: "form-control", id: "lastname", placeholder: "Last name" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :email, class: "control-label", for: "email" %>
-        <%= f.email_field :email, class: "form-control", id: "email", placeholder: "xyz@example.com" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :password, class: "control-label", for: "password" %>
-        <%= f.password_field :password, class: "form-control", id: "password", placeholder: "*****" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :password_confirmation, class: "control-label", for: "password_confirmation" %>
-        <%= f.password_field :password_confirmation, class: "form-control", id: "password_confirmation", placeholder: "*****" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :mobile, class: "control-label", for: "mobile" %>
-        <%= f.text_field :mobile, class: "form-control", id: "mobile", placeholder: "Mobile number" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.radio_button(:gender, "male") %>
-        <%= f.label(:male, "Male") %>
-        <%= f.radio_button(:gender, "female") %>
-        <%= f.label(:female, "Female") %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :date_of_birth, class: "control-label", for: "date_of_birth" %>
-        <%= f.text_field :date_of_birth, class: "form-control", id: "date_of_birth", placeholder: "dd/mm/yyyy" %>
-      </div>
-
-      <div class="actions">
-        <%= f.submit "Sign up", class: "btn btn-default" %>
-        <br />
-        <%= render "users/shared/links" %>
-      </div>
-      <% end %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <div class="form-group">
+      <%= f.label :first_name, class: "control-label", for: "firstname" %>
+      <%= f.text_field :first_name, class: "form-control", id: "firstname", placeholder: "First name" %>
     </div>
+
+    <div class="form-group">
+      <%= f.label :last_name, class: "control-label", for: "lastname" %>
+      <%= f.text_field :last_name, class: "form-control", id: "lastname", placeholder: "Last name" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :email, class: "control-label", for: "email" %>
+      <%= f.email_field :email, class: "form-control", id: "email", placeholder: "xyz@example.com" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password, class: "control-label", for: "password" %>
+      <%= f.password_field :password, class: "form-control", id: "password", placeholder: "*****" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password_confirmation, class: "control-label", for: "password_confirmation" %>
+      <%= f.password_field :password_confirmation, class: "form-control", id: "password_confirmation", placeholder: "*****" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :mobile, class: "control-label", for: "mobile" %>
+      <%= f.text_field :mobile, class: "form-control", id: "mobile", placeholder: "Mobile number" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :gender, class: "control-label", for: "mobile" %>
+      &nbsp;&nbsp;&nbsp;
+      <%= f.radio_button(:gender, "male") %>
+      <%= f.label(:male, "Male") %>
+      <%= f.radio_button(:gender, "female") %>
+      <%= f.label(:female, "Female") %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :date_of_birth, class: "control-label", for: "date_of_birth" %>
+      <%= f.text_field :date_of_birth, class: "form-control", id: "date_of_birth", placeholder: "dd/mm/yyyy" %>
+    </div>
+
+    <div class="form-grroup text-center">
+      <%= f.submit "Sign up", class: "btn btn-default" %>
+      <br />
+      <%= render "users/shared/links" %>
+    </div>
+    <% end %>
   </div>
 </div>
-<%= devise_error_messages! %>

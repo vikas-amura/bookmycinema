@@ -1,4 +1,4 @@
-<%# render 'layouts/headbar' %>
+<%= render template: "layouts/headbar" %>
 <div class="container">
   <div class="well">
     <% if flash[:notice] %>
@@ -6,103 +6,92 @@
     <% end %>
     <% if @show.present? %>
     <%= form_for @booking, html: {class: "nifty_form"} do |f| %>
-    <p class="lead">
-      <strong>Screen Name : </strong>
-      <%= @show.screen.name%>
+    <ul class="nav nav-pills" role="tablist">
+      <li role="presentation">
+        <a href="javascript:void(0)"> <%= @show.movie.name %> <span class="badge"></span></a></li>
+        <li role="presentation"><a href="javascript:void(0)">Start Time: <%= @show.starttime.strftime("on %d/%m/%Y at %I:%M%p") %>
+          <%= f.hidden_field :show_id, value:params[:id] %> </a></li>
+          <li role="presentation"><a href="javascript:void(0)">End Time : <%= @show.endtime.strftime("on %d/%m/%Y at %I:%M%p") %> </a></li>
+          <li role="presentation"><a href="javascript:void(0)">Total Seats <span class="badge"><%=  @show.screen.seats.count-@show.tickets.count %></span></a></li>
+          <li role="presentation"><a href="javascript:void(0)"> Selected: <span class="badge SeatCount">0</span></a></li>
+          <button type="button" class="btn btn-primary pull-right">PROCEED</button>
+        </ul>
+        <center>
+          <table>
+            <% @all_seat.each do |row,seats| %>
+            <tr>
+              <td class="row_number"><%=row%></td>
+              <%seats.each do |seat|%>
+              <td width="50" height="60">
+                <% if seat.tickets.where(show_id: @show.id).present? %>
+                <%= check_box_tag("ticketid[]", value = "", checked = true, :disabled => true, id: "chk-#{seat.id}" ,:style => 'visibility: hidden',class: "booked") %>
+                <%classval="booked"%>
+                <% else %>
+                <%= check_box_tag("ticketid[]",value=seat.id, checked = false,id: "chk-#{seat.id}",class: "seatclass", data: seat.seat_price,:style => 'visibility: hidden') %>
+                <%classval="Unbooked"%>
+                <% end %>
+                <label class="<%=classval%>" for="chk-<%= seat.id %>"> <%=seat.seat_number%></label>
+              </td>
+              <%end%>
+            </tr>
+            <%end%>
+          </table>
+        </center>
+        <center>
+          <h4 class="screen">All EYES THIS WAY PLEASE</h4>
+          <%= @show.screen.name%>
+        </center>
 
-    </p>
-    <p class="lead">
-      <strong>Movie Name : </strong>
-      <%= @show.movie.name %>
-    </p>
-    <p class="lead">
-      <strong>Start Time : </strong>
-      <%= @show.starttime.strftime("on %d/%m/%Y at %I:%M%p") %>
-      <%= f.hidden_field :show_id, value:params[:id] %>
-    </p>
-    <p class="lead">
-      <strong>End Time : </strong>
-      <%= @show.endtime.strftime("on %d/%m/%Y at %I:%M%p") %>
-    </p>
-    <p class="lead">
-      <strong>Total Seats : </strong>
-      <%= @show.screen.seats.count %>
-    </p>
-    <center>
-      <table>
-        <% @all_seat.each do |row,seats| %>
-        <tr>
-          <td><%=row%></td>
-          <%seats.each do |seat|%>
-          <td width="50" height="60">
-            <% if seat.tickets.where(show_id: @show.id).present? %>
-            <%= check_box_tag("ticketid[]", value = "", checked = true, :disabled => true, id: seat.id ) %>
-            <% else %>
-            <%= check_box_tag("ticketid[]", value = seat.id, checked = false, class: "seatclass", data: seat.seat_price) %>
-            <% end %>
-            <label for: "<%= seat.id %>"><%=seat.seat_number%></label>
-          </td>
-          <%end%>
-        </tr>
-        <%end%>
-      </table>
-    </center>
-
-    <div class="form-group">
-      <%= f.label :amount, class: "" %>
-      <div class="">
-      <%= f.text_field :amount, class: "form-control totalAmount" %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :payment_mode, class: "" %>
-      <div class="">
-        <% @payment_mode={"Online"=>"online","Cash"=>"Cash"} %>
-        <%= f.select :payment_mode, options_for_select(@payment_mode), {}, class: "select-box form-control", required: "required", data: {type: "ds", "vertical-blank" => true, "default-value" => f.object.payment_mode, name: "payment_mode"} %>
-      </div>
-    </div>
-    <div class="bytype">
-      <div class="form-group">
-        <%= f.label :card_type, class: "control-label" %>
-        <div class="">
-          <% @card_type={"Debit"=>"Debit","Credit"=>"Credit"} %>
-          <%= f.select :card_type, options_for_select(@card_type), {}, class: "form-control", required: "required", data: {type: "ds", "vertical-blank" => true, "default-value" => f.object.card_type, name: "card_type"} %>
+        <div class="form-group">
+          <%= f.label :amount, class: "" %>
+          <div class="">
+            <%= f.text_field :amount, class: "form-control totalAmount",:readonly => true%>
+          </div>
         </div>
-      </div>
 
-      <div class="form-group">
-        <%= f.label :card_number %><br>
-        <%= f.text_field :card_number, class: "form-control" %>
-        <%= f.hidden_field :movie_id,value:params[:movie_id] %>
-        <%= f.hidden_field :show_id,value:@show.id %>
+        <div class="form-group">
+          <%= f.label :payment_mode, class: "" %>
+          <div class="">
+            <% @payment_mode={"Online"=>"online"} %>
+            <%= f.select :payment_mode, options_for_select(@payment_mode), class: "select-box form-control", required: "required", data: {type: "ds", "vertical-blank" => true, "default-value" => f.object.payment_mode, name: "payment_mode"} %>
+          </div>
+        </div>
+        <div class="bytype">
+          <div class="form-group">
+            <%= f.label :card_type, class: "control-label" %>
+            <div class="">
+              <% @card_type={"Debit"=>"Debit","Credit"=>"Credit"} %>
+              <%= f.select :card_type, options_for_select(@card_type), {}, class: "form-control", required: "required", data: {type: "ds", "vertical-blank" => true, "default-value" => f.object.card_type, name: "card_type"} %>
+            </div>
+            </div>
+          <div class="form-group">
+            <%= f.label :card_number %><br>
+            <%= f.text_field :card_number, class: "form-control" %>
+            <%= f.hidden_field :movie_id,value:params[:movie_id] %>
+            <%= f.hidden_field :show_id,value:@show.id %>
+          </div>
+        </div>
+        <%= submit_tag "Book", class: "btn btn-default" %>
+        <% end %>
+        <%end%>
       </div>
     </div>
-    <%= submit_tag "Book", class: "btn btn-default" %>
-    <% end %>
-    <%end%>
-  </div>
-</div>
-<script>
-var amount=0;
-$(".seatclass").click(function () {
-  var a = ($(this).attr("data"));
-  if($(this).is(':checked')){
-    amount = amount + parseInt($(this).attr("data"));
-  }
-  else {
-    amount = amount - ($(this).attr("data"));
-  }
-  $(".totalAmount").val(amount);
-});
-$(".bytype").hide();
-$(".select-box").change(function(){
-  if( $(".select-box").val() == 'online') {
-    $(".bytype").show();
-  }
-  else {
-    $(".bytype").hide();
-  }
-  return false;
-});
-</script>
+    <script>
+      $(document).ready(function(){
+        var amount=0;
+        var SeatCount = 0
+        $(".seatclass").click(function () {
+          var a = ($(this).attr("data"));
+          if($(this).is(':checked')){
+           amount = amount + parseInt($(this).attr("data"));
+           SeatCount = SeatCount + 1;
+         }
+         else {
+          amount = amount - ($(this).attr("data"));
+          SeatCount = SeatCount - 1;
+        }
+        $(".totalAmount").val(amount);
+        $(".SeatCount").html(SeatCount);
+      });
+      });
+    </script>

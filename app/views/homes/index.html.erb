@@ -16,12 +16,12 @@
 						<a href="" class="col-xs-12 col-md-12 category-heading list-group-item active"><%= langugae %></a>
 						<% mov.each do |movie| %>
 							<% if movie.present? %>
-							<a href="movie_theatres/<%= movie.id %>" class="col-xs-12 col-md-12 list-group-item" style="text-overflow: ellipsis;">
+							<a href="movie/<%= movie.id %>/theatres" class="col-xs-12 col-md-12 list-group-item" style="text-overflow: ellipsis;">
 								<%= movie.name %>
 								<span class="badge"><%= movie.movie_format %></span>
 							</a>
 							<% else %>
-							<a href="movie_theatres/<%=movie.id%>" class="col-xs-12 col-md-12 list-group-item" style="text-overflow: ellipsis;">
+							<a href="movie/<%=movie.id%>/theatres" class="col-xs-12 col-md-12 list-group-item" style="text-overflow: ellipsis;">
 								Movie Not Present
 							</a>
 							<% end %>

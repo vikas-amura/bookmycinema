@@ -1,0 +1,6 @@
+<p>Hello <%= @booking.user.first_name %>	!</p>
+
+<p><%= @booking.movie.name%> Movie FeedBack. You can do this through the link below.</p>
+<p><%= link_to 'FeedBack', new_movie_comment_url(@booking.movie, user_token: @token) %></p>
+
+<p>If you didn't request this, please ignore this email.</p>

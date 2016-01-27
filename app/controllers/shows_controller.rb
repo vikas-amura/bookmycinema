@@ -7,7 +7,7 @@ class ShowsController < ApplicationController
 	end
 
 	def show
-		@shows = @movie.shows.group_by {|x| x.theatre.name}
+		@shows = @movie.includes(:shows).group_by {|show| show.theatre.name}
 	end
 
 	def new
@@ -46,6 +46,16 @@ class ShowsController < ApplicationController
 		@show.destroy
 		respond_to do |format|
 			format.html { redirect_to movie_shows_path(@movie), notice: 'Show was successfully destroyed.' }
+			format.json { head :no_content }
+		end
+	end
+	def send_feedback_email
+		respond_to do |format|
+			show = Show.find(params[:show_id])
+			show.bookings.each do |booking|
+				MovieFeedbackJob.perform_later(booking.id.to_s)
+			end
+			format.html { redirect_to movie_shows_path(@movie), notice: 'Email Send .' }
 			format.json { head :no_content }
 		end
 	end

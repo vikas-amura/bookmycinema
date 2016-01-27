@@ -18,12 +18,14 @@ class Movie
   has_many :shows
   has_many :bookings
   has_many :tickets
+  has_many :comments
 
   #validations
   validates :name, :language, :genre, :duration, :movie_format, :trailer_url, :rating, :release_date, presence: true
   validates :name, :language, :genre, :movie_format, length: { minimum: 1, maximum: 50 }
   validates :language, :inclusion => %w(Hindi English Marathi)
   validates :genre, :inclusion => %w(Action Adventure Comedy Crime Fantasy Historical Historical Fiction Horror Magical Realism Mystery Paranoid Philosophical Political Romance Saga Satire Science Speculative Thriller Urban Western Animation')
+  validates_numericality_of :duration
   validates_numericality_of :rating, length: { minimum: 0, maximum: 10 }
   validates :trailer_url, length: { maximum: 500 }, format: { with: URI.regexp }
 
