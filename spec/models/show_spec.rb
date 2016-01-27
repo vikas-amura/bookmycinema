@@ -1,13 +1,15 @@
-describe Show do
-  it "should create a show" do
+require "rails_helper"
+
+RSpec.describe Show do
+  it "is_expected.to create a show" do
     FactoryGirl.build(:show)
   end
 
   # describe "starttime" do
-  #   it { should validate_presence_of(:starttime) }
+  #   it { is_expected.to validate_presence_of(:starttime) }
   # end
   #
   # describe "endtime" do
-  #   it { should validate_presence_of(:endtime) }
+  #   it { is_expected.to validate_presence_of(:endtime) }
   # end
 end

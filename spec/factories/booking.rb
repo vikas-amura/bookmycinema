@@ -5,6 +5,7 @@ FactoryGirl.define do
     amount { Faker::Number.between(90, 2000) }
     payment_mode { ["online"].sample }
     card_type { Faker::Business.credit_card_type }
-    card_number { Faker::Business.credit_card_number }
+    card_number { Faker::Number.between(100000000, 10000000000000000000) }
+    movie
 	end
 end

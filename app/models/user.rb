@@ -12,7 +12,7 @@ class User
   field :last_name, type: String, default: ""
   field :email, type: String, default: ""
   field :encrypted_password, type: String, default: ""
-  field :mobile, type: Integer
+  field :mobile, type: String
   field :gender, type: String
   field :authentication_token, type: String
   field :date_of_birth, type: Date
@@ -51,7 +51,7 @@ class User
   validates :first_name, :last_name, :mobile, :gender, :date_of_birth, presence: true
   validates :first_name, :last_name, length: { minimum: 2 }, allow_blank: true
   validates :gender, :inclusion => %w(male female)
-  validates :mobile, numericality: { only_integer: true }, length: { is: 10 }
+  validates :mobile, numericality: { only_integer: true }, length: { minimum: 8,  maximum: 14 }
 
   before_create :save_authentication_token
 
