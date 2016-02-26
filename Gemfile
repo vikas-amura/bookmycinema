@@ -68,13 +68,14 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'sprockets-rails', '<=2.3.3'
+gem 'backbone-on-rails'
 
 # testing
 group :test do
 	gem 'rspec-rails'
 	gem 'mongoid-rspec'
 	gem 'capybara'
-	gem 'database_cleaner'
+    gem 'database_cleaner', git: "https://github.com/DatabaseCleaner/database_cleaner.git"
 	gem 'selenium-webdriver'
 end
 

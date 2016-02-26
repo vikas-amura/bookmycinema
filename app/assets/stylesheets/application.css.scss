@@ -234,3 +234,26 @@ td > input[type=checkbox]:checked + label{
    font-size: 16px;
    padding-right: 10px;
  }
+
+#entries_list{
+  color: #111;
+  list-style-type: none !important;
+  margin: 0px;
+  padding: 0px;
+  border-top: 1px solid #CCC;
+}
+#entries_list li{
+  border: 1px solid #ccc;
+  padding: 10px 10px;
+   font-size: 16px;
+}
+.center{
+  width: 50%;
+  margin-left: 20%
+}
+#new_entry_name{
+    width: 91%;
+    padding: 0%;
+    margin-bottom: 13px;
+    height: 35px;
+}

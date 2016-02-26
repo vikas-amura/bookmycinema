@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :posts
+ resources :entries
  mount Sidekiq::Web => '/sidekiq' # TODO: block access to sidekiq only to the super admin
  devise_for :users, controllers: { registrations: "users/registrations",  sessions: "users/sessions", passwords: "users/passwords", confirmations: "users/confirmations" }
  get 'theatre/:id/shows',to: 'homes#theatre_wise_movies',as: 'theatre_wise_movies'
@@ -6,7 +8,7 @@ Rails.application.routes.draw do
  get 'all_theatres', to: 'homes#all_theatres'
  get 'thank_you', to: 'homes#thank_you'
  get 'reports', to: 'reports#index'
- root 'homes#index'
+ root 'entries#index'
 
  resources :theatres do
   resources :screens do

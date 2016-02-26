@@ -1,0 +1,7 @@
+<h1 align="center">Entries</h1>
+<form id="new_entry">
+    <input type="text" name="name" id="new_entry_name">
+    <input type="submit" class="btn btn-success" value="Add" id="vikas">
+</form>
+
+<ul id="entries_list"></ul>

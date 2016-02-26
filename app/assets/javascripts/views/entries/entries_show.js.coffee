@@ -1,0 +1,1 @@
+class Bookmycinema.Views.EntriesShow extends Backbone.View

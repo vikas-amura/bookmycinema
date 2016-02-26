@@ -1,0 +1,2 @@
+<div class="entryli"><%=@entry.get("name")%></div>
+<a href="javascript:void(0)" style="float:right;margin-top: -23px;"class="delete" id="<%=@entry.get("id")%>">X</a>

@@ -14,8 +14,7 @@ RSpec.describe MoviesController, type: :controller do
 
   describe "GET show " do
    it "should route to show movie" do
-     expect(:get => movie_path(movie.id)).
-     to route_to(:controller => "movies", :action => "show",id: movie.id.to_s)
+     expect(:get => movie_path(movie.id)).to route_to(:controller => "movies", :action => "show",id: movie.id.to_s)
      expect(response.status).to eq(200)
    end
 
