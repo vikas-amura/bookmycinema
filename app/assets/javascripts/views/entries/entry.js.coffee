@@ -9,8 +9,8 @@ class Bookmycinema.Views.Entry extends Backbone.View
     'keyup .edit_entry': 'updateEntry'
 
   initialize: ->
-    @.model.on("destroy", @remove, @)
-    @model.on("change",@render,@)
+    @.model.on("destroy", this.remove, this);
+    @.model.on("change",@render,@)
   
   render: ->
     $(@el).html(@template(entry: @model))
