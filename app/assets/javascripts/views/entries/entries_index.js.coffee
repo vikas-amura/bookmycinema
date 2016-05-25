@@ -6,11 +6,12 @@ class Bookmycinema.Views.EntriesIndex extends Backbone.View
 
   initialize: ->
     @collection.on('add',@apendEntry,this)
+    @collection.on('destroy',@render,this)
 
   render: ->
     $(@el).html(@template())
     @collection.each(@apendEntry, @)
-    this
+    @
 
   apendEntry: (entry) ->
     view = new Bookmycinema.Views.Entry(model: entry)
@@ -21,3 +22,5 @@ class Bookmycinema.Views.EntriesIndex extends Backbone.View
     event.preventDefault()
     model = @collection.create({name: @$el.find("#new_entry_name").val()})
     $("#new_entry")[0].reset()
+
+  removeEntryUi: (entry) ->

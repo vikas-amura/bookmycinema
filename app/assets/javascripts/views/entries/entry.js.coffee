@@ -9,7 +9,6 @@ class Bookmycinema.Views.Entry extends Backbone.View
     'keyup .edit_entry': 'updateEntry'
 
   initialize: ->
-    @.model.on("destroy", this.remove, this);
     @.model.on("change",@render,@)
   
   render: ->
@@ -21,9 +20,9 @@ class Bookmycinema.Views.Entry extends Backbone.View
     @model.destroy()
 
   editEntry: (event) ->
-    event.preventDefault    
+    window.prev_view.render() if $.find('.edit_entry').length == 1
+    window.prev_view = @    
     $(@el).html('<input type="text" class="form-control edit_entry" value="' + @model.get('name') + '">')
     
   updateEntry: (event) ->
-    event.preventDefault
     @model.save({name: event.currentTarget.value}) if event.keyCode == 13
